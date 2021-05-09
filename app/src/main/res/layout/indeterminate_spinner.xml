@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5445154"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/indeterminate_spinner_inner"
+        android:layout_width="69dp"
+        android:layout_height="69dp"
+        android:layout_gravity="center"
+        android:src="@drawable/animated_spinner_inner" />
+
+    <ImageView
+        android:id="@+id/indeterminate_spinner_outer"
+        android:layout_width="89dp"
+        android:layout_height="89dp"
+        android:layout_gravity="center"
+        android:src="@drawable/animated_spinner_outer" />
+
+</merge>

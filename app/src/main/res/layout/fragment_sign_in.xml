@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".fragments.SignInFragment">
+
+    <ImageView
+        android:id="@+id/dash_group_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="4dp"
+        android:src="@drawable/dash_group" />
+
+    <ImageView
+        android:id="@+id/dash_group_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dash_group_1"
+        android:padding="4dp"
+        android:src="@drawable/dash_group" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ellipse_black" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ellipse_orange" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="4dp"
+        android:src="@drawable/powered_by_black" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <com.skyhawker.customview.SkyhawkTextView
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome"
+                    android:textColor="@android:color/black"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+                <com.skyhawker.customview.SkyhawkTextView
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_to_continue"
+                    android:textColor="@android:color/black"
+                    android:textSize="23sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <com.skyhawker.customview.SkyhawkTextView
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_id"
+                    android:padding="4sp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+
+                <com.skyhawker.customview.SkyhawkEditText
+                    style="@style/AppTheme.EditText"
+                    android:id="@+id/edt_login_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_edit_text"
+                    android:padding="12dp"
+                    android:hint="Enter mobile number here"
+                    android:inputType="number"
+                    android:textColor="@android:color/black" />
+
+                <com.skyhawker.customview.SkyhawkTextView
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password"
+                    android:padding="4sp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+
+                <com.skyhawker.customview.SkyhawkEditText
+                    style="@style/AppTheme.EditText"
+                    android:id="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_edit_text"
+                    android:padding="12dp"
+                    android:hint="Enter password here"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/black" />
+
+                <com.skyhawker.customview.SkyhawkButton
+                    style="@style/AppTheme.Button"
+                    android:id="@+id/btn_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_button_orange"
+                    android:text="@string/login"
+                    android:textColor="@android:color/white"
+                    android:layout_margin="24dp"
+                    android:elevation="4dp"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="18dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="42dp"
+                    android:orientation="vertical">
+                <com.skyhawker.customview.SkyhawkTextView
+                    style="@style/AppTheme.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/don_t_have_an_account"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <com.skyhawker.customview.SkyhawkButton
+                    style="@style/AppTheme.Button"
+                    android:id="@+id/btn_sign_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_button_orange"
+                    android:text="@string/sign_up"
+                    android:textColor="@android:color/white"
+                    android:textAllCaps="false"
+                    android:elevation="4dp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <com.skyhawker.customview.SpinnerView
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</RelativeLayout>

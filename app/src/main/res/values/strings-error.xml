@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Error Messages -->
+    <string name="error_api_no_internet_connection">Please check your internet connection.</string>
+    <string name="error_api_try_again">Sorry, the server is not responding. Please try again.</string>
+    <string name="error_api_permissions_not_granted">Permissions are not granted.</string>
+
+    <!-- Validation Messages -->
+    <string name="error_validation_field_required">This field is required.</string>
+
+    <string name="error_email_not_valid">Email address is not valid.</string>
+
+    <string name="error_password_not_match">Confirm password not matched with password.</string>
+
+</resources>

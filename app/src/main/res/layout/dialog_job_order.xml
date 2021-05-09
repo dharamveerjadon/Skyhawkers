@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_with_border"
+        android:orientation="vertical">
+
+        <com.skyhawker.customview.SkyhawkTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Filters"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/chk_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show All"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/chk_accepted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_rectangle_maroon"
+            android:drawablePadding="8dp"
+            android:text="Accepted"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/chk_declined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_rectangle_green"
+            android:drawablePadding="8dp"
+            android:text="Declined"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/chk_saved_for_later"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/ic_rectangle_blue"
+            android:drawablePadding="8dp"
+            android:text="Saved for later"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>
+
+
+

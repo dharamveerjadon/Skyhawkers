@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screen_background"
+    tools:context=".fragments.DeveloperEntryFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:src="@drawable/border_orange_left" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="64dp"
+                android:src="@drawable/border_orange_right" />
+
+            <ImageView
+                android:id="@+id/header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="64dp"
+                android:background="@color/screen_background"
+                android:src="@drawable/icon_header" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/header_text"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="98dp"
+                android:background="@android:color/white"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="First Name"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_first_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Middle Name"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_middle_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Last Name"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_last_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Email ID"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_email_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:enabled="false"
+                        android:inputType="textEmailAddress"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Linked In ID"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_linkedin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Skype ID"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_skype_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Contact Number"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_contact_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:enabled="false"
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Location"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="text"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Years of Experience"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_year_of_experience"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Price Per Hour"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_price_per_hour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Expected CTC"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_expected_ctc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="number"
+                        android:padding="12dp"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="4sp"
+                        android:text="Skills(Comma Separted)"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkEditText
+                        style="@style/AppTheme.EditText"
+                        android:id="@+id/edt_skills"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_edit_text"
+                        android:inputType="textMultiLine"
+                        android:minLines="5"
+                        android:gravity="top|left"
+                        android:scrollbars="vertical"
+                        android:padding="12dp"
+                        android:singleLine="false"
+                        android:textColor="@android:color/black" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="24dp"
+                        android:gravity="center"
+                        android:padding="4sp"
+                        android:text="Upload your Resume"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="4sp"
+                        android:text="Accepted formats include PDF and DOC"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp" />
+
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:id="@+id/upload_file"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="16dp"
+                        android:background="@drawable/border_edit_text"
+                        android:drawableLeft="@drawable/ic_arrow_upward_grey"
+                        android:gravity="center"
+                        android:padding="4sp"
+                        android:text="Click here to upload resume"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/img_document"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_document"
+                        android:visibility="gone" />
+
+                    <com.skyhawker.customview.SkyhawkButton
+                        style="@style/AppTheme.Button"
+                        android:id="@+id/btn_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="32dp"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/border_button_orange"
+                        android:elevation="4dp"
+                        android:text="Submit"
+                        android:textAllCaps="false" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/powered_by" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <com.skyhawker.customview.SpinnerView
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+</RelativeLayout>

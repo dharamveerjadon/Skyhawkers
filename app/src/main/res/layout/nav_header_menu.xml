@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/orange"
+    android:padding="@dimen/padding_default_double"
+    tools:ignore="Overdraw">
+
+
+    <FrameLayout
+        android:id="@+id/fm_profile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imv_member"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_default"
+            android:src="@drawable/ic_skyhawk_profile_orange"
+            />
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/AppTheme.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fm_profile_image"
+        android:layout_marginTop="@dimen/margin_default_quadruple"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_default"
+        tools:text="@string/app_name" />
+
+</RelativeLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "495514160753",
+    "project_id": "skyhawker-e0437",
+    "storage_bucket": "skyhawker-e0437.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495514160753:android:caa389ca33bd18cab295d0",
+        "android_client_info": {
+          "package_name": "com.skyhawker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495514160753-dotc7oki921ji9i3fo1ldsdtp0ljjo4c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZlTOGVBU5IpmGsgIKRb7B4dik_ZNbHig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495514160753-dotc7oki921ji9i3fo1ldsdtp0ljjo4c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

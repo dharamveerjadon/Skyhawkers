@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Timeline"
+        android:id="@+id/bottomNavigationTimelineMenuId"
+        android:icon="@drawable/ic_location"/>
+    <item android:title="My Jobs"
+        android:id="@+id/bottomNavigationJobMenuId"
+        android:icon="@drawable/ic_phone"/>
+    <item android:title="My Profile"
+        android:id="@+id/bottomNavigationProfileMenuId"
+        android:icon="@drawable/ic_email"/>
+
+</menu>
