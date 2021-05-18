@@ -66,17 +66,17 @@ class ViewUtils {
 
         switch (textStyle) {
             case Typeface.BOLD: // bold
-                return FontCache.getTypeface(fontName + "-Bold.otf", context);
+                return FontCache.getTypeface(fontName + "-Bold.ttf", context);
 
             case Typeface.ITALIC: // italic
-                return FontCache.getTypeface(fontName + "-Italic.otf", context);
+                return FontCache.getTypeface(fontName + "-Italic.ttf", context);
 
             // bold italic
             case Typeface.BOLD_ITALIC:
-                return FontCache.getTypeface(fontName + "-BoldItalic.otf", context);
+                return FontCache.getTypeface(fontName + "-BoldItalic.ttf", context);
 
             default:
-                return FontCache.getTypeface(fontName + ".otf", context);
+                return FontCache.getTypeface(fontName + ".ttf", context);
         }
     }
 }

@@ -80,6 +80,7 @@ public class MenuFragment extends BaseFragment {
         Session session = AppPreferences.getSession();
 
         if(session != null && session.getUserModel() != null) {
+            mProgressBar.setVisibility(View.VISIBLE);
             Glide.with(SkyhawkerApplication.sharedInstance())
                     .load(session.getUserModel().getProfileImageUrl())
                     .listener(new RequestListener<String, GlideDrawable>() {

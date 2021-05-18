@@ -3,16 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.CongratulationFragment">
-
-    <ImageView
-        android:id="@+id/powered_by"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:padding="4dp"
-        android:src="@drawable/powered_by_black" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,8 +33,10 @@
                     android:layout_height="wrap_content"
                     android:text="Congrats!"
                     android:textColor="@android:color/black"
-                    android:textSize="36sp"
-                    android:textStyle="bold" />
+                    android:textSize="40sp"
+                    android:textFontWeight="700"
+                    app:appFont="Poppins-Bold"
+                    />
 
 
                 <com.skyhawker.customview.SkyhawkTextView
@@ -51,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text="Your profile matched a client's requirement"
                     android:textColor="@android:color/black"
+                    app:appFont="Poppins-Regular"
                     android:textSize="16sp" />
 
                 <LinearLayout
@@ -66,7 +61,8 @@
                         style="@style/AppTheme.TextView"
                         android:padding="4dp"
                         android:text="Job Name"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        app:appFont="Poppins-Regular"/>
 
 
                     <com.skyhawker.customview.SkyhawkTextView
@@ -77,7 +73,8 @@
                         android:padding="4dp"
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
-                        android:textStyle="bold"
+                        app:appFont="Poppins-Bold"
+                        android:textFontWeight="700"
                         tools:text="Year Of Experience" />
 
                     <LinearLayout
@@ -108,7 +105,8 @@
                                 android:padding="4dp"
                                 android:textColor="@color/colorAccent"
                                 android:textSize="18sp"
-                                android:textStyle="bold"
+                                app:appFont="Poppins-Bold"
+                                android:textFontWeight="700"
                                 tools:text="$200" />
 
 
@@ -119,6 +117,7 @@
                                 android:gravity="center"
                                 style="@style/AppTheme.TextView"
                                 android:padding="4dp"
+                                app:appFont="Poppins-Regular"
                                 android:text="Tentative Budgets"
                                 android:textColor="@android:color/white"
                                 android:textSize="16sp" />
@@ -150,7 +149,8 @@
                                 android:padding="4dp"
                                 android:textColor="@color/colorAccent"
                                 android:textSize="18sp"
-                                android:textStyle="bold"
+                                app:appFont="Poppins-Bold"
+                                android:textFontWeight="700"
                                 tools:text="8 years" />
 
 
@@ -162,6 +162,7 @@
                                 style="@style/AppTheme.TextView"
                                 android:padding="4dp"
                                 android:text="Experience required"
+                                app:appFont="Poppins-Regular"
                                 android:textColor="@android:color/white"
                                 android:textSize="16sp" />
 
@@ -176,6 +177,7 @@
                         android:padding="4dp"
                         style="@style/AppTheme.TextView"
                         android:text="Job Decription"
+                        app:appFont="Poppins-Regular"
                         android:textSize="14sp" />
 
 
@@ -187,7 +189,8 @@
                         style="@style/AppTheme.TextView"
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
-                        android:textStyle="bold"
+                        app:appFont="Poppins-Bold"
+                        android:textFontWeight="700"
                         tools:text="Year Of Experience" />
 
                     <View
@@ -205,6 +208,7 @@
                         android:layout_marginTop="24dp"
                         android:gravity="center"
                         android:padding="4dp"
+                        app:appFont="Poppins-Regular"
                         android:text="Job Category"
                         android:textSize="14sp" />
 
@@ -217,7 +221,8 @@
                         android:padding="4dp"
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
-                        android:textStyle="bold"
+                        app:appFont="Poppins-Bold"
+                        android:textFontWeight="700"
                         tools:text="Year Of Experience" />
 
                     <View
@@ -234,20 +239,18 @@
                         android:layout_marginTop="24dp"
                         android:gravity="center"
                         android:padding="4dp"
+                        app:appFont="Poppins-Regular"
                         android:text="Skills required"
                         android:textSize="14sp" />
 
 
-                    <com.skyhawker.customview.SkyhawkTextView
-                        style="@style/AppTheme.TextView"
-                        android:id="@+id/txt_skills_required"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/lnr_skill"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="vertical"
                         android:padding="4dp"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        tools:text="Year Of Experience" />
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -277,6 +280,7 @@
                                 android:gravity="center"
                                 android:padding="4dp"
                                 android:text="Decline"
+                                app:appFont="Poppins-Regular"
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -301,6 +305,7 @@
                                 android:gravity="center"
                                 android:padding="4dp"
                                 android:text="Saved for later"
+                                app:appFont="Poppins-Regular"
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp" />
                         </LinearLayout>
@@ -325,11 +330,22 @@
                                 android:gravity="center"
                                 android:padding="4dp"
                                 android:text="Accept"
+                                app:appFont="Poppins-Regular"
                                 android:textColor="@android:color/black"
                                 android:textSize="14sp" />
 
                         </LinearLayout>
                     </LinearLayout>
+                    <com.skyhawker.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:text="Need text to notify user for card movement process"
+                        app:appFont="Poppins-Regular"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

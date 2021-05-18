@@ -28,8 +28,8 @@ public class ClosedAdapter extends BaseAdapter {
 
     private final OnItemClickListener mOnItemClickListener;
     @SuppressWarnings("CanBeFinal")
-    private LayoutInflater mInflater;
-    private Context context;
+    private final LayoutInflater mInflater;
+    private final Context context;
     private List<MyJobsModel> mItems;
     private long mItemCountOnServer;
 
@@ -42,6 +42,7 @@ public class ClosedAdapter extends BaseAdapter {
 
     public interface OnItemClickListener {
         void onItemClick(MyJobsModel item);
+
         void onDeveloperAppliedUser(MyJobsModel item);
     }
 
@@ -110,10 +111,10 @@ public class ClosedAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         //if the position is greater or equal to item size then show footer
-            final int size = mItems.size();
-            if (size == 0) {
-                return TYPE_EMPTY;
-            }
+        final int size = mItems.size();
+        if (size == 0) {
+            return TYPE_EMPTY;
+        }
         return TYPE_ITEM;
     }
 
@@ -152,12 +153,12 @@ public class ClosedAdapter extends BaseAdapter {
         private final TextView mTxtDescription;
         private final TextView mTxtDate;
         private final TextView mTxtJobType;
-        private TagView tagGroup;
+        private final TagView tagGroup;
         private final TextView mTxtYearOfExperience;
         private final TextView mBudget;
         private final TextView mTxtStatus;
-        private  final ImageView mAppliedDeveloper;
-        private View viewBar;
+        private final ImageView mAppliedDeveloper;
+        private final View viewBar;
         // current bind to view holder
         private MyJobsModel mCurrentItem;
 
@@ -197,25 +198,31 @@ public class ClosedAdapter extends BaseAdapter {
         void bind(Context context, final MyJobsModel item) {
             mCurrentItem = item;
 
-            if("Active".equalsIgnoreCase( item.getStatus()))
-                viewBar.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
-            else
-                viewBar.setBackgroundColor(context.getResources().getColor(R.color.colorBlack));
-
             mTitle.setText(item.getTitle());
             mTxtDescription.setText(item.getDescription());
             mTxtDate.setText(item.getDate());
             mTxtJobType.setText(item.getJobType());
             setTags(context, item.getSkills());
-            mTxtYearOfExperience.setText(item.getYearOfExperience() +" Yrs experience");
-            mBudget.setText(item.getBudgets());
-            mTxtStatus.setText(item.getStatus());
+            mTxtYearOfExperience.setText(item.getYearOfExperience() + " Yrs experience");
+            mBudget.setText("₹ " +item.getBudgets());
+
+            if ("Accept".equalsIgnoreCase(item.getStatus())) {
+                viewBar.setBackgroundColor(context.getResources().getColor(R.color.blue));
+                mTxtStatus.setText("Accepted");
+            } else if ("Decline".equalsIgnoreCase(item.getStatus())) {
+                viewBar.setBackgroundColor(context.getResources().getColor(R.color.light_green));
+                mTxtStatus.setText("Declined");
+            } else {
+                mTxtStatus.setText("Saved For Later");
+                viewBar.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+            }
         }
+
         private void setTags(Context context, String skills) {
             List<Tag> tagList = new ArrayList<>();
 
             String[] strSkills = skills.split(",");
-            for(String value: strSkills) {
+            for (String value : strSkills) {
                 Tag tag;
                 tag = new Tag(context, value);
                 tag.radius = 10f;

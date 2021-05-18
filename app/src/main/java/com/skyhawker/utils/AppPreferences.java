@@ -16,7 +16,7 @@ public class AppPreferences {
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String SESSION = "session";
     private static final String IS_PREFERENCE_ADDED = "is_preference_added";
-    private static final String SELECTED_HOME_SCREEN = "selected_home_screen";
+    public static final String SELECTED_HOME_SCREEN = "selected_home_screen";
 
     private static final String IS_FCM_TOKEN = "IS_FCM_TOKEN";
 
@@ -56,6 +56,12 @@ public class AppPreferences {
      */
     public static int getSelectedHomeScreen() {
         return mSharedPreferences.getInt(SELECTED_HOME_SCREEN, 0);
+    }
+
+    public static void setSelectedHomeScreen(String key, @Nullable int value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(key, value);
+        editor.apply();
     }
 
     /**

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.SignUpActivity">
 
     <LinearLayout
@@ -31,6 +32,7 @@
                     android:gravity="center"
                     android:paddingStart="@dimen/padding_default"
                     android:paddingEnd="@dimen/padding_default"
+                    app:appFont="Poppins-Bold"
                     android:text="Note:"
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_default" />
@@ -46,7 +48,9 @@
                     android:gravity="center"
                     android:padding="4dp"
                     android:paddingStart="@dimen/padding_default"
+                    app:appFont="Poppins-Regular"
                     android:paddingEnd="@dimen/padding_default"
+
                     android:text="Information entered here will be shared with all SKYHAWKERS using the app.\n Please enter without making spell errors and as per guidelines.\n For assistance call support."
                     android:textColor="@android:color/white"
                     android:textSize="14sp" />
@@ -64,6 +68,7 @@
                         android:layout_marginTop="8dp"
                         android:padding="4sp"
                         android:text="Job Name"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -75,6 +80,7 @@
                         android:background="@drawable/border_edit_text"
                         android:inputType="text"
                         android:padding="12dp"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black" />
 
                     <com.skyhawker.customview.SkyhawkTextView
@@ -84,6 +90,7 @@
                         android:layout_marginTop="8dp"
                         android:padding="4sp"
                         android:text="Job Description"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -95,6 +102,7 @@
                         android:background="@drawable/border_edit_text"
                         android:inputType="text"
                         android:padding="12dp"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black" />
 
                     <com.skyhawker.customview.SkyhawkTextView
@@ -104,6 +112,7 @@
                         android:layout_marginTop="8dp"
                         android:padding="4sp"
                         android:text="Job Category"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -120,6 +129,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4sp"
                         android:text="Date and Time"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -131,6 +141,7 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/border_edit_text"
                         android:enabled="false"
+                        app:appFont="Poppins-Regular"
                         android:inputType="text"
                         android:padding="12dp"
                         android:textColor="@android:color/black" />
@@ -141,6 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:padding="4sp"
+                        app:appFont="Poppins-Regular"
                         android:text="Year of experience required"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
@@ -153,6 +165,7 @@
                         android:background="@drawable/border_edit_text"
                         android:inputType="number"
                         android:padding="12dp"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black" />
 
                     <com.skyhawker.customview.SkyhawkTextView
@@ -162,6 +175,7 @@
                         android:layout_marginTop="8dp"
                         android:padding="4sp"
                         android:text="Approx Budget"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -172,6 +186,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_edit_text"
                         android:inputType="text"
+                        app:appFont="Poppins-Regular"
                         android:padding="12dp"
                         android:textColor="@android:color/black" />
 
@@ -181,6 +196,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:padding="4sp"
+                        app:appFont="Poppins-Regular"
                         android:text="Skills Required(Comma Seperated)"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
@@ -195,6 +211,7 @@
                         android:inputType="textMultiLine"
                         android:minLines="5"
                         android:padding="12dp"
+                        app:appFont="Poppins-Regular"
                         android:scrollbars="vertical"
                         android:textColor="@android:color/black" />
 
@@ -208,6 +225,7 @@
                         android:layout_marginTop="18dp"
                         android:background="@drawable/border_button_orange"
                         android:elevation="4dp"
+                        app:appFont="Poppins-Regular"
                         android:text="Save &amp; send Notification"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white" />

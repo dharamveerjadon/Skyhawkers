@@ -6,6 +6,7 @@
     android:layout_height="@dimen/tab_bar_height"
     android:background="@drawable/ripple_effect"
     android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ImageView
@@ -13,16 +14,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image"
-        android:tint="@drawable/nav_item_color_state"
+        app:tint="@drawable/nav_item_color_state"
         tools:src="@drawable/ic_skyhawk_grey"/>
 
-    <TextView
+    <com.skyhawker.customview.SkyhawkTextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default_quarter"
         android:textColor="@drawable/nav_item_color_state"
         android:textSize="10sp"
+        app:appFont="Poppins-Regular"
         tools:text="@string/app_name"
         tools:ignore="SmallSp" />
 

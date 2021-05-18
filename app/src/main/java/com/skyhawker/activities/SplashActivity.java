@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import com.skyhawker.R;
 import com.skyhawker.models.Session;
 import com.skyhawker.models.UserModel;
+import com.skyhawker.services.ClearServices;
 import com.skyhawker.utils.AppPreferences;
 import com.skyhawker.utils.Keys;
 import com.skyhawker.utils.Utils;
@@ -21,6 +22,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        startService(new Intent(getBaseContext(), ClearServices.class));
        /* new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

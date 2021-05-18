@@ -44,23 +44,24 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:padding="8dp"
-                        android:text="Full Stack Developer "
+                        android:text="Full stack developer developer"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        app:appFont="Poppins-SemiBold" />
 
                     <com.skyhawker.customview.SkyhawkTextView
                         android:id="@+id/txt_date"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:layout_gravity="end"
                         android:drawableLeft="@drawable/ic_date_orange"
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="1"
+                        android:textSize="@dimen/text_size_micro"
                         android:padding="8dp"
+                        app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black"
                         tools:text="4th May 2021, 5:00pm" />
                 </LinearLayout>
@@ -71,6 +72,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    app:appFont="Poppins-Regular"
+                    android:textSize="@dimen/text_size_micro"
                     android:textColor="@android:color/black"
                     tools:text="Lorem Ipsum is simply dummy text of the printing" />
 
@@ -89,7 +92,8 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:padding="4dp"
-                        android:textColor="@android:color/black"
+                        app:appFont="Poppins-Regular"
+                        android:textSize="@dimen/text_size_micro"
                         tools:text="Full Time" />
 
                     <ImageView
@@ -98,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4dp"
                         android:src="@drawable/ic_eye_orange"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -128,7 +132,8 @@
                         android:padding="2dp"
                         android:text="10 yrs experience"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp" />
+                        app:appFont="Poppins-Regular"
+                        android:textSize="@dimen/text_size_micro" />
 
                     <com.skyhawker.customview.SkyhawkTextView
                         android:id="@+id/txt_tentative_budget"
@@ -136,10 +141,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawableStart="@drawable/ic_attach_money_dollar"
                         android:maxLines="1"
                         android:padding="8dp"
+                        android:gravity="center_vertical"
                         android:textColor="@android:color/black"
+                        app:appFont="Poppins-Regular"
+                        android:textSize="@dimen/text_size_small"
                         tools:text="30" />
 
                     <com.skyhawker.customview.SkyhawkTextView
@@ -153,7 +160,8 @@
                         android:maxLines="1"
                         android:padding="8dp"
                         android:textColor="@android:color/black"
-                        android:textStyle="bold"
+                        app:appFont="Poppins-Medium"
+                        android:textSize="@dimen/text_size_micro"
                         tools:text="Status:Active" />
                 </LinearLayout>
             </LinearLayout>

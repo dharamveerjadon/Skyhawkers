@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Handler;
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.skyhawker.R;
+import com.skyhawker.activities.DeveloperEntryActivity;
 import com.skyhawker.activities.MainActivity;
 import com.skyhawker.customview.SpinnerView;
 import com.skyhawker.models.Session;
@@ -89,35 +92,37 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
                     boolean isAdmin = false;
                     final Session session = new Session(userId, emailId, password, repeatPassword, contactNumber, new UserModel(), AppPreferences.getFcmToken(),false);
                     SkyhawkerApplication.sharedDatabaseInstance().child("Developers").child(contactNumber).setValue(session)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    AppPreferences.setSession(session);
+                            .addOnSuccessListener(aVoid -> {
+                                AppPreferences.setSession(session);
 
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            spinnerView.setVisibility(View.GONE);
-                                            Intent intent = new Intent(getActivity(), MainActivity.class);
-                                            intent.putExtra(Keys.MOBILE_NUMBER,contactNumber);
-                                            startActivity(intent);
-                                            getActivity().finish();
-                                        }
-                                    }, 3000);
-
-
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
+                                new Handler().postDelayed(() -> {
                                     spinnerView.setVisibility(View.GONE);
-                                }
-                            });
+                                    Intent intent = new Intent(getActivity(), DeveloperEntryActivity.class);
+                                    intent.putExtra(Keys.MOBILE_NUMBER,contactNumber);
+                                    intent.putExtra("isFirst",true);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }, 3000);
+
+
+                            })
+                            .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));
                 }
 
                 break;
         }
+    }
+
+    /**
+     * Add the developer fragment
+     */
+    private void addMyDeveloperFragment() {
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        DeveloperEntryFragment fragment = DeveloperEntryFragment.newInstance(getString(R.string.string_profile), null);
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
     }
 
     private boolean isValidation() {

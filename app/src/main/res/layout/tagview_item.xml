@@ -4,22 +4,25 @@
     android:layout_height="wrap_content"
     android:background="@color/colorOrange"
     android:gravity="center_vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
-    <TextView
+    <com.skyhawker.customview.SkyhawkTextView
         android:id="@+id/tv_tag_item_contain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:gravity="center"
         android:singleLine="true"
+        app:appFont="Poppins-Regular"
         android:text="ssdddddddd" />
 
-    <TextView
+    <com.skyhawker.customview.SkyhawkTextView
         android:id="@+id/tv_tag_item_delete"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
+        app:appFont="Poppins-Regular"
         android:singleLine="true"
         android:visibility="gone" />
 

@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -155,7 +156,7 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
         pushFragment(TimeLineDeveloperListFragment.newInstance("Applied Developer List", item), true);
     }
 
-    public void showDialog(String checkedValue) {
+    public void showDialog(String Value) {
 
         final Dialog d = new Dialog(context, R.style.DialogSlideAnim);
         Window window = d.getWindow();
@@ -171,21 +172,38 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
         final CheckBox checkBoxAccepted = d.findViewById(R.id.chk_accepted);
         final CheckBox checkBoxDeclined = d.findViewById(R.id.chk_declined);
         final CheckBox checkBoxSaved = d.findViewById(R.id.chk_saved_for_later);
+        final TextView clear = d.findViewById(R.id.txt_clear);
+        final TextView cancel = d.findViewById(R.id.txt_cancel);
+        final TextView apply = d.findViewById(R.id.txt_apply);
 
-
-        if (Constants.SHOW_ALL.equalsIgnoreCase(checkedValue))
+        clear.setOnClickListener(v -> {
             checkBoxAll.setChecked(true);
-        else if (Constants.ACCEPT.equalsIgnoreCase(checkedValue))
-            checkBoxAccepted.setChecked(true);
-        else if (Constants.DECLINE.equalsIgnoreCase(checkedValue))
-            checkBoxDeclined.setChecked(true);
-        else if (Constants.SAVED_FOR_LATER.equalsIgnoreCase(checkedValue))
-            checkBoxSaved.setChecked(true);
+            checkBoxAccepted.setChecked(false);
+            checkBoxDeclined.setChecked(false);
+            checkBoxSaved.setChecked(false);
+            checkedValue = Constants.SHOW_ALL;
+        });
 
+        cancel.setOnClickListener(v -> {
+            d.dismiss();
+        });
+
+        apply.setOnClickListener(v -> {
+            d.dismiss();
+            getdata(true, checkedValue);
+        });
+
+        if (Constants.SHOW_ALL.equalsIgnoreCase(Value))
+            checkBoxAll.setChecked(true);
+        else if (Constants.ACCEPT.equalsIgnoreCase(Value))
+            checkBoxAccepted.setChecked(true);
+        else if (Constants.DECLINE.equalsIgnoreCase(Value))
+            checkBoxDeclined.setChecked(true);
+        else if (Constants.SAVED_FOR_LATER.equalsIgnoreCase(Value))
+            checkBoxSaved.setChecked(true);
 
         checkBoxAll.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                d.dismiss();
                 checkBoxAccepted.setChecked(false);
                 checkBoxDeclined.setChecked(false);
                 checkBoxSaved.setChecked(false);
@@ -195,7 +213,6 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
 
         checkBoxAccepted.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                d.dismiss();
                 checkBoxSaved.setChecked(false);
                 checkBoxDeclined.setChecked(false);
                 checkBoxAll.setChecked(false);
@@ -205,7 +222,6 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
 
         checkBoxDeclined.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                d.dismiss();
                 checkBoxAccepted.setChecked(false);
                 checkBoxSaved.setChecked(false);
                 checkBoxAll.setChecked(false);
@@ -215,7 +231,6 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
 
         checkBoxSaved.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                d.dismiss();
                 checkBoxAll.setChecked(false);
                 checkBoxAccepted.setChecked(false);
                 checkBoxDeclined.setChecked(false);
@@ -232,19 +247,16 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
         switch (checkboxId) {
             case R.id.chk_all:
                 checkedValue = Constants.SHOW_ALL;
-                getdata(true, Constants.SHOW_ALL);
                 break;
             case R.id.chk_accepted:
                 checkedValue = Constants.ACCEPT;
-                getdata(true, Constants.ACCEPT);
                 break;
             case R.id.chk_declined:
                 checkedValue = Constants.DECLINE;
-                getdata(true, Constants.DECLINE);
                 break;
             case R.id.chk_saved_for_later:
                 checkedValue = Constants.SAVED_FOR_LATER;
-                getdata(true, Constants.SAVED_FOR_LATER);
+
                 break;
         }
     }

@@ -1,11 +1,13 @@
 package com.skyhawker.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.skyhawker.R;
+import com.skyhawker.activities.MainActivity;
 import com.skyhawker.customview.SpinnerView;
 import com.skyhawker.models.ApplyJob;
 import com.skyhawker.models.MyJobsModel;
@@ -23,11 +26,13 @@ import com.skyhawker.utils.SkyhawkerApplication;
 
 public class CongratulationFragment extends BaseFragment implements View.OnClickListener {
 
-    private TextView title, description, budget, yearOfExperience, category, skills;
+    private TextView title, description, budget, yearOfExperience, category;
+    private LinearLayout lnrSkills;
     private MyJobsModel item;
     private ImageView mAccept, mDecline, mSavedForLater;
     private SpinnerView spinnerView;
     private Session session;
+    private MainActivity activity;
 
     public static CongratulationFragment newInstance(String title, MyJobsModel model) {
         CongratulationFragment fragment = new CongratulationFragment();
@@ -36,6 +41,12 @@ public class CongratulationFragment extends BaseFragment implements View.OnClick
         args.putParcelable("item", model);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (MainActivity)context;
     }
 
     @Override
@@ -63,7 +74,7 @@ public class CongratulationFragment extends BaseFragment implements View.OnClick
         description = view.findViewById(R.id.txt_job_description);
         budget = view.findViewById(R.id.txt_budgets);
         yearOfExperience = view.findViewById(R.id.txt_year_of_experience);
-        skills = view.findViewById(R.id.txt_skills_required);
+        lnrSkills = view.findViewById(R.id.lnr_skill);
         category = view.findViewById(R.id.txt_job_category);
         mAccept = view.findViewById(R.id.accept);
         mDecline = view.findViewById(R.id.decline);
@@ -99,8 +110,23 @@ public class CongratulationFragment extends BaseFragment implements View.OnClick
         budget.setText(item.getBudgets());
         yearOfExperience.setText(item.getYearOfExperience());
         category.setText(item.getJobType());
-        skills.setText(item.getSkills());
+        setSkills(item.getSkills());
         spinnerView.setVisibility(View.GONE);
+    }
+
+    private void setSkills(String skills) {
+        String[] strSkills = skills.split(",");
+        for (String value : strSkills) {
+            addTextSkills(value);
+        }
+    }
+
+    private void addTextSkills(String value){
+        LayoutInflater inflater = (LayoutInflater)   getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.skills_item, null);
+        TextView skills = view.findViewById(R.id.txt_name);
+        skills.setText(value.trim());
+        lnrSkills.addView(skills);
     }
 
     private void sendDataToFirebase(String action) {

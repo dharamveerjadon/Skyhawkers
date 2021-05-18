@@ -1,5 +1,5 @@
 <resources>
 
-    <string name="font_helvetica_neue">HelveticaNeue</string>
-
+    <!--<string name="font_helvetica_neue">HelveticaNeue</string>-->
+    <string name="font_poppins">Poppins</string>
 </resources>

@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -10,15 +11,33 @@
         android:background="@drawable/bg_white_with_border"
         android:orientation="vertical">
 
-        <com.skyhawker.customview.SkyhawkTextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="Filters"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <com.skyhawker.customview.SkyhawkTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Filters"
+                android:layout_weight=".8"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:appFont="Poppins-SemiBold" />
+
+            <com.skyhawker.customview.SkyhawkTextView
+                android:id="@+id/txt_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Clear"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                app:appFont="Poppins-Regular" />
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/chk_all"
@@ -26,17 +45,19 @@
             android:layout_height="wrap_content"
             android:text="Show All"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:theme="@style/CheckBoxTheme" />
 
         <CheckBox
             android:id="@+id/chk_accepted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_rectangle_maroon"
+            android:drawableRight="@drawable/ic_rectangle_blue"
             android:drawablePadding="8dp"
             android:text="Accepted"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:theme="@style/CheckBoxTheme" />
 
         <CheckBox
             android:id="@+id/chk_declined"
@@ -46,17 +67,52 @@
             android:drawablePadding="8dp"
             android:text="Declined"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:theme="@style/CheckBoxTheme" />
 
         <CheckBox
             android:id="@+id/chk_saved_for_later"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_rectangle_blue"
+            android:drawableRight="@drawable/ic_rectangle_maroon"
             android:drawablePadding="8dp"
             android:text="Saved for later"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:theme="@style/CheckBoxTheme" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gray_border_dark_gray"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <com.skyhawker.customview.SkyhawkTextView
+                android:id="@+id/txt_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Cancel"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:appFont="Poppins-Light" />
+
+            <com.skyhawker.customview.SkyhawkTextView
+                android:id="@+id/txt_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Apply"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:appFont="Poppins-Light" />
+
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 

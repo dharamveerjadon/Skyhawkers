@@ -2,6 +2,7 @@ package com.skyhawker.fragments;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -29,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.skyhawker.R;
+import com.skyhawker.activities.MainActivity;
+import com.skyhawker.activities.WebViewActivity;
 import com.skyhawker.customview.SpinnerView;
 import com.skyhawker.models.Session;
 import com.skyhawker.models.Upload;
@@ -36,6 +39,8 @@ import com.skyhawker.models.UserModel;
 import com.skyhawker.utils.AppPreferences;
 import com.skyhawker.utils.Keys;
 import com.skyhawker.utils.Utils;
+
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -55,6 +60,14 @@ public class DeveloperEntryFragment extends BaseFragment implements View.OnClick
     private SpinnerView spinnerView;
     private String mobileNumber;
     private Upload upload;
+    private MainActivity activity;
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (MainActivity)context;
+    }
 
     public static DeveloperEntryFragment newInstance(String title, String arg1) {
         DeveloperEntryFragment fragment = new DeveloperEntryFragment();
@@ -107,8 +120,6 @@ public class DeveloperEntryFragment extends BaseFragment implements View.OnClick
         mUploadFile.setOnClickListener(this);
         mBtnSubmit.setOnClickListener(this);
         mImgDocument.setOnClickListener(this);
-
-
     }
 
     private void getdata() {
@@ -309,8 +320,9 @@ public class DeveloperEntryFragment extends BaseFragment implements View.OnClick
                 break;
             case R.id.img_document:
                 if (upload != null) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(upload.url));
-                    startActivity(browserIntent);
+                    Intent intentWeb = new Intent(getContext(), WebViewActivity.class);
+                    intentWeb.putExtra("resume_url", upload.getUrl());
+                    startActivity(intentWeb);
                 }
                 break;
         }
@@ -341,7 +353,7 @@ public class DeveloperEntryFragment extends BaseFragment implements View.OnClick
                 .addOnSuccessListener(aVoid -> {
                     spinnerView.setVisibility(View.GONE);
                     AppPreferences.setSession(session);
-                    getActivity().onBackPressed();
+                    activity.onBackPressed();
                 })
                 .addOnFailureListener(e ->
                         spinnerView.setVisibility(View.GONE));

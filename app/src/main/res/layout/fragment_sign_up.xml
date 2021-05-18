@@ -67,7 +67,9 @@
                     android:text="@string/sign_up_text"
                     android:textColor="@android:color/black"
                     android:textSize="40sp"
-                    android:textStyle="bold" />
+                    app:appFont="Poppins-Bold"
+                    android:textFontWeight="700"
+                    />
 
                 <com.skyhawker.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
@@ -75,6 +77,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/sign_up_to_get_started"
                     android:textColor="@android:color/black"
+                    app:appFont="Poppins-Regular"
                     android:textSize="23sp" />
             </LinearLayout>
 
@@ -91,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:padding="4sp"
                     android:text="@string/email_id"
+                    app:appFont="Poppins-Regular"
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
 
@@ -101,6 +105,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edit_text"
                     android:inputType="text"
+                    app:appFont="Poppins-Regular"
                     android:padding="12dp"
                     android:textColor="@android:color/black" />
 
@@ -110,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:padding="4sp"
+                    app:appFont="Poppins-Regular"
                     android:text="@string/create_password"
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
@@ -122,6 +128,7 @@
                     android:background="@drawable/border_edit_text"
                     android:inputType="textPassword"
                     android:padding="12dp"
+                    app:appFont="Poppins-Regular"
                     android:textColor="@android:color/black" />
 
                 <com.skyhawker.customview.SkyhawkTextView
@@ -130,6 +137,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:padding="4sp"
+                    app:appFont="Poppins-Regular"
                     android:text="@string/repeat_password"
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
@@ -140,7 +148,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edit_text"
-                    android:inputType="textPassword"
+                    android:inputType="text"
+                    app:appFont="Poppins-Regular"
                     android:padding="12dp"
                     android:textColor="@android:color/black" />
 
@@ -151,6 +160,7 @@
                     android:layout_marginTop="8dp"
                     android:padding="4sp"
                     android:text="@string/mobile_number"
+                    app:appFont="Poppins-Regular"
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
 
@@ -162,6 +172,7 @@
                     android:background="@drawable/border_edit_text"
                     android:inputType="number"
                     android:padding="12dp"
+                    app:appFont="Poppins-Regular"
                     android:textColor="@android:color/black" />
 
                 <com.skyhawker.customview.SkyhawkButton
@@ -174,6 +185,7 @@
                     android:layout_marginTop="18dp"
                     android:background="@drawable/border_button_orange"
                     android:elevation="4dp"
+                    app:appFont="Poppins-Regular"
                     android:textColor="@android:color/white"
                     android:text="Register &amp; Login"
                     android:textAllCaps="false" />
