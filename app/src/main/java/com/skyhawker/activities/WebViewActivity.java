@@ -22,7 +22,7 @@ public class WebViewActivity extends AppCompatActivity {
         if(getIntent() != null)
             url = getIntent().getStringExtra("resume_url");
 
-        w.loadUrl(url);
+        w.loadUrl("https://docs.google.com/gview?embedded=true&url="+url);
 
         // this will enable the javascipt.
         w.getSettings().setJavaScriptEnabled(true);

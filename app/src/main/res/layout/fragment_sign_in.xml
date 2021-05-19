@@ -66,10 +66,9 @@
                     android:layout_height="wrap_content"
                     android:text="@string/welcome"
                     android:textColor="@android:color/black"
-                    app:appFont="Poppins-Bold"
-                    android:textFontWeight="700"
                     android:textSize="40sp"
-                    android:textStyle="bold" />
+                    app:appFont="Poppins-Bold"
+                    android:textFontWeight="700" />
 
                 <com.skyhawker.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"

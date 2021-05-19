@@ -14,6 +14,7 @@ public class MyJobsModel implements Parcelable {
     private String budgets;
     private String status;
     private String key;
+    private ApplyJob applyJob;
 
     public String getKey() {
         return key;
@@ -53,6 +54,9 @@ public class MyJobsModel implements Parcelable {
         return description;
     }
 
+    public ApplyJob getApplyJob() {
+        return applyJob;
+    }
 
     public MyJobsModel(String title, String description, String date, String jobType, String yearOfExperience, String skills, String budgets, String status) {
         this.title = title;
@@ -75,6 +79,19 @@ public class MyJobsModel implements Parcelable {
         this.budgets = budgets;
         this.status = status;
         this.key = key;
+    }
+
+    public MyJobsModel(String title, String description, String date, String jobType, String yearOfExperience, String skills, String budgets, String status, String key, ApplyJob applyJob) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.jobType = jobType;
+        this.yearOfExperience = yearOfExperience;
+        this.skills = skills;
+        this.budgets = budgets;
+        this.status = status;
+        this.key = key;
+        this.applyJob = applyJob;
     }
 
     public MyJobsModel(String title, String description, String date, String jobType, String yearOfExperience, String skills, String budgets) {

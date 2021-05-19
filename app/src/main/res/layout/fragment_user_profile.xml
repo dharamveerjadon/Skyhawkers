@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.UserProfileFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/fab_edit"
-        android:src="@drawable/ic_add_timeline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -32,18 +25,17 @@
                     android:id="@+id/profile_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_skyhawk_profile_orange"
-                    app:civ_border_width="2dp" />
+                    android:src="@drawable/ic_avatar" />
 
                 <ImageView
                     android:id="@+id/img_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
                     android:padding="4dp"
-                    android:src="@drawable/ic_camera"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
+                    android:src="@drawable/ic_add"
+                    android:visibility="visible" />
 
             </RelativeLayout>
 
@@ -55,10 +47,10 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:padding="4dp"
-                app:appFont="Poppins-Bold"
-                android:textFontWeight="700"
                 android:textColor="@android:color/black"
+                android:textFontWeight="700"
                 android:textSize="@dimen/text_size_medium"
+                app:appFont="Poppins-Bold"
                 tools:text="David louis" />
 
             <com.skyhawker.customview.SkyhawkTextView
@@ -67,11 +59,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:appFont="Poppins-Regular"
                 android:drawableLeft="@drawable/ic_location"
                 android:gravity="center"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
+                app:appFont="Poppins-Regular"
                 tools:text="Bangalore, India" />
 
             <com.skyhawker.customview.SkyhawkTextView
@@ -81,11 +73,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
-                app:appFont="Poppins-Regular"
                 android:drawableLeft="@drawable/ic_phone"
                 android:gravity="center"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
+                app:appFont="Poppins-Regular"
                 tools:text="Bangalore, India" />
 
 
@@ -98,24 +90,25 @@
                 android:drawableLeft="@drawable/ic_email"
                 android:gravity="center"
                 android:padding="4dp"
-                app:appFont="Poppins-Regular"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
+                app:appFont="Poppins-Regular"
                 tools:text="dharamveerjadon@gmail.com" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="8dp">
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <com.skyhawker.customview.SkyhawkTextView
                         android:id="@+id/txt_price_per_hour"
@@ -125,10 +118,10 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:padding="4dp"
-                        app:appFont="Poppins-SemiBold"
-                        android:textFontWeight="600"
                         android:textColor="@android:color/black"
+                        android:textFontWeight="600"
                         android:textSize="18sp"
+                        app:appFont="Poppins-SemiBold"
                         tools:text="$200" />
 
 
@@ -139,25 +132,25 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:padding="4dp"
-                        app:appFont="Poppins-Regular"
                         android:text="Price Per Hour"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp" />
+                        android:textSize="10sp"
+                        app:appFont="Poppins-Regular" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/colorAccent" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="8dp">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <com.skyhawker.customview.SkyhawkTextView
                         android:id="@+id/txt_expected_salary"
@@ -168,11 +161,10 @@
                         android:gravity="center"
                         android:padding="4dp"
                         android:textColor="@android:color/black"
+                        android:textFontWeight="600"
                         android:textSize="18sp"
                         app:appFont="Poppins-SemiBold"
-                        android:textFontWeight="600"
                         tools:text="$200" />
-
 
                     <com.skyhawker.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
@@ -182,24 +174,24 @@
                         android:gravity="center"
                         android:padding="4dp"
                         android:text="Expected Salary"
-                        app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp" />
+                        android:textSize="10sp"
+                        app:appFont="Poppins-Regular" />
 
                 </LinearLayout>
 
                 <View
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@color/colorAccent" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="8dp">
+                    android:layout_weight="1">
 
                     <com.skyhawker.customview.SkyhawkTextView
                         android:id="@+id/txt_year_of_experience"
@@ -210,9 +202,9 @@
                         android:gravity="center"
                         android:padding="4dp"
                         android:textColor="@android:color/black"
+                        android:textFontWeight="600"
                         android:textSize="18sp"
                         app:appFont="Poppins-SemiBold"
-                        android:textFontWeight="600"
                         tools:text="8" />
 
 
@@ -223,10 +215,10 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:padding="4dp"
-                        app:appFont="Poppins-Regular"
                         android:text="Year Of Experience"
                         android:textColor="@android:color/black"
-                        android:textSize="12sp" />
+                        android:textSize="10sp"
+                        app:appFont="Poppins-Regular" />
 
                 </LinearLayout>
 
@@ -235,9 +227,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:orientation="vertical"
-                android:layout_marginLeft="16dp">
+                android:orientation="vertical">
 
                 <com.skyhawker.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
@@ -246,9 +238,9 @@
                     android:gravity="center"
                     android:padding="4dp"
                     android:text="Skype ID"
-                    app:appFont="Poppins-Regular"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    app:appFont="Poppins-Regular" />
 
 
                 <com.skyhawker.customview.SkyhawkTextView
@@ -259,9 +251,9 @@
                     android:gravity="center"
                     android:padding="4dp"
                     android:textColor="@android:color/black"
+                    android:textFontWeight="600"
                     android:textSize="18sp"
                     app:appFont="Poppins-SemiBold"
-                    android:textFontWeight="600"
                     tools:text="Year Of Experience" />
 
             </LinearLayout>
@@ -275,8 +267,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginLeft="16dp">
+                android:layout_marginLeft="16dp"
+                android:orientation="vertical">
 
                 <com.skyhawker.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
@@ -285,9 +277,9 @@
                     android:gravity="center"
                     android:padding="4dp"
                     android:text="Linkedin ID"
-                    app:appFont="Poppins-Regular"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    app:appFont="Poppins-Regular" />
 
 
                 <com.skyhawker.customview.SkyhawkTextView
@@ -298,9 +290,9 @@
                     android:gravity="center"
                     android:padding="4dp"
                     android:textColor="@android:color/black"
+                    android:textFontWeight="600"
                     android:textSize="18sp"
                     app:appFont="Poppins-SemiBold"
-                    android:textFontWeight="600"
                     tools:text="Year Of Experience" />
 
             </LinearLayout>
@@ -330,16 +322,15 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Skills"
-                        app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        app:appFont="Poppins-Regular" />
 
                     <LinearLayout
                         android:id="@+id/lnr_skill"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        />
+                        android:orientation="vertical" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -353,9 +344,9 @@
                         android:id="@+id/img_resume"
                         android:layout_width="72dp"
                         android:layout_height="72dp"
+                        android:layout_gravity="end"
                         android:gravity="center"
                         android:padding="4dp"
-                        android:layout_gravity="end"
                         android:src="@drawable/icon_document"
                         android:textColor="@android:color/black"
                         android:textSize="14sp" />

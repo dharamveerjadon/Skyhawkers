@@ -16,13 +16,15 @@ import com.google.android.material.tabs.TabLayout;
 import com.skyhawker.R;
 import com.skyhawker.adapters.WatingAdapter;
 import com.skyhawker.models.MyJobsModel;
+import com.skyhawker.models.Session;
+import com.skyhawker.utils.AppPreferences;
 
 import org.jetbrains.annotations.NotNull;
 
-public class TimelineFragment extends BaseFragment implements WatingAdapter
-        .OnItemClickListener{
+public class TimelineFragment extends BaseFragment {
     private int mSelectedSubIndex = 0;
     private ViewPager mViewPager;
+    private Session session;
 
 
 
@@ -43,6 +45,7 @@ public class TimelineFragment extends BaseFragment implements WatingAdapter
         setToolbarTitle(getTitle());
         View view =  inflater.inflate(R.layout.fragment_timeline, container, false);
         viewById(view);
+
 /*
         if (mSelectedSubIndex > 0) {
             mSelectedSubIndex = Math.min(mSelectedSubIndex, mSubMenuItems.size() - 1);
@@ -63,11 +66,6 @@ public class TimelineFragment extends BaseFragment implements WatingAdapter
         tabLayout.setupWithViewPager(mViewPager);
 
 
-    }
-
-    @Override
-    public void onItemClick(MyJobsModel item) {
-        pushFragment(UserListFragment.newInstance("Developers", item.getTitle(), item.getDescription()), true);
     }
 
     /**
@@ -99,33 +97,38 @@ public class TimelineFragment extends BaseFragment implements WatingAdapter
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = null;
-            if (position ==  0) {
+            if (position ==  0)
                 fragment = WaitingFragment.newInstance("My Job");
-            }
 
-            else if(position == 1) {
+            if(position == 1)
                 fragment = ClosedFragment.newInstance("My Job");
-            }
+
+            if(position == 2)
+                fragment = AllRequirementFragment.newInstance("All Requirement");
+
+
        return fragment;
         }
 
         //Overridden method getCount to get the number of tabs
         @Override
         public int getCount() {
-            return 2;
+            session = AppPreferences.getSession();
+            return session.isAdmin() ? 3 : 2;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             String title = null;
             if (position == 0)
-            {
                 title = "WAITING";
-            }
-            else if (position == 1)
-            {
+
+             if (position == 1)
                 title = "CLOSED";
-            }
+
+            if (position == 2)
+                title = "ALL";
+
             return title;
         }
     }

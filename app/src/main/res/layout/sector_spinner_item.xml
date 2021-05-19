@@ -6,7 +6,7 @@
     android:textSize="@dimen/text_size_default"
     android:gravity="center_vertical"
     android:layout_gravity="center_vertical"
-    android:textColor="@color/colorPrimary"
+    android:textColor="@color/colorBlack"
     android:paddingTop="6dp"
     android:paddingRight="12dp"
     android:paddingLeft="12dp"

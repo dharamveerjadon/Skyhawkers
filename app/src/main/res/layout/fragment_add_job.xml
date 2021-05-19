@@ -100,9 +100,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_edit_text"
-                        android:inputType="text"
-                        android:padding="12dp"
+                        android:inputType="textMultiLine"
+                        android:minLines="5"
                         app:appFont="Poppins-Regular"
+                        android:gravity="top|left"
+                        android:scrollbars="vertical"
+                        android:padding="12dp"
+                        android:singleLine="false"
                         android:textColor="@android:color/black" />
 
                     <com.skyhawker.customview.SkyhawkTextView

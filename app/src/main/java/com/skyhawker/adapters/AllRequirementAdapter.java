@@ -1,27 +1,23 @@
 package com.skyhawker.adapters;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.skyhawker.R;
-import com.skyhawker.models.Session;
-import com.skyhawker.utils.SkyhawkerApplication;
+import com.skyhawker.customview.Tag;
+import com.skyhawker.customview.TagView;
+import com.skyhawker.models.MyJobsModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UserListAdapter extends BaseAdapter {
+public class AllRequirementAdapter extends BaseAdapter {
 
     //corporate list view
     private static final int TYPE_ITEM = 0;
@@ -32,17 +28,19 @@ public class UserListAdapter extends BaseAdapter {
     private final OnItemClickListener mOnItemClickListener;
     @SuppressWarnings("CanBeFinal")
     private final LayoutInflater mInflater;
-    private List<Session> mItems;
+    private final Context context;
+    private List<MyJobsModel> mItems;
     private long mItemCountOnServer;
 
-    public UserListAdapter(Context context, UserListAdapter.OnItemClickListener onItemClickListener) {
+    public AllRequirementAdapter(Context context, AllRequirementAdapter.OnItemClickListener onItemClickListener) {
+        this.context = context;
         mOnItemClickListener = onItemClickListener;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Session item);
+        void onItemClick(MyJobsModel item);
     }
 
     /**
@@ -51,7 +49,7 @@ public class UserListAdapter extends BaseAdapter {
      * @param items             article items
      * @param itemCountOnServer total item count on the server
      */
-    public void setItems(final List<Session> items, final long itemCountOnServer) {
+    public void setItems(final List<MyJobsModel> items, final long itemCountOnServer) {
         mItems = items;
         mItemCountOnServer = itemCountOnServer;
         notifyDataSetChanged();
@@ -64,7 +62,7 @@ public class UserListAdapter extends BaseAdapter {
      * @param items             items list
      * @param itemCountOnServer item count on server
      */
-    public void addItems(int start, final List<Session> items, final long itemCountOnServer) {
+    public void addItems(int start, final List<MyJobsModel> items, final long itemCountOnServer) {
         //remove the expire result of this page due to caching
         mItems.subList(start, mItems.size()).clear();
 
@@ -88,7 +86,7 @@ public class UserListAdapter extends BaseAdapter {
      *
      * @return article items
      */
-    public List<Session> getItems() {
+    public List<MyJobsModel> getItems() {
         return mItems;
     }
 
@@ -123,16 +121,16 @@ public class UserListAdapter extends BaseAdapter {
         View v = convertView;
         switch (viewType) {
             case TYPE_ITEM:
-                final Session item = mItems.get(position);
+                final MyJobsModel item = mItems.get(position);
                 ItemViewHolder itemViewHolder;
                 if (v == null) {
-                    v = mInflater.inflate(R.layout.fragment_user_info_list_item, parent, false);
+                    v = mInflater.inflate(R.layout.fragment_waiting_info_list_item, parent, false);
                     itemViewHolder = new ItemViewHolder(v, mOnItemClickListener);
                     v.setTag(itemViewHolder);
                 } else {
                     itemViewHolder = (ItemViewHolder) v.getTag();
                 }
-                itemViewHolder.bind(item);
+                itemViewHolder.bind(context, item);
                 return v;
 
             default:
@@ -147,25 +145,31 @@ public class UserListAdapter extends BaseAdapter {
     private static class ItemViewHolder implements View.OnClickListener {
 
         //view on click listener need to forward click events
-        private final UserListAdapter.OnItemClickListener mOnItemClickListener;
-        private final TextView mUsername;
-        private final TextView mTxtSkills;
-        private final TextView mTxtPricePerHour;
-        private final TextView mTxtExpectedSalary;
+        private final AllRequirementAdapter.OnItemClickListener mOnItemClickListener;
+        private final TextView mTitle;
+        private final TextView mTxtDescription;
+        private final TextView mTxtDate;
+        private final TextView mTxtJobType;
+        private final TagView tagGroup;
         private final TextView mTxtYearOfExperience;
-        private final ImageView profile;
+        private final TextView mBudget;
+        private final TextView mTxtStatus;
+        private final View viewBar;
         // current bind to view holder
-        private Session mCurrentItem;
+        private MyJobsModel mCurrentItem;
 
-        ItemViewHolder(@NonNull View view, final UserListAdapter.OnItemClickListener listener) {
+        ItemViewHolder(@NonNull View view, final AllRequirementAdapter.OnItemClickListener listener) {
             mOnItemClickListener = listener;
-            mUsername = view.findViewById(R.id.txt_user_name);
-            mTxtSkills = view.findViewById(R.id.txt_skills);
-            mTxtPricePerHour = view.findViewById(R.id.txt_price_per_hour);
-            mTxtExpectedSalary = view.findViewById(R.id.txt_expected_salary);
-            mTxtYearOfExperience = view.findViewById(R.id.txt_experience);
-            profile = view.findViewById(R.id.profile);
-            profile.setOnClickListener(this);
+            view.setOnClickListener(this);
+            mTitle = view.findViewById(R.id.txt_title);
+            mTxtDescription = view.findViewById(R.id.txt_description);
+            mTxtDate = view.findViewById(R.id.txt_date);
+            mTxtJobType = view.findViewById(R.id.txt_job_type);
+            tagGroup = view.findViewById(R.id.tag_group);
+            mTxtYearOfExperience = view.findViewById(R.id.txt_year_of_experience);
+            mBudget = view.findViewById(R.id.txt_tentative_budget);
+            mTxtStatus = view.findViewById(R.id.txt_status);
+            viewBar = view.findViewById(R.id.view_bar);
         }
 
         @Override
@@ -180,38 +184,34 @@ public class UserListAdapter extends BaseAdapter {
          *
          * @param item article item
          */
-        void bind(final Session item) {
+        void bind(Context context, final MyJobsModel item) {
             mCurrentItem = item;
-            mUsername.setText(item.getUserModel().getFirstName() + " " + item.getUserModel().getLastName());
-            mTxtSkills.setText(item.getUserModel().getSkills());
-            mTxtPricePerHour.setText(item.getUserModel().getPricePerHour() + " per hour");
-            mTxtExpectedSalary.setText(item.getUserModel().getExpectedCtc() + " CTC");
-            mTxtYearOfExperience.setText(item.getUserModel().getYearOfExperience() + " yrs exp");
 
-            if(item.getUserModel().getProfileImage() != null && !TextUtils.isEmpty(item.getUserModel().getProfileImage().url)) {
-                Glide.with(SkyhawkerApplication.sharedInstance())
-                        .load(item.getUserModel().getProfileImage().url)
-                        .listener(new RequestListener<String, GlideDrawable>() {
-                            @Override
-                            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean
-                                    isFirstResource) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable>
-                                    target, boolean isFromMemoryCache, boolean isFirstResource) {
-                                return false;
-                            }
-                        })
-                        .placeholder(R.drawable.ic_avatar)
-                        .dontAnimate()
-                        .into(profile);
-            }else {
-                profile.setImageResource(R.drawable.ic_avatar);
-            }
+            mTitle.setText(item.getTitle());
+            mTxtDescription.setText(item.getDescription());
+            mTxtDate.setText(item.getDate());
+            mTxtJobType.setText(item.getJobType());
+            setTags(context, item.getSkills());
+            mTxtYearOfExperience.setText(item.getYearOfExperience() + " Yrs experience");
+            mBudget.setText("₹ " +item.getBudgets());
+            mTxtStatus.setText("In Progress");
+            viewBar.setBackgroundColor(context.getResources().getColor(R.color.colorBlack));
 
         }
-    }
 
+        private void setTags(Context context, String skills) {
+            List<Tag> tagList = new ArrayList<>();
+
+            String[] strSkills = skills.split(",");
+            for (String value : strSkills) {
+                Tag tag;
+                tag = new Tag(context, value);
+                tag.radius = 10f;
+                tag.layoutColor = tag.layoutBorderColor;
+                tag.isDeletable = false;
+                tagList.add(tag);
+            }
+            tagGroup.addTags(tagList);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#303030</color> <!--Action bar color-->
-    <color name="colorPrimaryDark">#303030</color> <!--Status bar color-->
+    <color name="colorPrimary">#FFFFFF</color> <!--Action bar color-->
+    <color name="colorPrimaryDark">#FFFFFF</color> <!--Status bar color-->
     <color name="colorAccent">#ff6600</color>
 
     <color name="colorForgetPassword">#f2e3e2</color>

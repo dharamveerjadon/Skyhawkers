@@ -275,7 +275,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4sp"
                         app:appFont="Poppins-Regular"
-                        android:text="Expected CTC(INR)"
+                        android:text="Expected CTC(INR in lakh)"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -285,7 +285,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_edit_text"
-                        android:inputType="number"
+                        android:inputType="text"
                         app:appFont="Poppins-Regular"
                         android:padding="12dp"
                         android:textColor="@android:color/black" />

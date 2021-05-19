@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -49,9 +52,11 @@ import static com.skyhawker.utils.AppPreferences.SELECTED_HOME_SCREEN;
 public class MainActivity extends BaseActivity implements MenuItemInteraction {
     //toolbar
     private Toolbar mToolbar;
+    private TextView toolbarTitle;
     private boolean isFirstEntry;
     private String mobileNumber;
     private ActionBar actionBar;
+    private LinearLayout lnrEditIconProfile;
     //Reference to drawer layout to open or hide the menu
     private DrawerLayout mDrawerLayout;
 
@@ -67,12 +72,16 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
         setContentView(R.layout.activity_main);
         // Set Tool bar to the screen
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbarTitle = mToolbar.findViewById(R.id.toolbar_title);
+        lnrEditIconProfile = mToolbar.findViewById(R.id.lnr_edit);
+        toolbarTitle.setText(mToolbar.getTitle());
         setSupportActionBar(mToolbar);
 
         actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
         }
 
         Session session = AppPreferences.getSession();
@@ -143,6 +152,13 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
 
         getdata();
 
+        lnrEditIconProfile.setOnClickListener(v -> {
+            Session editSession = AppPreferences.getSession();
+            AppPreferences.setSelectedHomeScreen(AppPreferences.SELECTED_HOME_SCREEN, 2);
+            Intent intent = new Intent(MainActivity.this, DeveloperEntryActivity.class);
+            intent.putExtra(Keys.MOBILE_NUMBER, session.getMobileNumber());
+            startActivity(intent);
+        });
 
     }
 
@@ -344,6 +360,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
      * Add the timeline fragment
      */
     private void addTimeLineFragment() {
+        lnrEditIconProfile.setVisibility(View.INVISIBLE);
         FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         TimelineFragment fragment = TimelineFragment.newInstance(getString(R.string.string_timeline));
@@ -356,6 +373,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
      * Add the job fragment
      */
     private void addMyJobFragment() {
+        lnrEditIconProfile.setVisibility(View.INVISIBLE);
         FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         MyJobsFragment fragment = MyJobsFragment.newInstance(getString(R.string.string_my_job));
@@ -368,6 +386,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
      * Add the profile fragment
      */
     private void addMyProfileFragment() {
+        lnrEditIconProfile.setVisibility(View.VISIBLE);
         FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         UserProfileFragment fragment = UserProfileFragment.newInstance(getString(R.string.string_profile));
@@ -382,6 +401,11 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
             FragmentManager fm = getSupportFragmentManager();
             fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        toolbarTitle.setText(title);
     }
 
     @Override

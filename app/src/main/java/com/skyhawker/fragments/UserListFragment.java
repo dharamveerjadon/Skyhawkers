@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
 import com.skyhawker.adapters.UserListAdapter;
 import com.skyhawker.customview.SpinnerView;
+import com.skyhawker.models.MyJobsModel;
 import com.skyhawker.models.Session;
 import com.skyhawker.models.UserModel;
 import com.skyhawker.utils.AppPreferences;
@@ -48,15 +49,13 @@ public class UserListFragment extends BaseFragment  implements UserListAdapter
     private ListView listRequirement;
     private SpinnerView spinnerView;
     private ImageView noRecordFound;
+    private MyJobsModel model;
 
-    private String requirementTitle;
-    private String requirementDescription;
-
-    public static UserListFragment newInstance(String title,String arg1, String arg2) {
+    public static UserListFragment newInstance(String title, MyJobsModel item) {
         UserListFragment fragment = new UserListFragment();
         Bundle args = new Bundle();
-        args.putString(Keys.TITLE, arg1);
-        args.putString(Keys.DESCRIPTION, arg2);
+        args.putString(ARG_TITLE, title);
+        args.putParcelable("item", item);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,8 +69,8 @@ public class UserListFragment extends BaseFragment  implements UserListAdapter
         viewById(view);
 
         if(getArguments() != null) {
-            requirementTitle = getArguments().getString(Keys.TITLE);
-            requirementDescription = getArguments().getString(Keys.DESCRIPTION);
+            model = getArguments().getParcelable("item");
+
         }
 
         if (mAdapter == null) {
@@ -97,16 +96,15 @@ public class UserListFragment extends BaseFragment  implements UserListAdapter
         Session session = AppPreferences.getSession();
 
         if (session != null) {
-            SkyhawkerApplication.sharedDatabaseInstance().child("Developers").addValueEventListener(new ValueEventListener() {
+            SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("status").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     List<Session> requirementModels = new ArrayList<>();
                     for(DataSnapshot ds : snapshot.getChildren()) {
-                        String mobileNumber = ds.child("mobileNumber").getValue(String.class);
-                        String userToken = ds.child("userToken").getValue(String.class);
-                        UserModel userModel =  ds.child("userModel").getValue(UserModel.class);
-                        if(userModel != null)
-                        requirementModels.add(new Session(mobileNumber,userModel, userToken));
+                        String actionType = ds.child("actionType").getValue(String.class);
+                        Session session1 =  ds.child("session").getValue(Session.class);
+                        if(session1 != null && "Accept".equalsIgnoreCase(actionType))
+                        requirementModels.add(session1);
                     }
                     if(requirementModels.size() > 0) {
                         listRequirement.setVisibility(View.VISIBLE);
@@ -142,8 +140,6 @@ public class UserListFragment extends BaseFragment  implements UserListAdapter
         try {
             notifcationBody.put("title", title);
             notifcationBody.put("message", message);
-            notifcationBody.put("requirement_title", requirementTitle);
-            notifcationBody.put("requirement_description", requirementDescription);
             notifcationBody.put(Keys.TYPE, Keys.TYPE_DETAIL);
 
             notification.put("to", topic);

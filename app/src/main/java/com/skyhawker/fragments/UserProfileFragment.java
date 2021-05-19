@@ -142,13 +142,6 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
         mTxtYearOfExperience = view.findViewById(R.id.txt_year_of_experience);
         lnrSkills = view.findViewById(R.id.lnr_skill);
         docResume = view.findViewById(R.id.img_resume);
-        view.findViewById(R.id.fab_edit).setOnClickListener(v -> {
-            Session session = AppPreferences.getSession();
-            AppPreferences.setSelectedHomeScreen(AppPreferences.SELECTED_HOME_SCREEN, 2);
-            Intent intent = new Intent(getActivity(), DeveloperEntryActivity.class);
-            intent.putExtra(Keys.MOBILE_NUMBER, session.getMobileNumber());
-            startActivity(intent);
-        });
     }
 
     private void registerListener() {
@@ -229,14 +222,9 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
                                                 .dontAnimate()
                                                 .into(profileImage);
                                         AppPreferences.setSession(session);
-                                        Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Uploaded Successfully");
+                                        Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Uploaded Successfully");
                                     })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            spinnerView.setVisibility(View.GONE);
-                                        }
-                                    });
+                                    .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));
 
                         } else {
                             spinnerView.setVisibility(View.GONE);
