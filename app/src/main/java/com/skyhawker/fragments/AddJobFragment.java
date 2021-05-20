@@ -272,7 +272,7 @@ public class AddJobFragment extends BaseFragment {
             notifcationBody.put("job_category", innerModel.get(0).getCategory());
             notifcationBody.put("skills_required", innerModel.get(0).getSkills());
             notifcationBody.put("key", innerModel.get(0).getKey());
-            notifcationBody.put(Keys.TYPE, Keys.TYPE_DETAIL);
+            notifcationBody.put(Keys.TYPE, Keys.TYPE_ADD_JOB);
 
             notification.put("to", innerModel.get(0).getTo());
             notification.put("data", notifcationBody);

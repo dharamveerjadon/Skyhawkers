@@ -51,6 +51,8 @@ public class Keys {
     public static final String TYPE_GENERAL = "general";
     public static final String TYPE_PAGE = "page" ;
     public static final String TYPE_DETAIL = "detail";
+    public static final String TYPE_ADD_JOB = "add_job";
+    public static final String TYPE_PROFILE_SELECTED = "profile_selected";
     public static final String PAGE = "page";
     public static final String FEED_INDEX = "feed_index";
     public static final String SUB_FEED_INDEX = "sub_feed_index";

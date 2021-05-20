@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +32,7 @@ import com.skyhawker.customview.TabBar;
 import com.skyhawker.fragments.CongratulationFragment;
 import com.skyhawker.fragments.MyJobsFragment;
 import com.skyhawker.fragments.TimelineFragment;
-import com.skyhawker.fragments.UserProfileFragment;
+import com.skyhawker.fragments.MyProfileFragment;
 import com.skyhawker.interfaces.MenuItemInteraction;
 import com.skyhawker.models.MenuItem;
 import com.skyhawker.models.MyJobsModel;
@@ -219,7 +218,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
                     String type = map.get(Keys.TYPE);
                     if (!TextUtils.isEmpty(type)) {
                         switch (type) {
-                            case Keys.TYPE_DETAIL:
+                            case Keys.TYPE_ADD_JOB:
                                 String jobname = map.get("job_name");
                                 String description = map.get("job_description");
                                 String date = map.get("job_date");
@@ -234,6 +233,11 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
                                 if (!TextUtils.isEmpty(jobname) && !TextUtils.isEmpty(description)) {
                                     openCongratulationScreen(CongratulationFragment.newInstance("Congratulation", model));
                                 }
+                                break;
+
+                            case Keys.TYPE_PROFILE_SELECTED:
+                                    addMyJobFragment();
+
                                 break;
 
                         }
@@ -312,7 +316,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
                 Fragment fragment = getTopFragment();
                 if (fragment != null && fragment instanceof MyJobsFragment) {
                     mTabBar.setSelectedIndex(1, false);
-                }else if(fragment != null && fragment instanceof UserProfileFragment) {
+                }else if(fragment != null && fragment instanceof MyProfileFragment) {
                     mTabBar.setSelectedIndex(2, false);
                 }else {
                     mTabBar.setSelectedIndex(0, false);
@@ -389,7 +393,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
         lnrEditIconProfile.setVisibility(View.VISIBLE);
         FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        UserProfileFragment fragment = UserProfileFragment.newInstance(getString(R.string.string_profile));
+        MyProfileFragment fragment = MyProfileFragment.newInstance(getString(R.string.string_profile));
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
@@ -417,6 +421,9 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
             if(index == 0) {
                 mTabBar.setSelectedIndex(0, false);
                 addTimeLineFragment();
+            }if(index == 1) {
+                mTabBar.setSelectedIndex(1, false);
+                addMyJobFragment();
             }else if(index == 2) {
                 mTabBar.setSelectedIndex(2, false);
                 addMyProfileFragment();

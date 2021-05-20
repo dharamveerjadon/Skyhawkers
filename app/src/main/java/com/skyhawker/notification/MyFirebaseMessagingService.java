@@ -35,6 +35,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
         Map<String, String> map = remoteMessage.getData();
+        String type = map.get(Keys.TYPE);
+        if(Keys.TYPE_PROFILE_SELECTED.equalsIgnoreCase(type))
+            AppPreferences.setSelectedHomeScreen(AppPreferences.SELECTED_HOME_SCREEN, 1);
+
         sendNotification(map);
 
 

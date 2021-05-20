@@ -40,7 +40,7 @@ public class DeveloperEntryActivity extends BaseActivity implements View.OnClick
     private EditText mEdtFirstName, mEdtMiddleName, mEdtLastName, mEdtEmailId, mEdtLinkedInId, mEdtSkypeId, mEdtContactNumber,
             mEdtLocation, mEdtYearOfExperience, mEdtPricePerHour, mEdtExpectedSalary, mEdtSkills;
     private Button mBtnSubmit;
-    private TextView mUploadFile;
+    private TextView mUploadFile, txtResume;
     private String PathHolder;
     private Uri imageuri;
     private ProgressDialog dialog;
@@ -86,6 +86,7 @@ public class DeveloperEntryActivity extends BaseActivity implements View.OnClick
         mBtnSubmit = findViewById(R.id.btn_submit);
         mImgDocument = findViewById(R.id.img_document);
         spinnerView = findViewById(R.id.progress_bar);
+        txtResume = findViewById(R.id.txt_resume);
     }
 
     private void registerListener() {
@@ -241,8 +242,10 @@ public class DeveloperEntryActivity extends BaseActivity implements View.OnClick
             if (session.getUserModel().getUpload() != null && !TextUtils.isEmpty(session.getUserModel().getUpload().url)) {
                 mUploadFile.setText(session.getUserModel().getUpload().name);
                 mImgDocument.setVisibility(View.VISIBLE);
+                txtResume.setVisibility(View.VISIBLE);
             } else {
                 mImgDocument.setVisibility(View.GONE);
+                txtResume.setVisibility(View.GONE);
             }
 
         }

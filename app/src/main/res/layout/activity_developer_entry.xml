@@ -361,7 +361,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/icon_document"
+                        android:layout_gravity="center"
                         android:visibility="gone" />
+                    <com.skyhawker.customview.SkyhawkTextView
+                        android:id="@+id/txt_resume"
+                        style="@style/AppTheme.TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:padding="4dp"
+                        android:visibility="gone"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        app:appFont="Poppins-Regular"
+                        android:text="Resume" />
 
                     <com.skyhawker.customview.SkyhawkButton
                         style="@style/AppTheme.Button"

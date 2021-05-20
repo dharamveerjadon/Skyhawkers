@@ -165,7 +165,7 @@ public class UserListAdapter extends BaseAdapter {
             mTxtExpectedSalary = view.findViewById(R.id.txt_expected_salary);
             mTxtYearOfExperience = view.findViewById(R.id.txt_experience);
             profile = view.findViewById(R.id.profile);
-            profile.setOnClickListener(this);
+            view.setOnClickListener(this);
         }
 
         @Override

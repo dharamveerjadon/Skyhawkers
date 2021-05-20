@@ -57,4 +57,10 @@ public class ApplyJob implements Parcelable {
         this.actionType = actionType;
         this.session = session;
     }
+
+    public ApplyJob(String actionType, boolean action, Session session) {
+        this.actionType = actionType;
+        this.developerSelected = action;
+        this.session = session;
+    }
 }

@@ -130,50 +130,7 @@ public class UserListFragment extends BaseFragment  implements UserListAdapter
     @Override
     public void onItemClick(Session item) {
 
-        spinnerView.setVisibility(View.VISIBLE);
-        String topic = item.getUserToken(); //topic must match with what the receiver subscribed to
-        String title = "Congratulations "+item.getUserModel().getFirstName();
-        String message = "Your profile just got matched to a client Requirement \n Time to get Work";
-
-        JSONObject notification = new JSONObject();
-        JSONObject notifcationBody = new JSONObject();
-        try {
-            notifcationBody.put("title", title);
-            notifcationBody.put("message", message);
-            notifcationBody.put(Keys.TYPE, Keys.TYPE_DETAIL);
-
-            notification.put("to", topic);
-            notification.put("data", notifcationBody);
-        } catch (JSONException e) {
-            Log.e(Constants.TAG, "onCreate: " + e.getMessage() );
-        }
-        sendNotification(notification);
+        pushFragment(UserProfileFragment.newInstance("Developer Profile", model, item), true);
     }
 
-    private void sendNotification(JSONObject notification) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constants.FCM_API, notification,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        spinnerView.setVisibility(View.GONE);
-                        Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Notification sent");
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), "Request error", Toast.LENGTH_LONG).show();
-                        spinnerView.setVisibility(View.GONE);
-                    }
-                }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("Authorization", Constants.serverKey);
-                params.put("Content-Type", Constants.contentType);
-                return params;
-            }
-        };
-        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
-    }
 }
