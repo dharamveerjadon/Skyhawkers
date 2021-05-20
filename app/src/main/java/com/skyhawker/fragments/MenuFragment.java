@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -42,7 +44,7 @@ public class MenuFragment extends BaseFragment {
     //activity fragment communication
     private MenuItemInteraction mListener;
     private ProgressBar mProgressBar;
-    private CircleImageView mImvMember;
+    private ImageView mImvMember;
 
 
     @SuppressWarnings("CanBeFinal")
@@ -79,26 +81,25 @@ public class MenuFragment extends BaseFragment {
     private void setImageOnView() {
         Session session = AppPreferences.getSession();
 
-        if(session != null && session.getUserModel() != null) {
-            mProgressBar.setVisibility(View.VISIBLE);
+        if (session.getUserModel().getProfileImage() != null && !TextUtils.isEmpty(session.getUserModel().getProfileImage().url)) {
+
+
             Glide.with(SkyhawkerApplication.sharedInstance())
-                    .load(session.getUserModel().getProfileImageUrl())
+                    .load(session.getUserModel().getProfileImage().url)
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean
                                 isFirstResource) {
-                            mProgressBar.setVisibility(View.INVISIBLE);
                             return false;
                         }
 
                         @Override
                         public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable>
                                 target, boolean isFromMemoryCache, boolean isFirstResource) {
-                            mProgressBar.setVisibility(View.INVISIBLE);
                             return false;
                         }
                     })
-                    .placeholder(R.drawable.ic_skyhawk_profile_orange)
+                    .placeholder(R.drawable.ic_avatar)
                     .dontAnimate()
                     .into(mImvMember);
         }
@@ -133,7 +134,6 @@ public class MenuFragment extends BaseFragment {
 
         final ViewGroup headerView = (ViewGroup) inflater.inflate(R.layout.nav_header_menu, listView, false);
         mProgressBar = (ProgressBar) headerView.findViewById(R.id.progress_bar);
-        mProgressBar.setVisibility(View.VISIBLE);
         listView.addHeaderView(headerView, null, false);
         final TextView textView = (TextView) headerView.findViewById(R.id.textView);
         mImvMember = (CircleImageView) headerView.findViewById(R.id.imv_member);

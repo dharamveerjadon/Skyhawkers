@@ -65,6 +65,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
     private MainActivity activity;
     private Session session;
     private MyJobsModel model;
+    private String actionType;
     private TextView mTxtLinkedIn, mTxtEmailId, mTxtName, mTxtContact, mTxtExpectedSalary, mTxtPricePerHour, mTxtLocation, mTxtSkypeId, mTxtYearOfExperience, mTxtSkills, txtReject, txtSelect;
 
     public static UserProfileFragment newInstance(String title, MyJobsModel item, Session session) {
@@ -115,7 +116,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
             SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("status").child(session.getMobileNumber()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String actionType = snapshot.child("actionType").getValue(String.class);
+                    actionType = snapshot.child("actionType").getValue(String.class);
                     Session session1 = snapshot.child("session").getValue(Session.class);
                     if (session1 != null)
                         initData(session1);
@@ -245,7 +246,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
 
     private void sendActionDataToServer(boolean action) {
         spinnerView.setVisibility(View.VISIBLE);
-        ApplyJob applyJob = new ApplyJob(model.getApplyJob().getActionType(), action, session);
+        ApplyJob applyJob = new ApplyJob(actionType, action, session);
         SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("status").child(session.getMobileNumber()).setValue(applyJob)
                 .addOnSuccessListener(aVoid -> {
                         sendNotificationOnAction(action);

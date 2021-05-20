@@ -20,7 +20,7 @@
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/margin_default"
-            android:src="@drawable/ic_skyhawk_profile_orange"
+            android:src="@drawable/ic_avatar"
             />
         <ProgressBar
             android:id="@+id/progress_bar"

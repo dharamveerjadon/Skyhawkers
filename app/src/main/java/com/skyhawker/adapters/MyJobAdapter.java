@@ -193,9 +193,9 @@ public class MyJobAdapter extends BaseAdapter {
             mCurrentItem = item;
 
             if("Accept".equalsIgnoreCase( item.getStatus()))
-                viewBar.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
-            else if("Decline".equalsIgnoreCase( item.getStatus()))
                 viewBar.setBackgroundColor(context.getResources().getColor(R.color.light_green));
+            else if("Decline".equalsIgnoreCase( item.getStatus()))
+                viewBar.setBackgroundColor(context.getResources().getColor(R.color.red));
             else
                 viewBar.setBackgroundColor(context.getResources().getColor(R.color.blue));
 
@@ -206,7 +206,7 @@ public class MyJobAdapter extends BaseAdapter {
             setTags(context, item.getSkills());
             mTxtYearOfExperience.setText(item.getYearOfExperience() +" Yrs experience");
             mBudget.setText("₹ " +item.getBudgets());
-            mTxtSupport.setText("Support");
+            mTxtSupport.setText("Reach Us");
         }
 
         private void setTags(Context context, String skills) {

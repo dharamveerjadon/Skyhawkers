@@ -215,7 +215,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
                                                         return false;
                                                     }
                                                 })
-                                                .placeholder(R.drawable.ic_skyhawk_profile_orange)
+                                                .placeholder(R.drawable.ic_avatar)
                                                 .dontAnimate()
                                                 .into(profileImage);
                                         AppPreferences.setSession(session);

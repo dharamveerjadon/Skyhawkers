@@ -231,6 +231,7 @@ public class AddJobFragment extends BaseFragment {
                         String title = "Congratulations " + userModel.getFirstName();
                         String message = "Your profile just got matched to a client Requirement \n Time to get Work";
 
+
                         notificationModels.add(new NotificationModel(title, message, name, description, budget, yearofexperience, category, skills, date,Keys.TYPE_DETAIL, topic, key));
                     }
                 }

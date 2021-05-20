@@ -13,13 +13,13 @@
     <string name="password">Password</string>
     <string name="login_id">Login ID</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
-    <string name="welcome">Welcome,</string>
+    <string name="welcome">Welcome</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="create_password">Create Password</string>
     <string name="email_id">Email ID</string>
     <string name="sign_up_to_get_started">Sign up to get started</string>
-    <string name="sign_up_text">Sign Up,</string>
+    <string name="sign_up_text">Sign Up</string>
     <string name="edit">Edit</string>
     <string name="logout_message">Are you sure you want to logout ?</string>
     <string name="coming_soon">Coming soon…</string>

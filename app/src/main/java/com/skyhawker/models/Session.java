@@ -14,6 +14,7 @@ public class Session implements Parcelable {
     private String mobileNumber;
     private UserModel userModel;
     private String userToken;
+    private String actionType;
     private boolean isAdmin = false;
 
     /**
@@ -53,6 +54,7 @@ public Session() {}
         mobileNumber = in.readString();
         userToken = in.readString();
         isAdmin = in.readByte() != 0;
+        actionType = in.readString();
     }
 
     public static final Creator<Session> CREATOR = new Creator<Session>() {
@@ -66,6 +68,10 @@ public Session() {}
             return new Session[size];
         }
     };
+
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
+    }
 
     public void setUserId(String userId) {
         this.userId = userId;
@@ -144,6 +150,7 @@ public Session() {}
         dest.writeString(repeatpassword);
         dest.writeString(mobileNumber);
         dest.writeString(userToken);
+        dest.writeString(actionType);
         dest.writeByte((byte) (isAdmin ? 1 : 0));
     }
 }

@@ -337,6 +337,7 @@ public class DeveloperEntryActivity extends BaseActivity implements View.OnClick
                     // Here we are initialising the progress dialog box
                     dialog = new ProgressDialog(this);
                     dialog.setMessage("Uploading");
+                    dialog.setCancelable(false);
 
                     // this will show message uploading
                     // while pdf is uploading

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="#E5E5E5"
     android:padding="8dp">
 
     <LinearLayout
@@ -52,7 +53,7 @@
             android:id="@+id/chk_accepted"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_rectangle_blue"
+            android:drawableRight="@drawable/ic_rectangle_green"
             android:drawablePadding="8dp"
             android:text="Accepted"
             android:textColor="@android:color/black"
@@ -63,7 +64,7 @@
             android:id="@+id/chk_declined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_rectangle_green"
+            android:drawableRight="@drawable/ic_rectangle_maroon"
             android:drawablePadding="8dp"
             android:text="Declined"
             android:textColor="@android:color/black"
@@ -74,7 +75,7 @@
             android:id="@+id/chk_saved_for_later"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableRight="@drawable/ic_rectangle_maroon"
+            android:drawableRight="@drawable/ic_rectangle_blue"
             android:drawablePadding="8dp"
             android:text="Saved for later"
             android:textColor="@android:color/black"

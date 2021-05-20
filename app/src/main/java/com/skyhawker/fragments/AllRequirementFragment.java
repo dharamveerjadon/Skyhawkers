@@ -94,8 +94,7 @@ public class AllRequirementFragment extends BaseFragment implements AllRequireme
                         String yearOfExperience = ds.child("yearOfExperience").getValue(String.class);
                         String budgets = ds.child("budgets").getValue(String.class);
                         String key = ds.child("key").getValue(String.class);
-                        ApplyJob applyJob = ds.child("status").child(session.getMobileNumber()).getValue(ApplyJob.class);
-                        myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, "InProcess",key, applyJob));
+                        myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, "InProcess",key));
 
                         if (myJob.size() > 0) {
                             listRequirement.setVisibility(View.VISIBLE);

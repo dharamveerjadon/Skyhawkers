@@ -110,8 +110,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:gravity="start"
                         android:maxLines="1"
+                        android:ellipsize="end"
                         android:drawableStart="@drawable/ic_experience"
                         android:padding="2dp"
                         android:drawablePadding="4dp"
@@ -126,27 +127,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_weight="1"
                         android:padding="8dp"
                         android:maxLines="1"
-                        android:gravity="center_vertical"
+                        android:ellipsize="end"
+                        android:text="$ 5000/month"
+
                         android:textColor="@android:color/black"
                         app:appFont="Poppins-Regular"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="@dimen/text_size_micro" />
 
                     <com.skyhawker.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:id="@+id/txt_status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
+                        android:layout_gravity="end"
+                        android:gravity="end"
                         android:padding="8dp"
                         android:maxLines="1"
+                        android:ellipsize="end"
                         app:appFont="Poppins-Regular"
                         android:textSize="@dimen/text_size_micro"
                         android:textColor="@android:color/black"
-                        tools:text="Status:Active" />
+                        tools:text="In progress" />
                 </LinearLayout>
             </LinearLayout>
 

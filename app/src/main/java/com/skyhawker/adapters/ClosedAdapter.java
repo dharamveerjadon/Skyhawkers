@@ -207,14 +207,14 @@ public class ClosedAdapter extends BaseAdapter {
             mBudget.setText("₹ " +item.getBudgets());
 
             if ("Accept".equalsIgnoreCase(item.getStatus())) {
-                viewBar.setBackgroundColor(context.getResources().getColor(R.color.blue));
+                viewBar.setBackgroundColor(context.getResources().getColor(R.color.light_green));
                 mTxtStatus.setText("Accepted");
             } else if ("Decline".equalsIgnoreCase(item.getStatus())) {
-                viewBar.setBackgroundColor(context.getResources().getColor(R.color.light_green));
+                viewBar.setBackgroundColor(context.getResources().getColor(R.color.red));
                 mTxtStatus.setText("Declined");
             } else {
                 mTxtStatus.setText("Saved For Later");
-                viewBar.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+                viewBar.setBackgroundColor(context.getResources().getColor(R.color.blue));
             }
         }
 

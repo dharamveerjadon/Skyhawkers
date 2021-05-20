@@ -109,7 +109,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:maxLines="1"
                         android:drawableStart="@drawable/ic_experience"
                         android:padding="2dp"
@@ -130,7 +129,7 @@
                         android:layout_weight="1"
                         android:textSize="@dimen/text_size_small"
                         app:appFont="Poppins-Regular"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:textColor="@android:color/black"
                         tools:text="30" />
 
@@ -140,7 +139,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:gravity="center"
                         android:padding="8dp"
                         android:maxLines="1"
                         android:textSize="@dimen/text_size_micro"
