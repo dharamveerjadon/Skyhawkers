@@ -51,12 +51,7 @@ public class MenuFragment extends BaseFragment {
     private BroadcastReceiver mProfileImageBroadcast = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Session session = AppPreferences.getSession();
-            Bundle bundle = intent.getExtras();
-            if (bundle != null) {
-                session.getCurrentUser().setProfileImageUrl(bundle.getString(Keys.IMAGE_URL));
-                AppPreferences.setSession(session);
-            }
+            setImageOnView();
         }
     };
 
@@ -81,8 +76,7 @@ public class MenuFragment extends BaseFragment {
     private void setImageOnView() {
         Session session = AppPreferences.getSession();
 
-        if (session.getUserModel().getProfileImage() != null && !TextUtils.isEmpty(session.getUserModel().getProfileImage().url)) {
-
+        if (session != null && session.getUserModel() != null && session.getUserModel().getProfileImage() != null && !TextUtils.isEmpty(session.getUserModel().getProfileImage().url)) {
 
             Glide.with(SkyhawkerApplication.sharedInstance())
                     .load(session.getUserModel().getProfileImage().url)
@@ -121,12 +115,10 @@ public class MenuFragment extends BaseFragment {
 
         final MenuAdapter menuAdapter = new MenuAdapter(getActivity(), items);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                if (mListener != null) {
-                    //minus one for header
-                    mListener.onMenuClick((MenuItem) menuAdapter.getItem(position - 1));
-                }
+        listView.setOnItemClickListener((parent, v, position, id) -> {
+            if (mListener != null) {
+                //minus one for header
+                mListener.onMenuClick((MenuItem) menuAdapter.getItem(position - 1));
             }
         });
 

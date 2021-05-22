@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
 import com.skyhawker.R;
 import com.skyhawker.activities.DeveloperEntryActivity;
 import com.skyhawker.activities.MainActivity;
@@ -91,22 +92,26 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
                     String repeatPassword = mEdtRepeatPassword.getText().toString().trim();
                     boolean isAdmin = false;
                     final Session session = new Session(userId, emailId, password, repeatPassword, contactNumber, new UserModel(), AppPreferences.getFcmToken(),false);
-                    SkyhawkerApplication.sharedDatabaseInstance().child("Developers").child(contactNumber).setValue(session)
-                            .addOnSuccessListener(aVoid -> {
-                                AppPreferences.setSession(session);
+                    DatabaseReference signUpReference = SkyhawkerApplication.sharedDatabaseInstance().child("Developers").child(contactNumber);
+                    if(signUpReference != null) {
+                        signUpReference.setValue(session)
+                                .addOnSuccessListener(aVoid -> {
+                                    AppPreferences.setSession(session);
 
-                                new Handler().postDelayed(() -> {
-                                    spinnerView.setVisibility(View.GONE);
-                                    Intent intent = new Intent(getActivity(), DeveloperEntryActivity.class);
-                                    intent.putExtra(Keys.MOBILE_NUMBER,contactNumber);
-                                    intent.putExtra("isFirst",true);
-                                    startActivity(intent);
-                                    getActivity().finish();
-                                }, 3000);
+                                    new Handler().postDelayed(() -> {
+                                        spinnerView.setVisibility(View.GONE);
+                                        Intent intent = new Intent(getActivity(), DeveloperEntryActivity.class);
+                                        intent.putExtra(Keys.MOBILE_NUMBER,contactNumber);
+                                        intent.putExtra("isFirst",true);
+                                        startActivity(intent);
+                                        getActivity().finish();
+                                    }, 3000);
 
 
-                            })
-                            .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));
+                                })
+                                .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));
+                    }
+
                 }
 
                 break;

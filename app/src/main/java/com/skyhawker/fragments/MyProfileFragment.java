@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +37,7 @@ import com.skyhawker.models.Session;
 import com.skyhawker.models.Upload;
 import com.skyhawker.models.UserModel;
 import com.skyhawker.utils.AppPreferences;
+import com.skyhawker.utils.Keys;
 import com.skyhawker.utils.SkyhawkerApplication;
 import com.skyhawker.utils.Utils;
 
@@ -42,7 +45,6 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class MyProfileFragment extends BaseFragment implements View.OnClickListener {
-    private SpinnerView spinnerView;
     private ImageView docResume;
     private String resumeUrl;
     private TextView logout;
@@ -53,6 +55,8 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     private Upload uploadProfile;
     private LinearLayout lnrSkills;
     private MainActivity activity;
+    private ProgressBar mProgressBar;
+    private SpinnerView spinnerView;
     private TextView mTxtLinkedIn, mTxtEmailId, mTxtName, mTxtContact, mTxtExpectedSalary, mTxtPricePerHour, mTxtLocation, mTxtSkypeId, mTxtYearOfExperience, mTxtSkills;
 
     public static MyProfileFragment newInstance(String title) {
@@ -66,7 +70,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        activity = (MainActivity)context;
+        activity = (MainActivity) context;
     }
 
     @Override
@@ -75,7 +79,6 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
         // Set title
         setToolbarTitle(getTitle());
         View rootView = inflater.inflate(R.layout.fragment_my_profile, container, false);
-        context = getActivity();
         findViewById(rootView);
         registerListener();
 
@@ -85,8 +88,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onResume() {
         super.onResume();
-        if (getActivity() != null && isAdded())
-            getdata();
+        getdata();
     }
 
     private void getdata() {
@@ -125,7 +127,8 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void findViewById(View view) {
-        spinnerView = view.findViewById(R.id.progress_bar);
+        mProgressBar = view.findViewById(R.id.progress_bar);
+        spinnerView = view.findViewById(R.id.spinnerView);
         userImageEditIcon = view.findViewById(R.id.img_edit);
         profileImage = view.findViewById(R.id.profile_image);
         mTxtName = view.findViewById(R.id.user_name);
@@ -171,6 +174,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
 
                 if (resultCode == RESULT_OK) {
                     spinnerView.setVisibility(View.VISIBLE);
+                    mProgressBar.setVisibility(View.VISIBLE);
                     imageuri = data.getData();
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
                     final Session session = AppPreferences.getSession();
@@ -189,29 +193,33 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
                         if (task.isSuccessful()) {
                             // After uploading is done it progress
                             // dialog box will be dismissed
-                            spinnerView.setVisibility(View.GONE);
                             final Uri uri = task.getResult();
 
                             uploadProfile = new Upload(filepath.getName(), uri.toString());
                             UserModel userUpload = new UserModel(userModel.getFirstName(), userModel.getMiddleName(), userModel.getLastName(), userModel.getLinkedInId(), userModel.getSkypeId(), userModel.getLocation(), userModel.getYearOfExperience(), userModel.getExpectedCtc(), userModel.getPricePerHour(), userModel.getSkills(), userModel.getUpload(), uploadProfile);
                             session.setUserModel(userUpload);
 
-
+                            activity.sendBroadcast(new Intent(Keys.BROADCAST_PROFILE_IMAGE));
                             SkyhawkerApplication.sharedDatabaseInstance().child("Developers").child(session.getMobileNumber()).setValue(session)
                                     .addOnSuccessListener(aVoid -> {
-                                        spinnerView.setVisibility(View.GONE);
+
+
                                         Glide.with(SkyhawkerApplication.sharedInstance())
                                                 .load(uri.toString())
                                                 .listener(new RequestListener<String, GlideDrawable>() {
                                                     @Override
                                                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean
                                                             isFirstResource) {
+                                                        mProgressBar.setVisibility(View.INVISIBLE);
+                                                        spinnerView.setVisibility(View.GONE);
                                                         return false;
                                                     }
 
                                                     @Override
                                                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable>
                                                             target, boolean isFromMemoryCache, boolean isFirstResource) {
+                                                        mProgressBar.setVisibility(View.INVISIBLE);
+                                                        spinnerView.setVisibility(View.GONE);
                                                         return false;
                                                     }
                                                 })
@@ -221,11 +229,10 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
                                         AppPreferences.setSession(session);
                                         Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Uploaded Successfully");
                                     })
-                                    .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));
+                                    .addOnFailureListener(e -> Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Uploading Failure") );
 
                         } else {
-                            spinnerView.setVisibility(View.GONE);
-                            Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Upload Failed");
+                            Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Upload Failed");
                         }
                     });
 
@@ -237,7 +244,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void initData() {
-        spinnerView.setVisibility(View.GONE);
+
         Session session = AppPreferences.getSession();
         mTxtName.setText(session.getUserModel().getFirstName() + " " + session.getUserModel().getLastName());
         mTxtContact.setText(session.getMobileNumber());
@@ -259,7 +266,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
 
 
         mTxtEmailId.setText(session.getEmailId());
-
+       spinnerView.setVisibility(View.GONE);
         if (session.getUserModel().getProfileImage() != null && !TextUtils.isEmpty(session.getUserModel().getProfileImage().url)) {
 
 
@@ -269,16 +276,18 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean
                                 isFirstResource) {
+                            spinnerView.setVisibility(View.GONE);
                             return false;
                         }
 
                         @Override
                         public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable>
                                 target, boolean isFromMemoryCache, boolean isFirstResource) {
+                            spinnerView.setVisibility(View.GONE);
                             return false;
                         }
                     })
-                    .placeholder(R.drawable.ic_skyhawk_profile_orange)
+                    .placeholder(R.drawable.ic_avatar)
                     .dontAnimate()
                     .into(profileImage);
         }
@@ -292,6 +301,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void setTags(String skills) {
+        lnrSkills.removeAllViews();
         String[] strSkills = skills.split(",");
         for (String value : strSkills) {
             addTextSkills(value);
@@ -299,7 +309,8 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     }
 
     private void addTextSkills(String value) {
-        LayoutInflater inflater = (LayoutInflater)   activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.skills_item, null);
         TextView skills = view.findViewById(R.id.txt_name);
         skills.setText(value.trim());

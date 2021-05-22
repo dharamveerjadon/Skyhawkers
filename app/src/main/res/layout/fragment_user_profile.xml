@@ -393,11 +393,10 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
     <com.skyhawker.customview.SpinnerView
-        android:id="@+id/progress_bar"
+        android:id="@+id/spinnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
-        tools:visibility="invisible" />
+        tools:visibility="visible" />
 </RelativeLayout>

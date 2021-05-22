@@ -98,10 +98,10 @@ public class TimelineFragment extends BaseFragment {
         public Fragment getItem(int position) {
             Fragment fragment = null;
             if (position ==  0)
-                fragment = WaitingFragment.newInstance("My Job");
+                fragment = WaitingFragment.newInstance("Waiting");
 
             if(position == 1)
-                fragment = ClosedFragment.newInstance("My Job");
+                fragment = ClosedFragment.newInstance("Closed");
 
             if(position == 2)
                 fragment = AllRequirementFragment.newInstance("All Requirement");
@@ -133,4 +133,13 @@ public class TimelineFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(AppPreferences.IsCongratulationDone()){
+            AppPreferences.setIsCongratulationDone(AppPreferences.IsCONGRATULATIONACTIONDONE, false);
+            mViewPager.postDelayed(() -> mViewPager.setCurrentItem(1), 100);
+        }
+
+    }
 }

@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
+import com.skyhawker.activities.MainActivity;
 import com.skyhawker.adapters.ClosedAdapter;
 import com.skyhawker.adapters.WatingAdapter;
 import com.skyhawker.customview.SpinnerView;
@@ -35,6 +36,7 @@ import com.skyhawker.utils.Constants;
 import com.skyhawker.utils.SkyhawkerApplication;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -43,9 +45,9 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
 
     private ClosedAdapter mAdapter;
     private ListView listRequirement;
-    private SpinnerView spinnerView;
     private ImageView noRecordFound;
-    private Context context;
+    private MainActivity activity;
+    private SpinnerView spinnerView;
     private String checkedValue = Constants.SHOW_ALL;
 
     public static ClosedFragment newInstance(String title) {
@@ -56,17 +58,21 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
         return fragment;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (MainActivity)context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_closed, container, false);
-        context = getActivity();
         viewById(view);
 
         if (mAdapter == null) {
-            mAdapter = new ClosedAdapter(this.getContext(), this);
+            mAdapter = new ClosedAdapter(activity, this);
         }
 
         listRequirement.setAdapter(mAdapter);
@@ -78,7 +84,7 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
 
     private void viewById(View view) {
         listRequirement = view.findViewById(R.id.listView);
-        spinnerView = view.findViewById(R.id.progress_bar);
+        spinnerView = view.findViewById(R.id.spinnerView);
         noRecordFound = view.findViewById(R.id.no_record_found);
 
         view.findViewById(R.id.fab).setOnClickListener(v -> {
@@ -107,30 +113,29 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
                         String yearOfExperience = ds.child("yearOfExperience").getValue(String.class);
                         String budgets = ds.child("budgets").getValue(String.class);
                         String key = ds.child("key").getValue(String.class);
-                        ApplyJob applyJob = ds.child("status/" + session.getMobileNumber()).getValue(ApplyJob.class);
+                        ApplyJob applyJob = ds.child("applyJob/" + session.getMobileNumber()).getValue(ApplyJob.class);
                         if (applyJob != null)
                             if (!TextUtils.isEmpty(applyJob.getSession().getMobileNumber())) {
                                 if (session.getMobileNumber().equalsIgnoreCase(applyJob.getSession().getMobileNumber()))
                                     if (isFilter) {
                                         if (filterKey.equalsIgnoreCase("all")) {
-                                            myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType(), key));
+                                            myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType(), key, applyJob));
 
                                         } else if (filterKey.equalsIgnoreCase(applyJob.getActionType())) {
-                                            myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType(), key));
+                                            myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType(), key, applyJob));
                                         }
                                     }
                             }
 
-                        if (myJob.size() > 0) {
-                            listRequirement.setVisibility(View.VISIBLE);
-                            noRecordFound.setVisibility(GONE);
-                            mAdapter.setItems(myJob, 10);
-                        } else {
-                            listRequirement.setVisibility(GONE);
-                            noRecordFound.setVisibility(View.VISIBLE);
-                        }
-
-
+                    }
+                    if (myJob.size() > 0) {
+                        listRequirement.setVisibility(View.VISIBLE);
+                        noRecordFound.setVisibility(GONE);
+                        Collections.sort(myJob);
+                        mAdapter.setItems(myJob, 10);
+                    } else {
+                        listRequirement.setVisibility(GONE);
+                        noRecordFound.setVisibility(View.VISIBLE);
                     }
                     spinnerView.setVisibility(View.GONE);
                 }
@@ -139,7 +144,7 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
                 public void onCancelled(@NonNull DatabaseError error) {
                     // calling on cancelled method when we receive
                     // any error or we are not able to get the data.
-                    Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Fail to get data.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -158,7 +163,7 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
 
     public void showDialog(String Value) {
 
-        final Dialog d = new Dialog(context, R.style.DialogSlideAnim);
+        final Dialog d = new Dialog(activity, R.style.DialogSlideAnim);
         Window window = d.getWindow();
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 

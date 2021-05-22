@@ -1,6 +1,7 @@
 package com.skyhawker.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
 import com.skyhawker.activities.MainActivity;
@@ -37,6 +39,7 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
     private EditText mEdtLoginId, mEdtPassword;
     private SpinnerView spinnerView;
     private  Session session;
+    private SignUpActivity activity;
 
     public static SignInFragment newInstance(@SuppressWarnings("SameParameterValue") String title) {
         SignInFragment fragment = new SignInFragment();
@@ -44,6 +47,12 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
         args.putString(ARG_TITLE, title);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (SignUpActivity)context;
     }
 
     @Override
@@ -90,25 +99,28 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
 
     private void getUserInformation(String mobileNumber) {
 
-        SkyhawkerApplication.sharedDatabaseInstance().child("Developers").child(mobileNumber).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // this method is call to get the realtime
-                // updates in the data.
-                // this method is called when the data is
-                // changed in our Firebase console.
-                // below line is for getting the data from
-                // snapshot of our database.
-                 session = snapshot.getValue(Session.class);
-            }
+        DatabaseReference signInReference = SkyhawkerApplication.sharedDatabaseInstance().child("Developers").child(mobileNumber);
+        if(signInReference != null) {
+            signInReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    // this method is call to get the realtime
+                    // updates in the data.
+                    // this method is called when the data is
+                    // changed in our Firebase console.
+                    // below line is for getting the data from
+                    // snapshot of our database.
+                    session = snapshot.getValue(Session.class);
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // calling on cancelled method when we receive
-                // any error or we are not able to get the data.
-                Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // calling on cancelled method when we receive
+                    // any error or we are not able to get the data.
+                    Toast.makeText(activity, "Fail to get data.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override
@@ -122,22 +134,16 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
                     spinnerView.setVisibility(View.VISIBLE);
 
                     if(session != null && session.getCreatePassword() != null && mEdtPassword.getText().toString().equals(session.getCreatePassword())) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                spinnerView.setVisibility(View.GONE);
-                                AppPreferences.setSession(session);
-                                startActivity(new Intent(getActivity(), MainActivity.class));
-                                getActivity().finish();
-                            }
+                        new Handler().postDelayed(() -> {
+                            spinnerView.setVisibility(View.GONE);
+                            AppPreferences.setSession(session);
+                            startActivity(new Intent(getActivity(), MainActivity.class));
+                            activity.finish();
                         },3000);
                     }else {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                spinnerView.setVisibility(View.GONE);
-                                Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container),"Invalid credentials");
-                            }
+                        new Handler().postDelayed(() -> {
+                            spinnerView.setVisibility(View.GONE);
+                            Utils.showToast(activity, activity.findViewById(R.id.fragment_container),"Invalid credentials");
                         },3000);
 
                     }

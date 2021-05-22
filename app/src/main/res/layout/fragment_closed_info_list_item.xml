@@ -149,19 +149,15 @@
                         android:textSize="@dimen/text_size_small"
                         tools:text="30" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
-                        android:id="@+id/txt_status"
-                        style="@style/AppTheme.TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/img_status"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:maxLines="1"
+                        tools:src="@drawable/ic_decline"
                         android:padding="8dp"
-                        android:textColor="@android:color/black"
-                        app:appFont="Poppins-Medium"
-                        android:textSize="@dimen/text_size_micro"
-                        tools:text="Status:Active" />
+                        />
                 </LinearLayout>
             </LinearLayout>
 

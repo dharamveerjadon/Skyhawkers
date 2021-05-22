@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 
 import com.skyhawker.R;
 import com.skyhawker.customview.Tag;
@@ -156,6 +157,7 @@ public class MyJobAdapter extends BaseAdapter {
         private final TextView mTxtSupport;
         private View viewBar;
         private TagView tagGroup;
+        private CardView mCardView;
         // current bind to view holder
         private MyJobsModel mCurrentItem;
 
@@ -170,6 +172,7 @@ public class MyJobAdapter extends BaseAdapter {
             mTxtYearOfExperience = view.findViewById(R.id.txt_year_of_experience);
             mBudget = view.findViewById(R.id.txt_tentative_budget);
             mTxtSupport = view.findViewById(R.id.txt_support);
+            mCardView = view.findViewById(R.id.cardView);
             viewBar = view.findViewById(R.id.view_bar);
             mTxtSupport.setOnClickListener(v -> {
                 mOnItemClickListener.callSupport();
@@ -192,12 +195,17 @@ public class MyJobAdapter extends BaseAdapter {
         void bind(Context context, final MyJobsModel item) {
             mCurrentItem = item;
 
-            if("Accept".equalsIgnoreCase( item.getStatus()))
+            if("Accepted".equalsIgnoreCase( item.getStatus()))
                 viewBar.setBackgroundColor(context.getResources().getColor(R.color.light_green));
-            else if("Decline".equalsIgnoreCase( item.getStatus()))
+            else if("Declined".equalsIgnoreCase( item.getStatus()))
                 viewBar.setBackgroundColor(context.getResources().getColor(R.color.red));
             else
                 viewBar.setBackgroundColor(context.getResources().getColor(R.color.blue));
+
+            if(1 == item.getApplyJob().getIsShowHighlight())
+                mCardView.setCardBackgroundColor(context.getResources().getColor(R.color.card_color));
+            else
+                mCardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorWhite));
 
             mTitle.setText(item.getTitle());
             mTxtDescription.setText(item.getDescription());
@@ -206,7 +214,7 @@ public class MyJobAdapter extends BaseAdapter {
             setTags(context, item.getSkills());
             mTxtYearOfExperience.setText(item.getYearOfExperience() +" Yrs experience");
             mBudget.setText("₹ " +item.getBudgets());
-            mTxtSupport.setText("Reach Us");
+            mTxtSupport.setText("Call Us");
         }
 
         private void setTags(Context context, String skills) {

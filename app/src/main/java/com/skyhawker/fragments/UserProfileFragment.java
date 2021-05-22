@@ -52,7 +52,6 @@ import java.util.Map;
 
 
 public class UserProfileFragment extends BaseFragment implements View.OnClickListener {
-    private SpinnerView spinnerView;
     private ImageView docResume;
     private String resumeUrl;
     private TextView logout;
@@ -66,6 +65,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
     private Session session;
     private MyJobsModel model;
     private String actionType;
+    private SpinnerView spinnerView;
     private TextView mTxtLinkedIn, mTxtEmailId, mTxtName, mTxtContact, mTxtExpectedSalary, mTxtPricePerHour, mTxtLocation, mTxtSkypeId, mTxtYearOfExperience, mTxtSkills, txtReject, txtSelect;
 
     public static UserProfileFragment newInstance(String title, MyJobsModel item, Session session) {
@@ -90,7 +90,6 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
         // Set title
         setToolbarTitle(getTitle());
         View rootView = inflater.inflate(R.layout.fragment_user_profile, container, false);
-        context = getActivity();
         findViewById(rootView);
         registerListener();
         if (getArguments() != null) {
@@ -104,7 +103,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onResume() {
         super.onResume();
-        if (getActivity() != null && isAdded())
+        if (activity != null && isAdded())
             getdata();
     }
 
@@ -113,7 +112,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
         // calling add value event listener method
         // for getting the values from database.
         if (session != null) {
-            SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("status").child(session.getMobileNumber()).addValueEventListener(new ValueEventListener() {
+            SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("applyJob").child(session.getMobileNumber()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     actionType = snapshot.child("actionType").getValue(String.class);
@@ -134,7 +133,6 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void findViewById(View view) {
-        spinnerView = view.findViewById(R.id.progress_bar);
         profileImage = view.findViewById(R.id.profile_image);
         mTxtName = view.findViewById(R.id.user_name);
         mTxtEmailId = view.findViewById(R.id.txt_email);
@@ -149,6 +147,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
         txtReject = view.findViewById(R.id.txt_reject);
         txtSelect = view.findViewById(R.id.txt_select);
         docResume = view.findViewById(R.id.img_resume);
+        spinnerView = view.findViewById(R.id.spinnerView);
     }
 
     private void registerListener() {
@@ -176,7 +175,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void initData(Session sessionDeveloper) {
-        spinnerView.setVisibility(View.GONE);
+       spinnerView.setVisibility(View.GONE);
         mTxtName.setText(sessionDeveloper.getUserModel().getFirstName() + " " + sessionDeveloper.getUserModel().getLastName());
         mTxtContact.setText(sessionDeveloper.getMobileNumber());
         mTxtExpectedSalary.setText("₹ " + sessionDeveloper.getUserModel().getExpectedCtc());
@@ -216,7 +215,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
                             return false;
                         }
                     })
-                    .placeholder(R.drawable.ic_skyhawk_profile_orange)
+                    .placeholder(R.drawable.ic_avatar)
                     .dontAnimate()
                     .into(profileImage);
         }
@@ -246,8 +245,8 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
 
     private void sendActionDataToServer(boolean action) {
         spinnerView.setVisibility(View.VISIBLE);
-        ApplyJob applyJob = new ApplyJob(actionType, action, session);
-        SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("status").child(session.getMobileNumber()).setValue(applyJob)
+        ApplyJob applyJob = new ApplyJob(actionType, action, session, 1);
+        SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("applyJob").child(session.getMobileNumber()).setValue(applyJob)
                 .addOnSuccessListener(aVoid -> {
                         sendNotificationOnAction(action);
                 })
@@ -289,11 +288,11 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
                 response -> {
                     spinnerView.setVisibility(View.GONE);
                     activity.onBackPressed();
-                    Utils.showToast(getActivity(), activity.findViewById(R.id.fragment_container), "Notification sent");
+                    Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Notification sent");
                 },
                 error -> {
-                    Toast.makeText(getActivity(), "Request error", Toast.LENGTH_LONG).show();
-                    spinnerView.setVisibility(View.GONE);
+                    Toast.makeText(activity, "Request error", Toast.LENGTH_LONG).show();
+                   spinnerView.setVisibility(View.GONE);
                 }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -303,7 +302,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
                 return params;
             }
         };
-        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+        MySingleton.getInstance(activity).addToRequestQueue(jsonObjectRequest);
     }
 
 }

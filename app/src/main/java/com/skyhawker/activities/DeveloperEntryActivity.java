@@ -107,16 +107,8 @@ public class DeveloperEntryActivity extends BaseActivity implements View.OnClick
             mDatabase.child("Developers").child(mobileNumber).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    // this method is call to get the realtime
-                    // updates in the data.
-                    // this method is called when the data is
-                    // changed in our Firebase console.
-                    // below line is for getting the data from
-                    // snapshot of our database.
-                    Session value = snapshot.getValue(Session.class);
 
-                    // after getting the value we are setting
-                    // our value to our text view in below line.
+                    Session value = snapshot.getValue(Session.class);
                     AppPreferences.setSession(value);
 
                     initData();

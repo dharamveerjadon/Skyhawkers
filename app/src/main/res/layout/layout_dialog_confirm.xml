@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.skyhawker.customview.SkyhawkTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="All client requirements will move to ‘CLOSED’ section of your Timeline."
+            android:textColor="@android:color/black" />
+
+        <com.skyhawker.customview.SkyhawkTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Are you sure for this action ?"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:orientation="horizontal">
+
+            <com.skyhawker.customview.SkyhawkTextView
+                android:id="@+id/txt_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:layout_marginLeft="18dp"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:layout_marginRight="8dp"
+                android:textColor="@android:color/black"
+                app:fontFamily="Poppins-SemiBold"
+                android:background="@drawable/bg_white_border_orange"
+                android:gravity="center"
+                android:textAllCaps="true"/>
+
+            <com.skyhawker.customview.SkyhawkTextView
+                android:id="@+id/txt_yes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="16dp"
+                app:fontFamily="Poppins-SemiBold"
+                android:textColor="@android:color/white"
+                android:background="@drawable/gradient_orange"
+                android:layout_marginRight="18dp"
+                android:layout_marginLeft="8dp"
+                android:textAllCaps="true"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -15,13 +15,6 @@
         android:visibility="invisible"
         tools:listitem="@layout/fragment_job_info_list_item" />
 
-    <com.skyhawker.customview.SpinnerView
-        android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
     <ImageView
         android:id="@+id/no_record_found"
         android:layout_width="wrap_content"
@@ -30,5 +23,10 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:visibility="gone"/>
-
+    <com.skyhawker.customview.SpinnerView
+        android:id="@+id/spinnerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        tools:visibility="visible" />
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.skyhawker.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
+import com.skyhawker.activities.MainActivity;
 import com.skyhawker.adapters.AllRequirementAdapter;
 import com.skyhawker.adapters.WatingAdapter;
 import com.skyhawker.customview.SpinnerView;
@@ -25,6 +27,7 @@ import com.skyhawker.utils.AppPreferences;
 import com.skyhawker.utils.SkyhawkerApplication;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -33,9 +36,9 @@ public class AllRequirementFragment extends BaseFragment implements AllRequireme
 
     private AllRequirementAdapter mAdapter;
     private ListView listRequirement;
-    private SpinnerView spinnerView;
     private ImageView noRecordFound;
-
+    private MainActivity activity;
+    private SpinnerView spinnerView;
 
     public static AllRequirementFragment newInstance(String title) {
         AllRequirementFragment fragment = new AllRequirementFragment();
@@ -45,6 +48,11 @@ public class AllRequirementFragment extends BaseFragment implements AllRequireme
         return fragment;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (MainActivity)context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +63,7 @@ public class AllRequirementFragment extends BaseFragment implements AllRequireme
         viewById(view);
 
         if (mAdapter == null) {
-            mAdapter = new AllRequirementAdapter(this.getContext(), this);
+            mAdapter = new AllRequirementAdapter(activity, this);
         }
 
         listRequirement.setAdapter(mAdapter);
@@ -67,7 +75,7 @@ public class AllRequirementFragment extends BaseFragment implements AllRequireme
 
     private void viewById(View view) {
         listRequirement = view.findViewById(R.id.listView);
-        spinnerView = view.findViewById(R.id.progress_bar);
+        spinnerView = view.findViewById(R.id.spinnerView);
         noRecordFound = view.findViewById(R.id.no_record_found);
 
 
@@ -95,17 +103,15 @@ public class AllRequirementFragment extends BaseFragment implements AllRequireme
                         String budgets = ds.child("budgets").getValue(String.class);
                         String key = ds.child("key").getValue(String.class);
                         myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, "InProcess",key));
-
-                        if (myJob.size() > 0) {
-                            listRequirement.setVisibility(View.VISIBLE);
-                            noRecordFound.setVisibility(GONE);
-                            mAdapter.setItems(myJob, 10);
-                        } else {
-                            listRequirement.setVisibility(GONE);
-                            noRecordFound.setVisibility(View.VISIBLE);
-                        }
-
-
+                    }
+                    if (myJob.size() > 0) {
+                        listRequirement.setVisibility(View.VISIBLE);
+                        noRecordFound.setVisibility(GONE);
+                        Collections.sort(myJob);
+                        mAdapter.setItems(myJob, 10);
+                    } else {
+                        listRequirement.setVisibility(GONE);
+                        noRecordFound.setVisibility(View.VISIBLE);
                     }
                     spinnerView.setVisibility(View.GONE);
                 }
@@ -114,7 +120,7 @@ public class AllRequirementFragment extends BaseFragment implements AllRequireme
                 public void onCancelled(@NonNull DatabaseError error) {
                     // calling on cancelled method when we receive
                     // any error or we are not able to get the data.
-                    Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Fail to get data.", Toast.LENGTH_SHORT).show();
                 }
             });
         }

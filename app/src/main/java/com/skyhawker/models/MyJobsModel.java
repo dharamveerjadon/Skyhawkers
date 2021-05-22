@@ -3,7 +3,7 @@ package com.skyhawker.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class MyJobsModel implements Parcelable {
+public class MyJobsModel implements Parcelable , Comparable<MyJobsModel> {
 
     private String title;
     private String description;
@@ -145,4 +145,9 @@ public class MyJobsModel implements Parcelable {
             return new MyJobsModel[size];
         }
     };
+
+    @Override
+    public int compareTo(MyJobsModel o) {
+        return getDate().compareTo(o.getDate());
+    }
 }

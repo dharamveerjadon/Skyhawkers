@@ -37,6 +37,14 @@
                     android:src="@drawable/ic_add"
                     android:visibility="visible" />
 
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:visibility="invisible"
+                    android:layout_centerHorizontal="true"/>
+
             </RelativeLayout>
 
             <com.skyhawker.customview.SkyhawkTextView
@@ -366,11 +374,10 @@
 
         </LinearLayout>
     </ScrollView>
-
     <com.skyhawker.customview.SpinnerView
-        android:id="@+id/progress_bar"
+        android:id="@+id/spinnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="invisible"
-        tools:visibility="invisible" />
+        tools:visibility="visible" />
 </RelativeLayout>

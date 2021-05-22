@@ -168,7 +168,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_edit_text"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:padding="12dp"
                         app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black" />
@@ -179,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:padding="4sp"
-                        android:text="Approx Budget"
+                        android:text="Approx Budget(₹)"
                         app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
@@ -241,9 +241,9 @@
     </LinearLayout>
 
     <com.skyhawker.customview.SpinnerView
-        android:id="@+id/progress_bar"
+        android:id="@+id/spinnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="gone" />
+        android:visibility="invisible"
+        tools:visibility="visible" />
 </RelativeLayout>

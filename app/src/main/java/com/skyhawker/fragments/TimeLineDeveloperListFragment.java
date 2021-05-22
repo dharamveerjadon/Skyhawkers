@@ -1,6 +1,7 @@
 package com.skyhawker.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
+import com.skyhawker.activities.MainActivity;
 import com.skyhawker.adapters.TimeLineDeveloperListAdapter;
 import com.skyhawker.adapters.UserListAdapter;
 import com.skyhawker.customview.SpinnerView;
@@ -48,9 +50,10 @@ public class TimeLineDeveloperListFragment extends BaseFragment  implements Time
         .OnItemClickListener{
     private TimeLineDeveloperListAdapter mAdapter;
     private ListView listRequirement;
-    private SpinnerView spinnerView;
     private ImageView noRecordFound;
     private MyJobsModel item;
+    private MainActivity activity;
+    private SpinnerView spinnerView;
 
     public static TimeLineDeveloperListFragment newInstance(String title, MyJobsModel model) {
         TimeLineDeveloperListFragment fragment = new TimeLineDeveloperListFragment();
@@ -59,6 +62,12 @@ public class TimeLineDeveloperListFragment extends BaseFragment  implements Time
         args.putParcelable("item", model);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (MainActivity)context;
     }
 
     @Override
@@ -85,7 +94,7 @@ public class TimeLineDeveloperListFragment extends BaseFragment  implements Time
 
     private void viewById(View view) {
         listRequirement = view.findViewById(R.id.listView);
-        spinnerView = view.findViewById(R.id.progress_bar);
+        spinnerView  = view.findViewById(R.id.spinnerView);
         noRecordFound = view.findViewById(R.id.no_record_found);
     }
 
@@ -96,15 +105,16 @@ public class TimeLineDeveloperListFragment extends BaseFragment  implements Time
         Session session = AppPreferences.getSession();
 
         if (session != null) {
-            SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(item.getKey()).child("status").addValueEventListener(new ValueEventListener() {
+            SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(item.getKey()).child("applyJob").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     List<ApplyJob> applyJobsList = new ArrayList<>();
                     for(DataSnapshot ds : snapshot.getChildren()) {
                         String actionType = ds.child("actionType").getValue(String.class);
                         Session session = ds.child("session").getValue(Session.class);
+                        int isShowHighlight = ds.child("isShowHighlight").getValue(Integer.class);
                         if(session != null)
-                            applyJobsList.add(new ApplyJob(actionType,session));
+                            applyJobsList.add(new ApplyJob(actionType,session, isShowHighlight));
                     }
                     if(applyJobsList.size() > 0) {
                         listRequirement.setVisibility(View.VISIBLE);
@@ -115,7 +125,7 @@ public class TimeLineDeveloperListFragment extends BaseFragment  implements Time
                         noRecordFound.setVisibility(View.VISIBLE);
                     }
 
-                    spinnerView.setVisibility(View.GONE);
+                   spinnerView.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -156,13 +166,13 @@ public class TimeLineDeveloperListFragment extends BaseFragment  implements Time
                     @Override
                     public void onResponse(JSONObject response) {
                         spinnerView.setVisibility(View.GONE);
-                        Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Notification sent");
+                        Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Notification sent");
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), "Request error", Toast.LENGTH_LONG).show();
+                        Toast.makeText(activity, "Request error", Toast.LENGTH_LONG).show();
                         spinnerView.setVisibility(View.GONE);
                     }
                 }){
@@ -174,6 +184,6 @@ public class TimeLineDeveloperListFragment extends BaseFragment  implements Time
                 return params;
             }
         };
-        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+        MySingleton.getInstance(activity).addToRequestQueue(jsonObjectRequest);
     }
 }

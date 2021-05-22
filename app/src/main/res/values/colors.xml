@@ -42,4 +42,5 @@
     <color name="colorOrangeClick">#efa362</color>
     <color name="light_green">#88C440</color>
     <color name="blue">#1093F5</color>
+    <color name="card_color">#FFBD71</color>
 </resources>

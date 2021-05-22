@@ -17,6 +17,7 @@ public class AppPreferences {
     private static final String SESSION = "session";
     private static final String IS_PREFERENCE_ADDED = "is_preference_added";
     public static final String SELECTED_HOME_SCREEN = "selected_home_screen";
+    public static final String IsCONGRATULATIONACTIONDONE = "is_congratulation_done";
 
     private static final String IS_FCM_TOKEN = "IS_FCM_TOKEN";
 
@@ -61,6 +62,16 @@ public class AppPreferences {
     public static void setSelectedHomeScreen(String key, @Nullable int value) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(key, value);
+        editor.apply();
+    }
+
+    public static boolean IsCongratulationDone() {
+        return mSharedPreferences.getBoolean(IsCONGRATULATIONACTIONDONE, false);
+    }
+
+    public static void setIsCongratulationDone(String key, @Nullable boolean value) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(key, value);
         editor.apply();
     }
 
@@ -121,7 +132,7 @@ public class AppPreferences {
      */
     public static boolean isLoggedIn() {
 
-        return !(TextUtils.isEmpty(userSession.getMobileNumber()) || userSession == null);
+        return !(TextUtils.isEmpty(userSession.getMobileNumber()) || userSession == null );
 
     }
 

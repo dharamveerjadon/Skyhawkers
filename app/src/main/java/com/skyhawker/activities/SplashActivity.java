@@ -24,22 +24,6 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         startService(new Intent(getBaseContext(), ClearServices.class));
-       /* new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Session session = AppPreferences.getSession();
-                if(session != null && !TextUtils.isEmpty(session.getCreatePassword())) {
-                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(i);
-                }else {
-                    Intent i = new Intent(SplashActivity.this, SignUpActivity.class);
-                    startActivity(i);
-                }
-
-                finish();
-            }
-
-        }, INTERVAL_TIME);*/
 
         final Intent intent = getIntent();
         if (Utils.isAppUrl(intent.getDataString()) || intent.hasExtra(Keys.NOTIFICATION)) {
@@ -66,13 +50,19 @@ public class SplashActivity extends AppCompatActivity {
         Intent newIntent = new Intent();
         newIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         if (AppPreferences.isLoggedIn()) {
-            // user is already loggedIn open the MainActivity
-            newIntent.setClass(this, MainActivity.class);
-            newIntent.putExtra(Keys.NOTIFICATION, intent.getSerializableExtra(Keys.NOTIFICATION));
-            if (Utils.isAppUrl(intent.getDataString())) {
-                //if app is open using reset password link from email and user is already login then show the message
-                Utils.showToast(this, null, getString(R.string.already_logged_in));
+            if(session.getUserModel() == null) {
+                // user is already loggedIn open the MainActivity
+                newIntent.setClass(this, DeveloperEntryActivity.class);
+            }else {
+                // user is already loggedIn open the MainActivity
+                newIntent.setClass(this, MainActivity.class);
+                newIntent.putExtra(Keys.NOTIFICATION, intent.getSerializableExtra(Keys.NOTIFICATION));
+                if (Utils.isAppUrl(intent.getDataString())) {
+                    //if app is open using reset password link from email and user is already login then show the message
+                    Utils.showToast(this, null, getString(R.string.already_logged_in));
+                }
             }
+
 
         } else {
             //open the login activity

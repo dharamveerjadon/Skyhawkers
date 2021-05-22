@@ -23,13 +23,6 @@
         android:layout_centerHorizontal="true"
         android:visibility="visible"/>
 
-    <com.skyhawker.customview.SpinnerView
-        android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
         android:layout_width="wrap_content"
@@ -40,4 +33,10 @@
         android:layout_marginBottom="84dp"
         android:layout_marginRight="16dp"/>
 
+    <com.skyhawker.customview.SpinnerView
+        android:id="@+id/spinnerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        tools:visibility="visible" />
 </RelativeLayout>

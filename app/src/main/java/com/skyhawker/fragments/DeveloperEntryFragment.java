@@ -251,7 +251,7 @@ public class DeveloperEntryFragment extends BaseFragment implements View.OnClick
         }
 
         if (upload == null) {
-            Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Please upload resume..");
+            Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Please upload resume..");
             return false;
         }
 
@@ -371,7 +371,7 @@ public class DeveloperEntryFragment extends BaseFragment implements View.OnClick
 
                     PathHolder = data.getData().getPath();
                     // Here we are initialising the progress dialog box
-                    dialog = new ProgressDialog(getActivity());
+                    dialog = new ProgressDialog(activity);
                     dialog.setMessage("Uploading");
 
                     // this will show message uploading
@@ -402,11 +402,11 @@ public class DeveloperEntryFragment extends BaseFragment implements View.OnClick
                             Uri uri = task.getResult();
                             upload = new Upload(filepath.getName(), uri.toString());
                             mImgDocument.setVisibility(View.VISIBLE);
-                            Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Uploaded Successfully");
+                            Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Uploaded Successfully");
                         } else {
                             dialog.dismiss();
                             mImgDocument.setVisibility(View.GONE);
-                            Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Upload Failed");
+                            Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Upload Failed");
                         }
                     });
                 }

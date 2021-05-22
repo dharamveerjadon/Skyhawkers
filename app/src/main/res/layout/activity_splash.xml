@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_background"
     tools:context=".activities.SplashActivity">
 
     <LinearLayout
@@ -24,13 +23,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="30sp"
+            android:textSize="16sp"
             android:gravity="center"
             app:appFont="Poppins-Light"
             android:fontFamily="sans-serif-light"
-            android:layout_marginTop="@dimen/margin_default_octuple"
-            android:textColor="@android:color/white"
-            android:text="Consider. Shape.\n\n Influence. Shine"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="Consider. Shape. Influence. Shine"
             android:padding="@dimen/padding_default_double"/>
     </LinearLayout>
 
@@ -40,5 +38,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:padding="4dp"
-        android:src="@drawable/powered_by" />
+        android:src="@drawable/powered_by_black" />
 </RelativeLayout>

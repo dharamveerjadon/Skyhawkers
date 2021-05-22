@@ -61,7 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="4sp"
-                        android:text="First Name"
+                        android:text="First Name*"
                         app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
@@ -104,7 +104,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="4sp"
-                        android:text="Last Name"
+                        android:text="Last Name*"
                         app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
@@ -126,7 +126,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4sp"
                         app:appFont="Poppins-Regular"
-                        android:text="Email ID"
+                        android:text="Email ID*"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -190,7 +190,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4sp"
                         app:appFont="Poppins-Regular"
-                        android:text="Contact Number"
+                        android:text="Contact Number*"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -212,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4sp"
                         app:appFont="Poppins-Regular"
-                        android:text="Location"
+                        android:text="Location*"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -232,7 +232,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="4sp"
-                        android:text="Years of Experience"
+                        android:text="Years of Experience*"
                         app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
@@ -243,7 +243,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_edit_text"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         app:appFont="Poppins-Regular"
                         android:padding="12dp"
                         android:textColor="@android:color/black" />
@@ -253,7 +253,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="4sp"
-                        android:text="Price Per Hour(INR)"
+                        android:text="Price Per Hour(INR)*"
                         app:appFont="Poppins-Regular"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
@@ -264,7 +264,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_edit_text"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         app:appFont="Poppins-Regular"
                         android:padding="12dp"
                         android:textColor="@android:color/black" />
@@ -275,7 +275,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4sp"
                         app:appFont="Poppins-Regular"
-                        android:text="Expected CTC(INR in lakh)"
+                        android:text="Expected CTC(INR in lakh)*"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
@@ -296,7 +296,7 @@
                         android:layout_height="wrap_content"
                         android:padding="4sp"
                         app:appFont="Poppins-Regular"
-                        android:text="Skills(Comma Separted)"
+                        android:text="Skills(Comma Separted)*"
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 

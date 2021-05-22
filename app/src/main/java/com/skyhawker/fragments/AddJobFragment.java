@@ -1,5 +1,6 @@
 package com.skyhawker.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
+import com.skyhawker.activities.MainActivity;
 import com.skyhawker.customview.SpinnerView;
 import com.skyhawker.models.MyJobsModel;
 import com.skyhawker.models.NotificationModel;
@@ -55,7 +57,6 @@ import java.util.Map;
 public class AddJobFragment extends BaseFragment {
     //ref to the email view
     private EditText mTitleView;
-    private SpinnerView spinnerView;
     //ref to the password view
     private EditText mDescriptionView;
     private Spinner mJobTypeView;
@@ -66,12 +67,21 @@ public class AddJobFragment extends BaseFragment {
     private Session session;
     private String mJobType;
     private int count;
+    private SpinnerView spinnerView;
+
+    private MainActivity activity;
 
     public static AddJobFragment newInstance(String title) {
         AddJobFragment fragment = new AddJobFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (MainActivity)context;
     }
 
     @Override
@@ -87,22 +97,16 @@ public class AddJobFragment extends BaseFragment {
         mYearOfExperienceView = view.findViewById(R.id.edt_year_of_experience);
         mBudgetsView = view.findViewById(R.id.edt_approx_budgets);
         mSkillsView = view.findViewById(R.id.edt_skills);
-        spinnerView = view.findViewById(R.id.progress_bar);
-
+        spinnerView = view.findViewById(R.id.spinnerView);
         final View loginBtn = view.findViewById(R.id.btn_save);
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginClick();
-            }
-        });
+        loginBtn.setOnClickListener(v -> loginClick());
 
 
         final List<String> jobTypeList = new ArrayList<>();
         jobTypeList.add("Part Time");
         jobTypeList.add("Full Time");
 
-        ArrayAdapter<String> jobTypeAdapter = new ArrayAdapter(getActivity(),
+        ArrayAdapter<String> jobTypeAdapter = new ArrayAdapter(activity,
                 R.layout.sector_spinner, jobTypeList);
         jobTypeAdapter.setDropDownViewResource(R.layout.sector_spinner_item);
         mJobTypeView.setAdapter(jobTypeAdapter);
@@ -117,22 +121,14 @@ public class AddJobFragment extends BaseFragment {
 
             }
         });
-        mSkillsView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                loginBtn.setVisibility(View.VISIBLE);
-            }
-        });
+        mSkillsView.setOnFocusChangeListener((v, hasFocus) -> loginBtn.setVisibility(View.VISIBLE));
 
-        mSkillsView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginClick();
-                    return true;
-                }
-                return false;
+        mSkillsView.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                loginClick();
+                return true;
             }
+            return false;
         });
 
         final String date = getDateTime();
@@ -173,7 +169,7 @@ public class AddJobFragment extends BaseFragment {
         }
 
         if (TextUtils.isEmpty(jobType)) {
-            Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Select job type");
+            Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Select job type");
             mJobTypeView.requestFocus();
             return;
         }
@@ -202,22 +198,16 @@ public class AddJobFragment extends BaseFragment {
             mSkillsView.requestFocus();
             return;
         }
-        spinnerView.setVisibility(View.VISIBLE);
+       spinnerView.setVisibility(View.VISIBLE);
         final DatabaseReference databaseReference = SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs");
         final String key = databaseReference.push().getKey();
         databaseReference.child(key).setValue(new MyJobsModel(title, description, dateTime, jobType, yearOfExperience, skills, budget,"", key))
                 .addOnSuccessListener(aVoid -> new Handler().postDelayed(() ->
                         pushNotification(title, description, dateTime, yearOfExperience, budget, jobType, skills, key), 3000))
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        spinnerView.setVisibility(View.GONE);
-                    }
-                });
+                .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));
     }
 
     private void pushNotification(final String name, final String description, final String date, final String yearofexperience, final String budget, final String category, final String skills, final String key) {
-        spinnerView.setVisibility(View.VISIBLE);
         SkyhawkerApplication.sharedDatabaseInstance().child("Developers").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -282,33 +272,27 @@ public class AddJobFragment extends BaseFragment {
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Constants.FCM_API, notification,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        innerModel.remove(0);
-                        sendNotification(innerModel);
-                        if(innerModel.size() == 0) {
-                            spinnerView.setVisibility(View.GONE);
-                            Utils.showToast(getActivity(), getActivity().findViewById(R.id.fragment_container), "Notification sent");
-                            getActivity().onBackPressed();
-                        }
+                response -> {
+                    innerModel.remove(0);
+                    sendNotification(innerModel);
+                    if(innerModel.size() == 0) {
+                        spinnerView.setVisibility(View.GONE);
+                        Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Notification sent");
+                        activity.onBackPressed();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), "Request error", Toast.LENGTH_LONG).show();
-                        spinnerView.setVisibility(View.GONE);
-                    }
+                error -> {
+                    Toast.makeText(activity, "Request error", Toast.LENGTH_LONG).show();
+                    spinnerView.setVisibility(View.GONE);
                 }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", Constants.serverKey);
                 params.put("Content-Type", Constants.contentType);
                 return params;
             }
         };
-        MySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+        MySingleton.getInstance(activity).addToRequestQueue(jsonObjectRequest);
     }
 }

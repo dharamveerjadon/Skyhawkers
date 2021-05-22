@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
+import com.skyhawker.customview.SpinnerView;
 import com.skyhawker.customview.TabBar;
 import com.skyhawker.fragments.CongratulationFragment;
 import com.skyhawker.fragments.MyJobsFragment;
@@ -61,7 +62,6 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
 
     // This is drawer listener to close and open the drawer
     private ActionBarDrawerToggle mDrawerToggle;
-
     //bottom tab bar
     private TabBar mTabBar;
 

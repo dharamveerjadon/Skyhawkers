@@ -8,8 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/powered_by">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -336,24 +335,15 @@
 
                         </LinearLayout>
                     </LinearLayout>
-                    <com.skyhawker.customview.SkyhawkTextView
-                        style="@style/AppTheme.TextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="4dp"
-                        android:text="Need text to notify user for card movement process"
-                        app:appFont="Poppins-Regular"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
     <com.skyhawker.customview.SpinnerView
-        android:id="@+id/progress_bar"
+        android:id="@+id/spinnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:visibility="invisible"
+        tools:visibility="visible" />
 </RelativeLayout>

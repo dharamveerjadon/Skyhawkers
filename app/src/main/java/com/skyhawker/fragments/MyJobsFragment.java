@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
+import com.skyhawker.activities.MainActivity;
 import com.skyhawker.adapters.MyJobAdapter;
 import com.skyhawker.customview.SpinnerView;
 import com.skyhawker.models.ApplyJob;
@@ -30,6 +31,8 @@ import com.skyhawker.utils.Constants;
 import com.skyhawker.utils.SkyhawkerApplication;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -38,10 +41,10 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
 
     private MyJobAdapter mAdapter;
     private ListView listRequirement;
-    private SpinnerView spinnerView;
     private ImageView noRecordFound;
-    private Context context;
+    private MainActivity activity;
     private Session session;
+    private SpinnerView spinnerView;
 
 
     public static MyJobsFragment newInstance(String title) {
@@ -52,6 +55,11 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
         return fragment;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activity = (MainActivity)context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,12 +67,11 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
         // Set title
         setToolbarTitle(getTitle());
         View view = inflater.inflate(R.layout.fragment_my_jobs, container, false);
-        context = getActivity();
         session = AppPreferences.getSession();
         viewById(view);
 
         if (mAdapter == null) {
-            mAdapter = new MyJobAdapter(this.getContext(), this);
+            mAdapter = new MyJobAdapter(activity, this);
         }
 
         listRequirement.setAdapter(mAdapter);
@@ -76,7 +83,7 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
 
     private void viewById(View view) {
         listRequirement = view.findViewById(R.id.listView);
-        spinnerView = view.findViewById(R.id.progress_bar);
+        spinnerView = view.findViewById(R.id.spinnerView);
         noRecordFound = view.findViewById(R.id.no_record_found);
 
         FloatingActionButton addJob = view.findViewById(R.id.fab_add);
@@ -110,18 +117,19 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
                         String skills = ds.child("skills").getValue(String.class);
                         String yearOfExperience = ds.child("yearOfExperience").getValue(String.class);
                         String budgets = ds.child("budgets").getValue(String.class);
-                        ApplyJob applyJob = ds.child("status/" + session.getMobileNumber()).getValue(ApplyJob.class);
+                        String key = ds.child("key").getValue(String.class);
+                        ApplyJob applyJob = ds.child("applyJob/" + session.getMobileNumber()).getValue(ApplyJob.class);
 
                         if (applyJob != null && !TextUtils.isEmpty(applyJob.getSession().getMobileNumber())) {
                             if (session.getMobileNumber().equalsIgnoreCase(applyJob.getSession().getMobileNumber()))
                                 if (isFilter) {
                                     if (filterKey.equalsIgnoreCase("all")) {
                                         if (applyJob.isDeveloperSelected())
-                                            myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType()));
+                                            myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType(),key, applyJob));
 
                                     } else if (filterKey.equalsIgnoreCase(applyJob.getActionType())) {
                                         if (applyJob.isDeveloperSelected())
-                                            myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType()));
+                                            myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType(), key, applyJob));
                                     }
                                 }
                         }
@@ -129,6 +137,7 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
                     if (myJob.size() > 0) {
                         listRequirement.setVisibility(View.VISIBLE);
                         noRecordFound.setVisibility(GONE);
+                        Collections.sort(myJob);
                         mAdapter.setItems(myJob, 10);
                     } else {
                         listRequirement.setVisibility(GONE);
@@ -141,7 +150,7 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
                 public void onCancelled(@NonNull DatabaseError error) {
                     // calling on cancelled method when we receive
                     // any error or we are not able to get the data.
-                    Toast.makeText(getContext(), "Fail to get data.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Fail to get data.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -150,7 +159,7 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
 
     @Override
     public void onItemClick(MyJobsModel item) {
-
+        SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(item.getKey()).child("applyJob").child(session.getMobileNumber()).child("isShowHighlight").setValue(0);
     }
 
     @Override

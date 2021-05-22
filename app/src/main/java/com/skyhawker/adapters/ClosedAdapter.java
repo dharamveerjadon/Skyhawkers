@@ -156,7 +156,7 @@ public class ClosedAdapter extends BaseAdapter {
         private final TagView tagGroup;
         private final TextView mTxtYearOfExperience;
         private final TextView mBudget;
-        private final TextView mTxtStatus;
+        private final ImageView mImgStatus;
         private final ImageView mAppliedDeveloper;
         private final View viewBar;
         // current bind to view holder
@@ -172,7 +172,7 @@ public class ClosedAdapter extends BaseAdapter {
             tagGroup = view.findViewById(R.id.tag_group);
             mTxtYearOfExperience = view.findViewById(R.id.txt_year_of_experience);
             mBudget = view.findViewById(R.id.txt_tentative_budget);
-            mTxtStatus = view.findViewById(R.id.txt_status);
+            mImgStatus = view.findViewById(R.id.img_status);
             viewBar = view.findViewById(R.id.view_bar);
             mAppliedDeveloper = view.findViewById(R.id.view_applied_developer);
             mAppliedDeveloper.setOnClickListener(v -> {
@@ -206,14 +206,14 @@ public class ClosedAdapter extends BaseAdapter {
             mTxtYearOfExperience.setText(item.getYearOfExperience() + " Yrs experience");
             mBudget.setText("₹ " +item.getBudgets());
 
-            if ("Accept".equalsIgnoreCase(item.getStatus())) {
+            if ("Accepted".equalsIgnoreCase(item.getStatus())) {
                 viewBar.setBackgroundColor(context.getResources().getColor(R.color.light_green));
-                mTxtStatus.setText("Accepted");
-            } else if ("Decline".equalsIgnoreCase(item.getStatus())) {
+                mImgStatus.setImageResource(R.drawable.ic_accept);
+            } else if ("Declined".equalsIgnoreCase(item.getStatus())) {
                 viewBar.setBackgroundColor(context.getResources().getColor(R.color.red));
-                mTxtStatus.setText("Declined");
+                mImgStatus.setImageResource(R.drawable.ic_decline);
             } else {
-                mTxtStatus.setText("Saved For Later");
+                mImgStatus.setImageResource(R.drawable.ic_saved_later);
                 viewBar.setBackgroundColor(context.getResources().getColor(R.color.blue));
             }
         }
