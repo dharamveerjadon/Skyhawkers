@@ -3,6 +3,11 @@ package com.skyhawker.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.skyhawker.utils.Constants;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MyJobsModel implements Parcelable , Comparable<MyJobsModel> {
 
     private String title;
@@ -148,6 +153,24 @@ public class MyJobsModel implements Parcelable , Comparable<MyJobsModel> {
 
     @Override
     public int compareTo(MyJobsModel o) {
-        return getDate().compareTo(o.getDate());
+        return o.getDate().compareTo(getDate());
     }
 }
+  /*  SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT_EMMMMDDYYYY);
+    Date date1 = null;
+    Date date2 = null;
+        try {
+                date1 = sdf.parse(getDate());
+                } catch (ParseException e) {
+                e.printStackTrace();
+                }
+                try {
+                date2 = sdf.parse(o.getDate());
+                } catch (ParseException e) {
+                e.printStackTrace();
+                }
+
+                long getDate = date1.getTime();
+                long getCompareDate = date2.getTime();
+
+                return String.valueOf(getCompareDate).compareTo(String.valueOf(getDate));*/

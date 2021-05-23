@@ -112,6 +112,7 @@ public class WaitingFragment extends BaseFragment implements WatingAdapter.OnIte
                         listRequirement.setVisibility(View.VISIBLE);
                         noRecordFound.setVisibility(GONE);
                         Collections.sort(myJob);
+
                         mAdapter.setItems(myJob, 10);
                     } else {
                         listRequirement.setVisibility(GONE);

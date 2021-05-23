@@ -15,9 +15,9 @@ public class Constants {
     public static final String SHOW_ALL = "all";
 
     //---------------------Date Format-------------------------------------------------------------------------------------------------------------------
-    public static final String DATE_FORMAT_EDDMMMYYYY = "EEEE, dd MMMM yyyy";
+    public static final String DATE_FORMAT_EDDMMMYYYY = "EE, dd MMMM yyyy";
     public static final String DATE_FORMAT_yyyyMMDD = "yyyy-MM-dd'T'hh:mm:ss";
-    public static final String DATE_FORMAT_EMMMMDDYYYY = "EE, MMMM dd yyyy";
+    public static final String DATE_FORMAT_EMMMMDDYYYY = "EE, MMMM dd yyyy hh:mm:ss a";
     public static final String DATE_FORMAT_EEEHHMM = "EEEE hh:mm a";
 
     //----------------------------------------------------------------------------------------------------------------------------------------

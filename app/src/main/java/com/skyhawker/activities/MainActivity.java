@@ -28,12 +28,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.skyhawker.R;
-import com.skyhawker.customview.SpinnerView;
 import com.skyhawker.customview.TabBar;
 import com.skyhawker.fragments.CongratulationFragment;
 import com.skyhawker.fragments.MyJobsFragment;
-import com.skyhawker.fragments.TimelineFragment;
 import com.skyhawker.fragments.MyProfileFragment;
+import com.skyhawker.fragments.TimelineFragment;
 import com.skyhawker.interfaces.MenuItemInteraction;
 import com.skyhawker.models.MenuItem;
 import com.skyhawker.models.MyJobsModel;
@@ -70,7 +69,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Set Tool bar to the screen
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
         toolbarTitle = mToolbar.findViewById(R.id.toolbar_title);
         lnrEditIconProfile = mToolbar.findViewById(R.id.lnr_edit);
         toolbarTitle.setText(mToolbar.getTitle());
@@ -93,7 +92,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
 
         mobileNumber = TextUtils.isEmpty(session.getMobileNumber()) ? mobileNumber : session.getMobileNumber();
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 /* host Activity */
@@ -116,13 +115,12 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
-        mTabBar = (TabBar) findViewById(R.id.tab_bar);
+        mTabBar = findViewById(R.id.tab_bar);
         List<MenuItem> items = new ArrayList<>();
         items.add(new MenuItem(R.string.string_timeline, R.drawable.ic_timeline_grey));
         items.add(new MenuItem(R.string.string_my_job, R.drawable.ic_job_grey));
         items.add(new MenuItem(R.string.string_profile, R.drawable.ic_profile_grey));
         mTabBar.setMenuItems(items);
-
 
 
         mTabBar.setOnMenuClickListener(new MenuItemInteraction() {
@@ -138,6 +136,9 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
                     case R.string.string_profile:
                         addMyProfileFragment();
                         break;
+                    default:
+                        mTabBar.setSelectedIndex(0, false);
+                        addTimeLineFragment();
                 }
             }
 
@@ -147,7 +148,12 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
             }
         });
 
+        if (savedInstanceState == null) {
+                mTabBar.setSelectedIndex(AppPreferences.getSelectedHomeScreen(), false);
+        }
+
         new Handler().postDelayed(() -> onHandleNotification(getIntent()), 1000);
+
 
         getdata();
 
@@ -155,7 +161,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
             Session editSession = AppPreferences.getSession();
             AppPreferences.setSelectedHomeScreen(AppPreferences.SELECTED_HOME_SCREEN, 2);
             Intent intent = new Intent(MainActivity.this, DeveloperEntryActivity.class);
-            intent.putExtra(Keys.MOBILE_NUMBER, session.getMobileNumber());
+            intent.putExtra(Keys.MOBILE_NUMBER, editSession.getMobileNumber());
             startActivity(intent);
         });
 
@@ -236,7 +242,7 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
                                 break;
 
                             case Keys.TYPE_PROFILE_SELECTED:
-                                    addMyJobFragment();
+                                addMyJobFragment();
 
                                 break;
 
@@ -309,16 +315,16 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
             return;
         } else if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             if (mTabBar.getSelectedIndex() != 0) {
-                AppPreferences.setSelectedHomeScreen(SELECTED_HOME_SCREEN,0);
+                AppPreferences.setSelectedHomeScreen(SELECTED_HOME_SCREEN, 0);
                 mTabBar.setSelectedIndex(0, false);
                 return;
             } else {
                 Fragment fragment = getTopFragment();
                 if (fragment != null && fragment instanceof MyJobsFragment) {
                     mTabBar.setSelectedIndex(1, false);
-                }else if(fragment != null && fragment instanceof MyProfileFragment) {
+                } else if (fragment != null && fragment instanceof MyProfileFragment) {
                     mTabBar.setSelectedIndex(2, false);
-                }else {
+                } else {
                     mTabBar.setSelectedIndex(0, false);
                 }
             }
@@ -346,10 +352,6 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
             case R.string.string_logout:
                 redirectToLoginActivity(this);
                 break;
-
-            default:
-                //show the coming soon message
-                Utils.showToast(this, findViewById(R.id.fragment_container), getString(R.string.coming_soon));
         }
 
     }
@@ -416,19 +418,8 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
     protected void onResume() {
         super.onResume();
         int index = AppPreferences.getSelectedHomeScreen();
-        if (index >= 0 && index < 5) {
+        if (index >= 0 && index < 3) {
             MenuItem menuItem = mTabBar.getMenuItem(index);
-            if(index == 0) {
-                mTabBar.setSelectedIndex(0, false);
-                addTimeLineFragment();
-            }if(index == 1) {
-                mTabBar.setSelectedIndex(1, false);
-                addMyJobFragment();
-            }else if(index == 2) {
-                mTabBar.setSelectedIndex(2, false);
-                addMyProfileFragment();
-            }
-
             setCurrentScreen(menuItem.name, null);
         }
     }
@@ -441,6 +432,6 @@ public class MainActivity extends BaseActivity implements MenuItemInteraction {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppPreferences.setSelectedHomeScreen(SELECTED_HOME_SCREEN,0);
+        AppPreferences.setSelectedHomeScreen(SELECTED_HOME_SCREEN, 0);
     }
 }

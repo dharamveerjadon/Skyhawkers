@@ -134,20 +134,22 @@
                         android:textColor="@android:color/black"
                         tools:text="30" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
-                        style="@style/AppTheme.TextView"
+                    <com.skyhawker.customview.SkyhawkButton
+                        style="@style/AppTheme.Button"
                         android:id="@+id/txt_support"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:padding="8dp"
+                        android:padding="4dp"
                         android:maxLines="1"
-                        android:textSize="@dimen/text_size_micro"
-                        app:appFont="Poppins-Regular"
-                        android:drawableLeft="@drawable/ic_phone"
-                        android:textColor="@android:color/black"
-                        tools:text="Support" />
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_green_border_green"
+                        android:textSize="@dimen/text_size_small"
+                        app:appFont="Poppins-Medium"
+                        android:drawableEnd="@drawable/ic_call_white"
+                        android:textColor="@android:color/white"
+                        tools:text="Call Us" />
                 </LinearLayout>
             </LinearLayout>
 

@@ -303,9 +303,10 @@ public class DeveloperEntryActivity extends BaseActivity implements View.OnClick
                 .addOnSuccessListener(aVoid -> {
                     spinnerView.setVisibility(View.GONE);
                     AppPreferences.setSession(session);
+                    if (isFirstTime)
                     AppPreferences.setSelectedHomeScreen(SELECTED_HOME_SCREEN,2);
+
                     Intent intent = new Intent(DeveloperEntryActivity.this, MainActivity.class);
-                    intent.putExtra("isFirst", isFirstTime);
                     intent.putExtra(Keys.MOBILE_NUMBER,contactNumber );
                     startActivity(intent);
                     finish();

@@ -118,10 +118,10 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
                             if (!TextUtils.isEmpty(applyJob.getSession().getMobileNumber())) {
                                 if (session.getMobileNumber().equalsIgnoreCase(applyJob.getSession().getMobileNumber()))
                                     if (isFilter) {
-                                        if (filterKey.equalsIgnoreCase("all")) {
+                                        if (filterKey.equalsIgnoreCase("all") && !applyJob.isDeveloperSelected()) {
                                             myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType(), key, applyJob));
 
-                                        } else if (filterKey.equalsIgnoreCase(applyJob.getActionType())) {
+                                        } else if (filterKey.equalsIgnoreCase(applyJob.getActionType()) && !applyJob.isDeveloperSelected()) {
                                             myJob.add(new MyJobsModel(title, description, date, jobType, yearOfExperience, skills, budgets, applyJob.getActionType(), key, applyJob));
                                         }
                                     }
@@ -153,7 +153,7 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
 
     @Override
     public void onItemClick(MyJobsModel item) {
-
+        pushFragment(RequirementDetailFragment.newInstance("Client Requirement", item), true);
     }
 
     @Override

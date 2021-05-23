@@ -18,7 +18,7 @@
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:padding="16dp"
-            android:text="All client requirements will move to ‘CLOSED’ section of your Timeline."
+            android:text="Client requirements will move to ‘CLOSED’ section of your Timeline."
             android:textColor="@android:color/black" />
 
         <com.skyhawker.customview.SkyhawkTextView

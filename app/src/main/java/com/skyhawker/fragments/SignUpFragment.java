@@ -97,16 +97,12 @@ public class SignUpFragment extends BaseFragment implements View.OnClickListener
                         signUpReference.setValue(session)
                                 .addOnSuccessListener(aVoid -> {
                                     AppPreferences.setSession(session);
-
-                                    new Handler().postDelayed(() -> {
                                         spinnerView.setVisibility(View.GONE);
                                         Intent intent = new Intent(getActivity(), DeveloperEntryActivity.class);
                                         intent.putExtra(Keys.MOBILE_NUMBER,contactNumber);
                                         intent.putExtra("isFirst",true);
                                         startActivity(intent);
                                         getActivity().finish();
-                                    }, 3000);
-
 
                                 })
                                 .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));

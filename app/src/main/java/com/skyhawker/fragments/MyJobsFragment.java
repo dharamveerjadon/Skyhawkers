@@ -160,6 +160,7 @@ public class MyJobsFragment extends BaseFragment implements MyJobAdapter.OnItemC
     @Override
     public void onItemClick(MyJobsModel item) {
         SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(item.getKey()).child("applyJob").child(session.getMobileNumber()).child("isShowHighlight").setValue(0);
+        pushFragment(RequirementDetailFragment.newInstance("Client Requirement", item), true);
     }
 
     @Override

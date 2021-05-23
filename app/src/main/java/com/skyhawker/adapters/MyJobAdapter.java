@@ -14,8 +14,12 @@ import com.skyhawker.R;
 import com.skyhawker.customview.Tag;
 import com.skyhawker.customview.TagView;
 import com.skyhawker.models.MyJobsModel;
+import com.skyhawker.utils.Constants;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MyJobAdapter extends BaseAdapter {
@@ -179,6 +183,11 @@ public class MyJobAdapter extends BaseAdapter {
             });
         }
 
+        private String setDateFormat(String value) {
+            DateFormat dateFormat = new SimpleDateFormat(Constants.DATE_FORMAT_EDDMMMYYYY);
+            Date date = new Date(value);
+            return dateFormat.format(date);
+        }
         @Override
         public void onClick(View view) {
             if (mCurrentItem != null && mOnItemClickListener != null) {
@@ -209,7 +218,7 @@ public class MyJobAdapter extends BaseAdapter {
 
             mTitle.setText(item.getTitle());
             mTxtDescription.setText(item.getDescription());
-            mTxtDate.setText(item.getDate());
+            mTxtDate.setText(setDateFormat(item.getDate()));
             mTxtJobType.setText(item.getJobType());
             setTags(context, item.getSkills());
             mTxtYearOfExperience.setText(item.getYearOfExperience() +" Yrs experience");

@@ -1,6 +1,7 @@
 package com.skyhawker.fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +58,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
     private ProgressBar mProgressBar;
     private SpinnerView spinnerView;
     private TextView mTxtLinkedIn, mTxtEmailId, mTxtName, mTxtContact, mTxtExpectedSalary, mTxtPricePerHour, mTxtLocation, mTxtSkypeId, mTxtYearOfExperience, mTxtSkills;
+    private ProgressDialog dialog;
 
     public static MyProfileFragment newInstance(String title) {
         MyProfileFragment fragment = new MyProfileFragment();
@@ -181,8 +182,15 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
                     final UserModel userModel = session.getUserModel();
                     final String messagePushID = session.getMobileNumber() + "-profile";
 
+                    dialog = new ProgressDialog(activity);
+                    dialog.setMessage("Uploading");
+                    dialog.setCancelable(false);
+
+                    // this will show message uploading
+                    // while pdf is uploading
+                    dialog.show();
                     // Here we are uploading the pdf in firebase storage with the name of current time
-                    final StorageReference filepath = storageReference.child(messagePushID + "." + "png");
+                    final StorageReference filepath = storageReference.child(messagePushID + "." + "pdf");
                     PathHolder = filepath.getName();
                     filepath.putFile(imageuri).continueWithTask((Continuation) task -> {
                         if (!task.isSuccessful()) {
@@ -191,8 +199,6 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
                         return filepath.getDownloadUrl();
                     }).addOnCompleteListener((OnCompleteListener<Uri>) task -> {
                         if (task.isSuccessful()) {
-                            // After uploading is done it progress
-                            // dialog box will be dismissed
                             final Uri uri = task.getResult();
 
                             uploadProfile = new Upload(filepath.getName(), uri.toString());
@@ -227,16 +233,15 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
                                                 .dontAnimate()
                                                 .into(profileImage);
                                         AppPreferences.setSession(session);
+                                        dialog.dismiss();
                                         Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Uploaded Successfully");
                                     })
-                                    .addOnFailureListener(e -> Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Uploading Failure") );
+                                    .addOnFailureListener(e -> Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Uploading Failure"));
 
                         } else {
                             Utils.showToast(activity, activity.findViewById(R.id.fragment_container), "Upload Failed");
                         }
                     });
-
-                    //uploadFile(imageuri);
                 }
                 break;
 
@@ -266,7 +271,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
 
 
         mTxtEmailId.setText(session.getEmailId());
-       spinnerView.setVisibility(View.GONE);
+        /*spinnerView.setVisibility(View.GONE);*/
         if (session.getUserModel().getProfileImage() != null && !TextUtils.isEmpty(session.getUserModel().getProfileImage().url)) {
 
 
@@ -297,7 +302,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
         } else {
             docResume.setVisibility(View.GONE);
         }
-
+        spinnerView.setVisibility(View.GONE);
     }
 
     private void setTags(String skills) {
