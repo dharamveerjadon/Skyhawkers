@@ -285,7 +285,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_edit_text"
-                        android:inputType="text"
+                        android:inputType="numberDecimal"
                         app:appFont="Poppins-Regular"
                         android:padding="12dp"
                         android:textColor="@android:color/black" />

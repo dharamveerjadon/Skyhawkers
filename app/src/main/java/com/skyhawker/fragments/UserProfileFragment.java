@@ -178,7 +178,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
        spinnerView.setVisibility(View.GONE);
         mTxtName.setText(sessionDeveloper.getUserModel().getFirstName() + " " + sessionDeveloper.getUserModel().getLastName());
         mTxtContact.setText(sessionDeveloper.getMobileNumber());
-        mTxtExpectedSalary.setText("₹ " + sessionDeveloper.getUserModel().getExpectedCtc());
+        mTxtExpectedSalary.setText("₹ " + sessionDeveloper.getUserModel().getExpectedCtc()+"L");
         mTxtPricePerHour.setText("₹ " + sessionDeveloper.getUserModel().getPricePerHour());
         mTxtLocation.setText(sessionDeveloper.getUserModel().getLocation());
 

@@ -253,7 +253,7 @@ public class MyProfileFragment extends BaseFragment implements View.OnClickListe
         Session session = AppPreferences.getSession();
         mTxtName.setText(session.getUserModel().getFirstName() + " " + session.getUserModel().getLastName());
         mTxtContact.setText(session.getMobileNumber());
-        mTxtExpectedSalary.setText("₹ " + session.getUserModel().getExpectedCtc());
+        mTxtExpectedSalary.setText("₹ " + session.getUserModel().getExpectedCtc()+"L");
         mTxtPricePerHour.setText("₹ " + session.getUserModel().getPricePerHour());
         mTxtLocation.setText(session.getUserModel().getLocation());
 
