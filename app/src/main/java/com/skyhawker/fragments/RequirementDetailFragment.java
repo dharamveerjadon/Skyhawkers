@@ -84,7 +84,7 @@ public class RequirementDetailFragment extends BaseFragment {
         title.setText(item.getTitle());
         description.setText(item.getDescription());
         budget.setText("₹ "+item.getBudgets());
-        yearOfExperience.setText(item.getYearOfExperience()+ " Yrs");
+        yearOfExperience.setText(item.getYearOfExperience()+ "+ Yrs");
         category.setText(item.getJobType());
         setSkills(item.getSkills());
         spinnerView.setVisibility(View.GONE);

@@ -25,6 +25,7 @@ import com.skyhawker.R;
 import com.skyhawker.activities.MainActivity;
 import com.skyhawker.adapters.UserListAdapter;
 import com.skyhawker.customview.SpinnerView;
+import com.skyhawker.models.ApplyJob;
 import com.skyhawker.models.MyJobsModel;
 import com.skyhawker.models.Session;
 import com.skyhawker.models.UserModel;
@@ -108,12 +109,14 @@ public class UserListFragment extends BaseFragment  implements UserListAdapter
             SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("applyJob").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    List<Session> requirementModels = new ArrayList<>();
+                    List<ApplyJob> requirementModels = new ArrayList<>();
                     for(DataSnapshot ds : snapshot.getChildren()) {
                         String actionType = ds.child("actionType").getValue(String.class);
+                        String noticePeriod = ds.child("noticePeriod").getValue(String.class);
+                        String expectedCTC = ds.child("expectedCTC").getValue(String.class);
                         Session session1 =  ds.child("session").getValue(Session.class);
                         if(session1 != null && "Accepted".equalsIgnoreCase(actionType))
-                        requirementModels.add(session1);
+                        requirementModels.add(new ApplyJob(session1, noticePeriod, expectedCTC));
                     }
                     if(requirementModels.size() > 0) {
                         listRequirement.setVisibility(View.VISIBLE);
@@ -137,9 +140,9 @@ public class UserListFragment extends BaseFragment  implements UserListAdapter
         }
     }
     @Override
-    public void onItemClick(Session item) {
+    public void onItemClick(ApplyJob item) {
 
-        pushFragment(UserProfileFragment.newInstance("Developer Profile", model, item), true);
+        pushFragment(UserProfileFragment.newInstance("Developer Profile", model, item.getSession()), true);
     }
 
 }

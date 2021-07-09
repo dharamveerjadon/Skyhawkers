@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_with_border"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="@dimen/margin_default"
+          android:src="@drawable/ok_dialog"/>
+
+        <com.skyhawker.customview.SkyhawkTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
+            app:appFont="Poppins-Bold"
+            android:textSize="@dimen/text_size_default"
+            android:text="DONE !"
+            android:textColor="@android:color/black" />
+
+        <com.skyhawker.customview.SkyhawkTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
+            app:appFont="Poppins-Bold"
+            android:textSize="@dimen/text_size_default"
+            android:text="We will notify you soon"
+            android:textColor="@android:color/black"/>
+
+        <com.skyhawker.customview.SkyhawkTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Client requirements will move to ‘CLOSED’ section of your Timeline."
+            android:textColor="@color/colorGrayText" />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

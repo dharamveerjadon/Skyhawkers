@@ -16,6 +16,7 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.skyhawker.R;
+import com.skyhawker.models.ApplyJob;
 import com.skyhawker.models.Session;
 import com.skyhawker.utils.SkyhawkerApplication;
 
@@ -32,7 +33,7 @@ public class UserListAdapter extends BaseAdapter {
     private final OnItemClickListener mOnItemClickListener;
     @SuppressWarnings("CanBeFinal")
     private final LayoutInflater mInflater;
-    private List<Session> mItems;
+    private List<ApplyJob> mItems;
     private long mItemCountOnServer;
 
     public UserListAdapter(Context context, UserListAdapter.OnItemClickListener onItemClickListener) {
@@ -42,7 +43,7 @@ public class UserListAdapter extends BaseAdapter {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Session item);
+        void onItemClick(ApplyJob item);
     }
 
     /**
@@ -51,7 +52,7 @@ public class UserListAdapter extends BaseAdapter {
      * @param items             article items
      * @param itemCountOnServer total item count on the server
      */
-    public void setItems(final List<Session> items, final long itemCountOnServer) {
+    public void setItems(final List<ApplyJob> items, final long itemCountOnServer) {
         mItems = items;
         mItemCountOnServer = itemCountOnServer;
         notifyDataSetChanged();
@@ -64,7 +65,7 @@ public class UserListAdapter extends BaseAdapter {
      * @param items             items list
      * @param itemCountOnServer item count on server
      */
-    public void addItems(int start, final List<Session> items, final long itemCountOnServer) {
+    public void addItems(int start, final List<ApplyJob> items, final long itemCountOnServer) {
         //remove the expire result of this page due to caching
         mItems.subList(start, mItems.size()).clear();
 
@@ -88,7 +89,7 @@ public class UserListAdapter extends BaseAdapter {
      *
      * @return article items
      */
-    public List<Session> getItems() {
+    public List<ApplyJob> getItems() {
         return mItems;
     }
 
@@ -123,7 +124,7 @@ public class UserListAdapter extends BaseAdapter {
         View v = convertView;
         switch (viewType) {
             case TYPE_ITEM:
-                final Session item = mItems.get(position);
+                final ApplyJob item = mItems.get(position);
                 ItemViewHolder itemViewHolder;
                 if (v == null) {
                     v = mInflater.inflate(R.layout.fragment_user_info_list_item, parent, false);
@@ -150,18 +151,18 @@ public class UserListAdapter extends BaseAdapter {
         private final UserListAdapter.OnItemClickListener mOnItemClickListener;
         private final TextView mUsername;
         private final TextView mTxtSkills;
-        private final TextView mTxtPricePerHour;
+        private final TextView mTxtnoticePeriod;
         private final TextView mTxtExpectedSalary;
         private final TextView mTxtYearOfExperience;
         private final ImageView profile;
         // current bind to view holder
-        private Session mCurrentItem;
+        private ApplyJob mCurrentItem;
 
         ItemViewHolder(@NonNull View view, final UserListAdapter.OnItemClickListener listener) {
             mOnItemClickListener = listener;
             mUsername = view.findViewById(R.id.txt_user_name);
             mTxtSkills = view.findViewById(R.id.txt_skills);
-            mTxtPricePerHour = view.findViewById(R.id.txt_price_per_hour);
+            mTxtnoticePeriod = view.findViewById(R.id.txt_price_per_hour);
             mTxtExpectedSalary = view.findViewById(R.id.txt_expected_salary);
             mTxtYearOfExperience = view.findViewById(R.id.txt_experience);
             profile = view.findViewById(R.id.profile);
@@ -180,17 +181,17 @@ public class UserListAdapter extends BaseAdapter {
          *
          * @param item article item
          */
-        void bind(final Session item) {
+        void bind(final ApplyJob item) {
             mCurrentItem = item;
-            mUsername.setText(item.getUserModel().getFirstName() + " " + item.getUserModel().getLastName());
-            mTxtSkills.setText(item.getUserModel().getSkills());
-            mTxtPricePerHour.setText(item.getUserModel().getPricePerHour() + " per hour");
-            mTxtExpectedSalary.setText(item.getUserModel().getExpectedCtc() + " CTC");
-            mTxtYearOfExperience.setText(item.getUserModel().getYearOfExperience() + " yrs exp");
+            mUsername.setText(item.getSession().getUserModel().getFirstName() + " " + item.getSession().getUserModel().getLastName());
+            mTxtSkills.setText(item.getSession().getUserModel().getSkills());
+            mTxtnoticePeriod.setText(item.getNoticePeriod() +" Notice Period");
+            mTxtExpectedSalary.setText(item.getExpectedCTC()+" LPA ExpectedCTC");
+            mTxtYearOfExperience.setText(item.getSession().getUserModel().getYearOfExperience() + "+ yrs exp");
 
-            if(item.getUserModel().getProfileImage() != null && !TextUtils.isEmpty(item.getUserModel().getProfileImage().url)) {
+            if(item.getSession().getUserModel().getProfileImage() != null && !TextUtils.isEmpty(item.getSession().getUserModel().getProfileImage().url)) {
                 Glide.with(SkyhawkerApplication.sharedInstance())
-                        .load(item.getUserModel().getProfileImage().url)
+                        .load(item.getSession().getUserModel().getProfileImage().url)
                         .listener(new RequestListener<String, GlideDrawable>() {
                             @Override
                             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean

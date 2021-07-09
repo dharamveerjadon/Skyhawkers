@@ -3,8 +3,12 @@ package com.skyhawker.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,7 +116,7 @@ public class CongratulationFragment extends BaseFragment implements View.OnClick
         title.setText(item.getTitle());
         description.setText(item.getDescription());
         budget.setText("₹ "+item.getBudgets());
-        yearOfExperience.setText(item.getYearOfExperience()+ " Yrs");
+        yearOfExperience.setText(item.getYearOfExperience()+ "+ Yrs");
         category.setText(item.getJobType());
         setSkills(item.getSkills());
         spinnerView.setVisibility(View.GONE);
@@ -133,14 +137,19 @@ public class CongratulationFragment extends BaseFragment implements View.OnClick
         lnrSkills.addView(skills);
     }
 
-    private void sendDataToFirebase(String action) {
+    private void sendDataToFirebase(String action, String noticePeriod, String expectedCtc) {
         spinnerView.setVisibility(View.VISIBLE);
-        ApplyJob applyJob = new ApplyJob(action, session, 0);
+        ApplyJob applyJob = new ApplyJob(action,0, session,noticePeriod, expectedCtc );
         SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(item.getKey()).child("applyJob").child(session.getMobileNumber()).setValue(applyJob)
                 .addOnSuccessListener(aVoid -> {
                     spinnerView.setVisibility(View.GONE);
                     AppPreferences.setIsCongratulationDone(AppPreferences.IsCONGRATULATIONACTIONDONE, true);
-                    activity.onBackPressed();
+                    if(!("Declined".equalsIgnoreCase(action) || "Saved for later".equalsIgnoreCase(action))) {
+                    showFinishDialog();
+                    }else {
+                        activity.onBackPressed();
+                    }
+
                 })
                 .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));
     }
@@ -151,11 +160,35 @@ public class CongratulationFragment extends BaseFragment implements View.OnClick
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_confirm);
         dialog.setCancelable(false);
+        final LinearLayout lnrNotice = dialog.findViewById(R.id.lnr_notice);
+        final LinearLayout lnrExpectedCTC = dialog.findViewById(R.id.lnr_expected);
+        final EditText notice = dialog.findViewById(R.id.edt_notice_period);
+        final EditText expectedCTC = dialog.findViewById(R.id.edt_expected_ctc);
+
+        if("Declined".equalsIgnoreCase(action) || "Saved for later".equalsIgnoreCase(action)) {
+            lnrNotice.setVisibility(View.GONE);
+            lnrExpectedCTC.setVisibility(View.GONE);
+        }
         final TextView txtNo = dialog.findViewById(R.id.txt_no);
         final TextView txtYes = dialog.findViewById(R.id.txt_yes);
 
         txtYes.setOnClickListener(view -> {
-            sendDataToFirebase(action);
+            if(!("Declined".equalsIgnoreCase(action) || "Saved for later".equalsIgnoreCase(action))) {
+                if(TextUtils.isEmpty(notice.getText().toString().trim())) {
+                    notice.setError(getString(R.string.error_validation_field_required));
+                    return;
+                }else {
+                    notice.setError(null);
+                }
+                if(TextUtils.isEmpty(expectedCTC.getText().toString().trim())) {
+                    expectedCTC.setError(getString(R.string.error_validation_field_required));
+                    return;
+                }else {
+                    expectedCTC.setError(null);
+                }
+            }
+
+            sendDataToFirebase(action, notice.getText().toString(), expectedCTC.getText().toString());
             dialog.dismiss();
         });
 
@@ -163,4 +196,24 @@ public class CongratulationFragment extends BaseFragment implements View.OnClick
 
         dialog.show();
     }
+
+    private void showFinishDialog() {
+
+        final Dialog dialog = new Dialog(activity, R.style.DialogSlideAnim);
+        Window window = dialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.layout_dialog_confirm_finish);
+
+        dialog.show();
+
+        new Handler().postDelayed(() -> {
+            dialog.dismiss();
+            activity.onBackPressed();
+        }, 3000);
+    }
+
 }

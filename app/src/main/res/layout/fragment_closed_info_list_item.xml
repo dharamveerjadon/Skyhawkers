@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="4dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="4dp">
 
             <View
                 android:id="@+id/view_bar"
@@ -59,23 +60,12 @@
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:textSize="@dimen/text_size_micro"
+                        android:textSize="@dimen/text_size_10"
                         android:padding="8dp"
                         app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black"
                         tools:text="4th May 2021, 5:00pm" />
                 </LinearLayout>
-
-                <com.skyhawker.customview.SkyhawkTextView
-                    android:id="@+id/txt_description"
-                    style="@style/AppTheme.TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    app:appFont="Poppins-Regular"
-                    android:textSize="@dimen/text_size_micro"
-                    android:textColor="@android:color/black"
-                    tools:text="Lorem Ipsum is simply dummy text of the printing" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -92,6 +82,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:padding="4dp"
+                        android:drawableRight="@drawable/ic_forward_arrow_orange"
                         app:appFont="Poppins-Regular"
                         android:textSize="@dimen/text_size_micro"
                         tools:text="Full Time" />
@@ -117,6 +108,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gray"
                     android:orientation="horizontal">
 
                     <com.skyhawker.customview.SkyhawkTextView
@@ -128,7 +120,7 @@
                         android:drawableStart="@drawable/ic_experience"
                         android:drawablePadding="4dp"
                         android:maxLines="1"
-                        android:padding="2dp"
+                        android:padding="4dp"
                         android:text="10 yrs experience"
                         android:textColor="@android:color/black"
                         app:appFont="Poppins-Regular"
@@ -142,21 +134,21 @@
                         android:layout_gravity="center"
                         android:maxLines="1"
                         android:layout_weight="1"
-                        android:padding="8dp"
+                        android:padding="4dp"
                         android:gravity="center"
                         android:textColor="@android:color/black"
                         app:appFont="Poppins-Regular"
-                        android:textSize="@dimen/text_size_small"
+                        android:textSize="@dimen/text_size_micro"
                         tools:text="30" />
 
                     <ImageView
                         android:id="@+id/img_status"
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_gravity="center"
                         android:gravity="center"
                         tools:src="@drawable/ic_decline"
-                        android:padding="8dp"
+
                         />
                 </LinearLayout>
             </LinearLayout>

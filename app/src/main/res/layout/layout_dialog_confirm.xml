@@ -15,11 +15,78 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="YOU ARE JUST A STEP AWAY"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:id="@+id/lnr_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <com.skyhawker.customview.SkyhawkTextView
+                style="@style/AppTheme.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:text="Notice Period(eg. if in days -10 days or in month - 2months)*"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                app:appFont="Poppins-Regular" />
+
+            <com.skyhawker.customview.SkyhawkEditText
+                android:id="@+id/edt_notice_period"
+                style="@style/AppTheme.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_edit_text"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="@android:color/black"
+                app:appFont="Poppins-Regular" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_expected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <com.skyhawker.customview.SkyhawkTextView
+                style="@style/AppTheme.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4sp"
+                android:text="Expected CTC*"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                app:appFont="Poppins-Regular" />
+
+            <com.skyhawker.customview.SkyhawkEditText
+                android:id="@+id/edt_expected_ctc"
+                style="@style/AppTheme.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_edit_text"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:textColor="@android:color/black"
+                app:appFont="Poppins-Regular" />
+        </LinearLayout>
+
+        <com.skyhawker.customview.SkyhawkTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:gravity="center"
             android:padding="16dp"
             android:text="Client requirements will move to ‘CLOSED’ section of your Timeline."
-            android:textColor="@android:color/black" />
+            android:textColor="@color/colorGrayText" />
 
         <com.skyhawker.customview.SkyhawkTextView
             android:layout_width="wrap_content"
@@ -40,31 +107,31 @@
                 android:id="@+id/txt_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="No"
                 android:layout_marginLeft="18dp"
-                android:layout_weight="1"
-                android:padding="16dp"
                 android:layout_marginRight="8dp"
-                android:textColor="@android:color/black"
-                app:fontFamily="Poppins-SemiBold"
+                android:layout_weight="1"
                 android:background="@drawable/bg_white_border_orange"
                 android:gravity="center"
-                android:textAllCaps="true"/>
+                android:padding="16dp"
+                android:text="No"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                app:fontFamily="Poppins-SemiBold" />
 
             <com.skyhawker.customview.SkyhawkTextView
                 android:id="@+id/txt_yes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Yes"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="18dp"
                 android:layout_weight="1"
+                android:background="@drawable/gradient_orange"
                 android:gravity="center"
                 android:padding="16dp"
-                app:fontFamily="Poppins-SemiBold"
+                android:text="Yes"
+                android:textAllCaps="true"
                 android:textColor="@android:color/white"
-                android:background="@drawable/gradient_orange"
-                android:layout_marginRight="18dp"
-                android:layout_marginLeft="8dp"
-                android:textAllCaps="true"/>
+                app:fontFamily="Poppins-SemiBold" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -9,8 +9,8 @@ public class Constants {
     public static final String serverKey = "key=" + "AAAAc17yDnE:APA91bE8YLe__QPTX3EBrGVSVyMptmNNwhCYvZxdxq-F3MQnNs2DE30RVcwuT_Q4qn4bweu7OlaUfTAltsvXzkAw1OtXgMG5TJ_qgBHpDaMcLU0VZcypkRQ0nROicqzxXEKO4TEk9InZ";
     public static final String contentType = "application/json";
     public static final String TAG = "NOTIFICATION TAG";
-    public static final String ACCEPT = "accept";
-    public static final String DECLINE = "decline";
+    public static final String ACCEPT = "accepted";
+    public static final String DECLINE = "declined";
     public static final String SAVED_FOR_LATER = "Saved for later";
     public static final String SHOW_ALL = "all";
 

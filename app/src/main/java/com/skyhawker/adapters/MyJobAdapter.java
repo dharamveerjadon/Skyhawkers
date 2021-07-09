@@ -153,7 +153,6 @@ public class MyJobAdapter extends BaseAdapter {
         //view on click listener need to forward click events
         private final MyJobAdapter.OnItemClickListener mOnItemClickListener;
         private final TextView mTitle;
-        private final TextView mTxtDescription;
         private final TextView mTxtDate;
         private final TextView mTxtJobType;
         private final TextView mTxtYearOfExperience;
@@ -169,7 +168,7 @@ public class MyJobAdapter extends BaseAdapter {
             mOnItemClickListener = listener;
             view.setOnClickListener(this);
             mTitle = view.findViewById(R.id.txt_title);
-            mTxtDescription = view.findViewById(R.id.txt_description);
+
             mTxtDate = view.findViewById(R.id.txt_date);
             mTxtJobType = view.findViewById(R.id.txt_job_type);
             tagGroup = view.findViewById(R.id.tag_group);
@@ -217,11 +216,10 @@ public class MyJobAdapter extends BaseAdapter {
                 mCardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorWhite));
 
             mTitle.setText(item.getTitle());
-            mTxtDescription.setText(item.getDescription());
             mTxtDate.setText(setDateFormat(item.getDate()));
             mTxtJobType.setText(item.getJobType());
             setTags(context, item.getSkills());
-            mTxtYearOfExperience.setText(item.getYearOfExperience() +" Yrs experience");
+            mTxtYearOfExperience.setText(item.getYearOfExperience() +"+ Yrs experience");
             mBudget.setText("₹ " +item.getBudgets());
             mTxtSupport.setText("Call Us");
         }

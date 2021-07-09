@@ -153,7 +153,7 @@ public class ClosedFragment extends BaseFragment implements ClosedAdapter.OnItem
 
     @Override
     public void onItemClick(MyJobsModel item) {
-        pushFragment(RequirementDetailFragment.newInstance("Client Requirement", item), true);
+        pushFragment(CongratulationFragment.newInstance("Congratulation", item), true);
     }
 
     @Override

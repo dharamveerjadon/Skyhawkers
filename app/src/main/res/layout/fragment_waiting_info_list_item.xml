@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="4dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="4dp">
 
             <View
                 android:id="@+id/view_bar"
@@ -60,27 +61,17 @@
                         android:ellipsize="end"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/colorGrayText"
                         android:drawableLeft="@drawable/ic_date_orange"
                         app:appFont="Poppins-Regular"
-                        android:textSize="@dimen/text_size_micro"
+                        android:textSize="@dimen/text_size_10"
                         tools:text="4th May 2021, 5:00pm" />
                 </LinearLayout>
-                <com.skyhawker.customview.SkyhawkTextView
-                    style="@style/AppTheme.TextView"
-                    android:id="@+id/txt_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    app:appFont="Poppins-Regular"
-                    android:textSize="@dimen/text_size_micro"
-                    android:textColor="@android:color/black"
-                    tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." />
 
                 <com.skyhawker.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:id="@+id/txt_job_type"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:padding="4dp"
@@ -88,6 +79,7 @@
                     android:drawablePadding="8dp"
                     app:appFont="Poppins-Regular"
                     android:textSize="@dimen/text_size_micro"
+                    android:drawableRight="@drawable/ic_forward_arrow_orange"
                     android:drawableLeft="@drawable/ic_access_time_orange"
                     tools:text="Full Time" />
 
@@ -102,7 +94,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@drawable/bg_gray">
 
                     <com.skyhawker.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
@@ -112,9 +109,9 @@
                         android:layout_gravity="center"
                         android:gravity="start"
                         android:maxLines="1"
+                        android:padding="4dp"
                         android:ellipsize="end"
                         android:drawableStart="@drawable/ic_experience"
-                        android:padding="2dp"
                         android:drawablePadding="4dp"
                         android:textColor="@android:color/black"
                         android:text="10 yrs experience"
@@ -129,11 +126,10 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="8dp"
                         android:maxLines="1"
+                        android:padding="4dp"
                         android:ellipsize="end"
                         android:text="$ 5000/month"
-
                         android:textColor="@android:color/black"
                         app:appFont="Poppins-Regular"
                         android:textSize="@dimen/text_size_micro" />
@@ -145,8 +141,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:gravity="end"
-                        android:padding="8dp"
                         android:maxLines="1"
+                        android:padding="4dp"
                         android:ellipsize="end"
                         app:appFont="Poppins-Regular"
                         android:textSize="@dimen/text_size_micro"
