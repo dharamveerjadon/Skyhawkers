@@ -25,14 +25,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp">
 
             <com.skyhawker.customview.SkyhawkTextView
                 style="@style/AppTheme.TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4sp"
-                android:text="Notice Period(eg. if in days -10 days or in month - 2months)*"
+                android:text="Notice Period in days*"
                 android:textColor="@color/colorAccent"
                 android:textSize="14sp"
                 app:appFont="Poppins-Regular" />
@@ -55,7 +56,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:paddingRight="24dp"
+            android:layout_marginTop="4dp"
+            android:paddingLeft="24dp">
 
             <com.skyhawker.customview.SkyhawkTextView
                 style="@style/AppTheme.TextView"
@@ -79,6 +82,42 @@
                 app:appFont="Poppins-Regular" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/lnr_resume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.skyhawker.customview.SkyhawkTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:appFont="Poppins-Bold"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Want to reupload latest Resume"
+                android:textColor="@color/colorGrayText" />
+
+            <com.skyhawker.customview.SkyhawkTextView
+                android:id="@+id/re_upload_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Yes"
+                android:textColor="@color/colorGrayText" />
+
+            <ImageView
+                android:id="@+id/img_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:padding="4dp"
+                android:src="@drawable/icon_document"
+                />
+        </LinearLayout>
         <com.skyhawker.customview.SkyhawkTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,7 +151,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_white_border_orange"
                 android:gravity="center"
-                android:padding="16dp"
+                android:padding="8dp"
                 android:text="No"
                 android:textAllCaps="true"
                 android:textColor="@android:color/black"
@@ -127,7 +166,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/gradient_orange"
                 android:gravity="center"
-                android:padding="16dp"
+                android:padding="8dp"
                 android:text="Yes"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"

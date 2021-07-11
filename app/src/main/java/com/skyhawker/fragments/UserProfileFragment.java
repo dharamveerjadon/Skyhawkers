@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -37,7 +34,6 @@ import com.skyhawker.models.ApplyJob;
 import com.skyhawker.models.MyJobsModel;
 import com.skyhawker.models.Session;
 import com.skyhawker.models.Upload;
-import com.skyhawker.utils.AppPreferences;
 import com.skyhawker.utils.Constants;
 import com.skyhawker.utils.Keys;
 import com.skyhawker.utils.MySingleton;
@@ -65,6 +61,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
     private Session session;
     private MyJobsModel model;
     private String actionType;
+    private ApplyJob mApplyJob;
     private SpinnerView spinnerView;
     private TextView mTxtLinkedIn, mTxtEmailId, mTxtName, mTxtContact, mTxtExpectedSalary, mTxtPricePerHour, mTxtLocation, mTxtSkypeId, mTxtYearOfExperience, mTxtSkills, txtReject, txtSelect;
 
@@ -115,10 +112,12 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
             SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("applyJob").child(session.getMobileNumber()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    actionType = snapshot.child("actionType").getValue(String.class);
-                    Session session1 = snapshot.child("session").getValue(Session.class);
-                    if (session1 != null)
-                        initData(session1);
+                    if(snapshot.getValue() != null)
+                    mApplyJob = snapshot.getValue(ApplyJob.class);
+                    if (mApplyJob != null) {
+                        initData(mApplyJob.getSession());
+                    }
+
                 }
 
                 @Override
@@ -175,10 +174,10 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void initData(Session sessionDeveloper) {
-       spinnerView.setVisibility(View.GONE);
+        spinnerView.setVisibility(View.GONE);
         mTxtName.setText(sessionDeveloper.getUserModel().getFirstName() + " " + sessionDeveloper.getUserModel().getLastName());
         mTxtContact.setText(sessionDeveloper.getMobileNumber());
-        mTxtExpectedSalary.setText("₹ " + sessionDeveloper.getUserModel().getExpectedCtc()+"L");
+        mTxtExpectedSalary.setText("₹ " + sessionDeveloper.getUserModel().getExpectedCtc() + "L");
         mTxtPricePerHour.setText("₹ " + sessionDeveloper.getUserModel().getPricePerHour());
         mTxtLocation.setText(sessionDeveloper.getUserModel().getLocation());
 
@@ -245,25 +244,21 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
 
     private void sendActionDataToServer(boolean action) {
         spinnerView.setVisibility(View.VISIBLE);
-        ApplyJob applyJob = new ApplyJob(actionType, action, session, 1);
-        SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("applyJob").child(session.getMobileNumber()).setValue(applyJob)
-                .addOnSuccessListener(aVoid -> {
-                        sendNotificationOnAction(action);
-                })
-                .addOnFailureListener(e -> spinnerView.setVisibility(View.GONE));
+        SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("applyJob").child(session.getMobileNumber()).child("developerSelected").setValue(action);
+        SkyhawkerApplication.sharedDatabaseInstance().child("MyJobs").child(model.getKey()).child("applyJob").child(session.getMobileNumber()).child("isShowHighlight").setValue(1);
+        sendNotificationOnAction(action);
 
     }
 
     private void sendNotificationOnAction(boolean action) {
-        spinnerView.setVisibility(View.VISIBLE);
         String topic = session.getUserToken(); //topic must match with what the receiver subscribed to
         String title = "";
         String message = "";
-        if(action) {
-             title = "Congratulations "+session.getUserModel().getFirstName();
-             message = "Your profile just got selected to a client Requirement";
-        }else {
-            title = "Sorry "+session.getUserModel().getFirstName();
+        if (action) {
+            title = "Congratulations " + session.getUserModel().getFirstName();
+            message = "Your profile just got selected for the interview process";
+        } else {
+            title = "Sorry " + session.getUserModel().getFirstName();
             message = "Your profile just got rejected to a client Requirement";
         }
 
@@ -278,7 +273,7 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
             notification.put("to", topic);
             notification.put("data", notifcationBody);
         } catch (JSONException e) {
-            Log.e(Constants.TAG, "onCreate: " + e.getMessage() );
+            Log.e(Constants.TAG, "onCreate: " + e.getMessage());
         }
         sendNotification(notification);
     }
@@ -292,8 +287,8 @@ public class UserProfileFragment extends BaseFragment implements View.OnClickLis
                 },
                 error -> {
                     Toast.makeText(activity, "Request error", Toast.LENGTH_LONG).show();
-                   spinnerView.setVisibility(View.GONE);
-                }){
+                    spinnerView.setVisibility(View.GONE);
+                }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();

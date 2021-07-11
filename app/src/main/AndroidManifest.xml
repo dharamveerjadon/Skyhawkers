@@ -19,10 +19,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.WebViewActivity"></activity>
-        <activity android:name=".activities.DeveloperEntryActivity" />
-        <activity android:name=".activities.SignUpActivity" />
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".activities.WebViewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.DeveloperEntryActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.SignUpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

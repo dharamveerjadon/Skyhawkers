@@ -218,8 +218,8 @@ public class AddJobFragment extends BaseFragment {
                     UserModel userModel = ds.child("userModel").getValue(UserModel.class);
                     if (userModel != null) {
                         String topic = userToken; //topic must match with what the receiver subscribed to
-                        String title = "Congratulations " + userModel.getFirstName();
-                        String message = "Your profile just got matched to a client Requirement \n Time to get Work";
+                        String title = "Skyhawk has posted a new job";
+                        String message = "Please check and apply if matches your profile";
 
 
                         notificationModels.add(new NotificationModel(title, message, name, description, budget, yearofexperience, category, skills, date,Keys.TYPE_DETAIL, topic, key));

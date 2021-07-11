@@ -185,7 +185,7 @@ public class UserListAdapter extends BaseAdapter {
             mCurrentItem = item;
             mUsername.setText(item.getSession().getUserModel().getFirstName() + " " + item.getSession().getUserModel().getLastName());
             mTxtSkills.setText(item.getSession().getUserModel().getSkills());
-            mTxtnoticePeriod.setText(item.getNoticePeriod() +" Notice Period");
+            mTxtnoticePeriod.setText(item.getNoticePeriod() +" days Notice Period");
             mTxtExpectedSalary.setText(item.getExpectedCTC()+" LPA ExpectedCTC");
             mTxtYearOfExperience.setText(item.getSession().getUserModel().getYearOfExperience() + "+ yrs exp");
 
