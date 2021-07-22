@@ -33,7 +33,7 @@
         android:layout_marginBottom="84dp"
         android:layout_marginRight="16dp"/>
 
-    <com.skyhawker.customview.SpinnerView
+    <com.skyhawk.customview.SpinnerView
         android:id="@+id/spinnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

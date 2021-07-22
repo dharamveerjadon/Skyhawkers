@@ -22,7 +22,7 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <com.skyhawker.customview.TabBar
+        <com.skyhawk.customview.TabBar
             android:id="@+id/tab_bar"
             android:layout_width="match_parent"
             android:layout_height="50dp"

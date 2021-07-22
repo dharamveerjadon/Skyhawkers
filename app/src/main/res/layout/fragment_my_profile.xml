@@ -47,7 +47,7 @@
 
             </RelativeLayout>
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/user_name"
                 style="@style/AppTheme.TextView"
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                 app:appFont="Poppins-Bold"
                 tools:text="David louis" />
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/txt_location"
                 style="@style/AppTheme.TextView"
                 android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                 app:appFont="Poppins-Regular"
                 tools:text="Bangalore, India" />
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/txt_mobile_number"
                 style="@style/AppTheme.TextView"
                 android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
                 tools:text="Bangalore, India" />
 
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/txt_email"
                 style="@style/AppTheme.TextView"
                 android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_price_per_hour"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -133,7 +133,7 @@
                         tools:text="$200" />
 
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_expected_salary"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
                         app:appFont="Poppins-SemiBold"
                         tools:text="$200" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -201,7 +201,7 @@
                     android:orientation="vertical"
                     android:layout_weight="1">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_year_of_experience"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
                         tools:text="8" />
 
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -239,7 +239,7 @@
                 android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -251,7 +251,7 @@
                     app:appFont="Poppins-Regular" />
 
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     android:id="@+id/txt_skype_id"
                     style="@style/AppTheme.TextView"
                     android:layout_width="wrap_content"
@@ -278,7 +278,7 @@
                 android:layout_marginLeft="16dp"
                 android:orientation="vertical">
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -290,7 +290,7 @@
                     app:appFont="Poppins-Regular" />
 
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     android:id="@+id/txt_linkedIn"
                     style="@style/AppTheme.TextView"
                     android:layout_width="wrap_content"
@@ -324,7 +324,7 @@
                     android:layout_weight=".8"
                     android:orientation="vertical">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -357,7 +357,7 @@
                         android:padding="4dp"
                         android:src="@drawable/icon_document"
                          />
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -373,7 +373,7 @@
 
         </LinearLayout>
     </ScrollView>
-    <com.skyhawker.customview.SpinnerView
+    <com.skyhawk.customview.SpinnerView
         android:id="@+id/spinnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

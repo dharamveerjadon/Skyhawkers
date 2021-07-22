@@ -64,7 +64,7 @@
                             android:orientation="vertical"
                             android:padding="4dp">
 
-                            <com.skyhawker.customview.SkyhawkTextView
+                            <com.skyhawk.customview.SkyhawkTextView
                                 android:id="@+id/txt_user_name"
                                 style="@style/AppTheme.TextView"
                                 android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                                 android:textSize="14sp"
                                 tools:text="Jashon Smith" />
 
-                            <com.skyhawker.customview.SkyhawkTextView
+                            <com.skyhawk.customview.SkyhawkTextView
                                 android:id="@+id/txt_mobile_number"
                                 style="@style/AppTheme.TextView"
                                 android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                     android:orientation="vertical"
                     android:padding="4dp">
 
-                    <com.skyhawker.customview.TagView
+                    <com.skyhawk.customview.TagView
                         android:id="@+id/tag_group"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_location"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                         android:textSize="10sp"
                         tools:text="Bangalore" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_email_id"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -162,7 +162,7 @@
                             android:orientation="vertical"
                             android:padding="4dp">
 
-                            <com.skyhawker.customview.SkyhawkTextView
+                            <com.skyhawk.customview.SkyhawkTextView
                                 android:id="@+id/txt_price_per_hour"
                                 style="@style/AppTheme.TextView"
                                 android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
                                 android:textColor="@color/colorBlack"
                                 android:textSize="12sp" />
 
-                            <com.skyhawker.customview.SkyhawkTextView
+                            <com.skyhawk.customview.SkyhawkTextView
                                 style="@style/AppTheme.TextView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
                             android:orientation="vertical"
                             android:padding="4dp">
 
-                            <com.skyhawker.customview.SkyhawkTextView
+                            <com.skyhawk.customview.SkyhawkTextView
                                 android:id="@+id/txt_expected_ctc"
                                 style="@style/AppTheme.TextView"
                                 android:layout_width="wrap_content"
@@ -206,7 +206,7 @@
                                 android:textColor="@color/colorBlack"
                                 android:textSize="14sp" />
 
-                            <com.skyhawker.customview.SkyhawkTextView
+                            <com.skyhawk.customview.SkyhawkTextView
                                 android:id="@+id/txt_end_date"
                                 style="@style/AppTheme.TextView"
                                 android:layout_width="wrap_content"

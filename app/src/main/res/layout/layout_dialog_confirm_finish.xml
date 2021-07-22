@@ -19,7 +19,7 @@
           android:layout_marginTop="@dimen/margin_default"
           android:src="@drawable/ok_dialog"/>
 
-        <com.skyhawker.customview.SkyhawkTextView
+        <com.skyhawk.customview.SkyhawkTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,7 +30,7 @@
             android:text="DONE !"
             android:textColor="@android:color/black" />
 
-        <com.skyhawker.customview.SkyhawkTextView
+        <com.skyhawk.customview.SkyhawkTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -41,7 +41,7 @@
             android:text="We will notify you soon"
             android:textColor="@android:color/black"/>
 
-        <com.skyhawker.customview.SkyhawkTextView
+        <com.skyhawk.customview.SkyhawkTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

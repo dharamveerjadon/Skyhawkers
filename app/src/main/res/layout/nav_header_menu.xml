@@ -32,7 +32,7 @@
             android:indeterminateTint="@color/colorPrimary" />
     </FrameLayout>
 
-    <com.skyhawker.customview.SkyhawkTextView
+    <com.skyhawk.customview.SkyhawkTextView
         android:id="@+id/textView"
         style="@style/AppTheme.TextView"
         android:layout_width="wrap_content"

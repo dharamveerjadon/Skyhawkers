@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <View
+                android:id="@+id/view_bar"
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/colorAccent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.skyhawk.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:id="@+id/txt_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:padding="8dp"
+                        android:layout_weight="1"
+                        android:text="Full Stack Developer "
+                        android:textSize="16sp"
+                        app:appFont="Poppins-SemiBold"
+                        android:textFontWeight="700"
+                        android:textColor="@android:color/black"/>
+
+                    <com.skyhawk.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:id="@+id/txt_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:layout_gravity="end"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:textColor="@color/colorGrayText"
+                        android:drawableLeft="@drawable/ic_date_orange"
+                        app:appFont="Poppins-Regular"
+                        android:textSize="@dimen/text_size_10"
+                        tools:text="4th May 2021, 5:00pm" />
+                </LinearLayout>
+
+                <com.skyhawk.customview.SkyhawkTextView
+                    style="@style/AppTheme.TextView"
+                    android:id="@+id/txt_job_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:gravity="center_vertical"
+                    android:drawablePadding="8dp"
+                    app:appFont="Poppins-Regular"
+                    android:textSize="@dimen/text_size_micro"
+                    android:drawableRight="@drawable/ic_forward_arrow_orange"
+                    android:drawableLeft="@drawable/ic_access_time_orange"
+                    tools:text="Full Time" />
+
+                <com.skyhawk.customview.TagView
+                    android:id="@+id/tag_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="@drawable/bg_gray">
+
+                    <com.skyhawk.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:id="@+id/txt_year_of_experience"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="start"
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:ellipsize="end"
+                        android:drawableStart="@drawable/ic_experience"
+                        android:drawablePadding="4dp"
+                        android:textColor="@android:color/black"
+                        android:text="10 yrs experience"
+                        app:appFont="Poppins-Regular"
+                        android:textSize="@dimen/text_size_micro" />
+
+                    <com.skyhawk.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:id="@+id/txt_tentative_budget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:ellipsize="end"
+                        android:text="$ 5000/month"
+                        android:textColor="@android:color/black"
+                        app:appFont="Poppins-Regular"
+                        android:textSize="@dimen/text_size_micro" />
+
+                    <com.skyhawk.customview.SkyhawkTextView
+                        style="@style/AppTheme.TextView"
+                        android:id="@+id/txt_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:ellipsize="end"
+                        app:appFont="Poppins-Regular"
+                        android:textSize="@dimen/text_size_micro"
+                        android:textColor="@android:color/black"
+                        tools:text="In progress" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:orientation="horizontal">
+
+            <com.skyhawk.customview.SkyhawkTextView
+                android:id="@+id/txt_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_border_orange"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="No"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                app:fontFamily="Poppins-SemiBold" />
+
+            <com.skyhawk.customview.SkyhawkTextView
+                android:id="@+id/txt_yes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="18dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_orange"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Yes"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                app:fontFamily="Poppins-SemiBold" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -36,6 +36,7 @@
         android:src="@drawable/ellipse_orange" />
 
     <ImageView
+        android:id="@+id/img_poweredby"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -44,9 +45,12 @@
         android:src="@drawable/powered_by_black" />
 
 
-    <FrameLayout
+    <LinearLayout
+        android:id="@+id/lnr_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_above="@+id/img_poweredby"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -62,7 +66,7 @@
                 android:orientation="vertical"
                 android:padding="24dp">
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,7 +76,7 @@
                     app:appFont="Poppins-Bold"
                     android:textFontWeight="700" />
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,7 +93,7 @@
                 android:orientation="vertical"
                 android:padding="24dp">
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -99,7 +103,7 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
 
-                <com.skyhawker.customview.SkyhawkEditText
+                <com.skyhawk.customview.SkyhawkEditText
                     style="@style/AppTheme.EditText"
                     android:id="@+id/edt_login_id"
                     android:layout_width="match_parent"
@@ -111,7 +115,7 @@
                     android:inputType="number"
                     android:textColor="@android:color/black" />
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -122,7 +126,7 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
 
-                <com.skyhawker.customview.SkyhawkEditText
+                <com.skyhawk.customview.SkyhawkEditText
                     style="@style/AppTheme.EditText"
                     android:id="@+id/edt_password"
                     android:layout_width="match_parent"
@@ -134,7 +138,7 @@
                     android:inputType="textPassword"
                     android:textColor="@android:color/black" />
 
-                <com.skyhawker.customview.SkyhawkButton
+                <com.skyhawk.customview.SkyhawkButton
                     style="@style/AppTheme.Button"
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
@@ -155,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="42dp"
                     android:orientation="vertical">
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -167,7 +171,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
-                <com.skyhawker.customview.SkyhawkButton
+                <com.skyhawk.customview.SkyhawkButton
                     style="@style/AppTheme.Button"
                     android:id="@+id/btn_sign_up"
                     android:layout_width="match_parent"
@@ -188,9 +192,9 @@
 
         </LinearLayout>
         </ScrollView>
-    </FrameLayout>
+    </LinearLayout>
 
-    <com.skyhawker.customview.SpinnerView
+    <com.skyhawk.customview.SpinnerView
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

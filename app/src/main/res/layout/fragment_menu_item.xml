@@ -15,7 +15,7 @@
         android:contentDescription="@string/image"
         tools:src="@drawable/ic_skyhawk_grey" />
 
-    <com.skyhawker.customview.SkyhawkTextView
+    <com.skyhawk.customview.SkyhawkTextView
         android:id="@+id/txt_name"
         style="@style/AppTheme.TextView"
         android:layout_width="0dp"

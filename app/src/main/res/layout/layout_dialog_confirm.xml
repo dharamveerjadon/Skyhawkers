@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.skyhawker.customview.SkyhawkTextView
+        <com.skyhawk.customview.SkyhawkTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -28,7 +28,7 @@
             android:paddingRight="24dp"
             android:paddingLeft="24dp">
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 style="@style/AppTheme.TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 android:textSize="14sp"
                 app:appFont="Poppins-Regular" />
 
-            <com.skyhawker.customview.SkyhawkEditText
+            <com.skyhawk.customview.SkyhawkEditText
                 android:id="@+id/edt_notice_period"
                 style="@style/AppTheme.EditText"
                 android:layout_width="match_parent"
@@ -60,7 +60,7 @@
             android:layout_marginTop="4dp"
             android:paddingLeft="24dp">
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 style="@style/AppTheme.TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 android:textSize="14sp"
                 app:appFont="Poppins-Regular" />
 
-            <com.skyhawker.customview.SkyhawkEditText
+            <com.skyhawk.customview.SkyhawkEditText
                 android:id="@+id/edt_expected_ctc"
                 style="@style/AppTheme.EditText"
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:appFont="Poppins-Bold"
@@ -98,7 +98,7 @@
                 android:text="Want to reupload latest Resume"
                 android:textColor="@color/colorGrayText" />
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/re_upload_resume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                 android:src="@drawable/icon_document"
                 />
         </LinearLayout>
-        <com.skyhawker.customview.SkyhawkTextView
+        <com.skyhawk.customview.SkyhawkTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -127,7 +127,7 @@
             android:text="Client requirements will move to ‘CLOSED’ section of your Timeline."
             android:textColor="@color/colorGrayText" />
 
-        <com.skyhawker.customview.SkyhawkTextView
+        <com.skyhawk.customview.SkyhawkTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -142,7 +142,7 @@
             android:layout_margin="24dp"
             android:orientation="horizontal">
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/txt_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
                 android:textColor="@android:color/black"
                 app:fontFamily="Poppins-SemiBold" />
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/txt_yes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

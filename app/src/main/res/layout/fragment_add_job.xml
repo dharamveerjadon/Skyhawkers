@@ -22,7 +22,7 @@
                 android:orientation="vertical">
 
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="@dimen/text_size_default" />
 
-                <com.skyhawker.customview.SkyhawkTextView
+                <com.skyhawk.customview.SkyhawkTextView
                     style="@style/AppTheme.TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
-                    <com.skyhawker.customview.SkyhawkEditText
+                    <com.skyhawk.customview.SkyhawkEditText
                         android:id="@+id/edt_job_name"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                         app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
-                    <com.skyhawker.customview.SkyhawkEditText
+                    <com.skyhawk.customview.SkyhawkEditText
                         android:id="@+id/edt_description"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                         android:singleLine="false"
                         android:textColor="@android:color/black" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_edit_text" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
-                    <com.skyhawker.customview.SkyhawkEditText
+                    <com.skyhawk.customview.SkyhawkEditText
                         android:id="@+id/edt_date"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
@@ -151,7 +151,7 @@
                         android:padding="12dp"
                         android:textColor="@android:color/black" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
-                    <com.skyhawker.customview.SkyhawkEditText
+                    <com.skyhawk.customview.SkyhawkEditText
                         android:id="@+id/edt_year_of_experience"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                         app:appFont="Poppins-Regular"
                         android:textColor="@android:color/black" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
-                    <com.skyhawker.customview.SkyhawkEditText
+                    <com.skyhawk.customview.SkyhawkEditText
                         android:id="@+id/edt_approx_budgets"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
@@ -195,7 +195,7 @@
                         android:padding="12dp"
                         android:textColor="@android:color/black" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         style="@style/AppTheme.TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -206,7 +206,7 @@
                         android:textColor="@color/colorAccent"
                         android:textSize="18sp" />
 
-                    <com.skyhawker.customview.SkyhawkEditText
+                    <com.skyhawk.customview.SkyhawkEditText
                         android:id="@+id/edt_skills"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
@@ -220,7 +220,7 @@
                         android:scrollbars="vertical"
                         android:textColor="@android:color/black" />
 
-                    <com.skyhawker.customview.SkyhawkButton
+                    <com.skyhawk.customview.SkyhawkButton
                         android:id="@+id/btn_save"
                         style="@style/AppTheme.Button"
                         android:layout_width="match_parent"
@@ -240,7 +240,7 @@
         </ScrollView>
     </LinearLayout>
 
-    <com.skyhawker.customview.SpinnerView
+    <com.skyhawk.customview.SpinnerView
         android:id="@+id/spinnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

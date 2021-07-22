@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_title"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
                         android:textSize="16sp"
                         app:appFont="Poppins-SemiBold" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_date"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_job_type"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
 
                 </LinearLayout>
 
-                <com.skyhawker.customview.TagView
+                <com.skyhawk.customview.TagView
                     android:id="@+id/tag_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                     android:background="@drawable/bg_gray"
                     android:orientation="horizontal">
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_year_of_experience"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
                         app:appFont="Poppins-Regular"
                         android:textSize="@dimen/text_size_micro" />
 
-                    <com.skyhawker.customview.SkyhawkTextView
+                    <com.skyhawk.customview.SkyhawkTextView
                         android:id="@+id/txt_tentative_budget"
                         style="@style/AppTheme.TextView"
                         android:layout_width="wrap_content"

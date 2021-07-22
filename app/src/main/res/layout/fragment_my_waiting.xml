@@ -25,7 +25,7 @@
         android:visibility="gone"
         tools:visibility="visible"/>
 
-    <com.skyhawker.customview.SpinnerView
+    <com.skyhawk.customview.SpinnerView
         android:id="@+id/spinnerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

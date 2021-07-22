@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.skyhawker">
+    package="com.skyhawk">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name=".utils.SkyhawkerApplication"
+        android:name="com.skyhawk.utils.SkyhawkerApplication"
         android:allowBackup="true"
         android:icon="@drawable/skyhawk_splash_logo"
         android:label="@string/app_name"
@@ -19,13 +19,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.WebViewActivity"
+        <activity android:name="com.skyhawk.activities.WebViewActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.DeveloperEntryActivity"
+        <activity android:name="com.skyhawk.activities.DeveloperEntryActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.SignUpActivity"
+        <activity android:name="com.skyhawk.activities.SignUpActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".activities.SplashActivity"
+        <activity android:name="com.skyhawk.activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name="com.skyhawk.activities.MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -46,7 +46,7 @@
         </provider>
 
         <service
-            android:name=".notification.MyFirebaseMessagingService"
+            android:name="com.skyhawk.notification.MyFirebaseMessagingService"
             android:exported="false"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
@@ -56,7 +56,7 @@
         </service>
 
         <service
-            android:name="com.skyhawker.services.ClearServices"
+            android:name="com.skyhawk.services.ClearServices"
             android:stopWithTask="false" />
 
     </application>

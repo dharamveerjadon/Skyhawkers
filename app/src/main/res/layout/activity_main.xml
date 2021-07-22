@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.skyhawker.fragments.MenuFragment"
+        android:name="com.skyhawk.fragments.MenuFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"

@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "495514160753",
-    "project_id": "skyhawker-e0437",
-    "storage_bucket": "skyhawker-e0437.appspot.com"
+    "project_number": "553751734613",
+    "project_id": "skyhawker-7426a",
+    "storage_bucket": "skyhawker-7426a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:495514160753:android:caa389ca33bd18cab295d0",
+        "mobilesdk_app_id": "1:553751734613:android:097ec1646a7f5f652267dc",
         "android_client_info": {
-          "package_name": "com.skyhawker"
+          "package_name": "com.skyhawk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "495514160753-dotc7oki921ji9i3fo1ldsdtp0ljjo4c.apps.googleusercontent.com",
+          "client_id": "553751734613-rhflk5d1vj5dr979rjhk4f3bunni77kf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyhawk",
+            "certificate_hash": "d75e3d32748620c4ac558327264b7e6f71788cbb"
+          }
+        },
+        {
+          "client_id": "553751734613-v4kmgkdpd9ggauth3cv8ofahapbpj0p1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCZlTOGVBU5IpmGsgIKRb7B4dik_ZNbHig"
+          "current_key": "AIzaSyC-zkvbnKf_lrroL6wKuGqEiJphicsO7xA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "495514160753-dotc7oki921ji9i3fo1ldsdtp0ljjo4c.apps.googleusercontent.com",
+              "client_id": "553751734613-v4kmgkdpd9ggauth3cv8ofahapbpj0p1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

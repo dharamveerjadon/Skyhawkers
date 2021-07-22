@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -28,7 +28,7 @@
                 android:textSize="16sp"
                 app:appFont="Poppins-SemiBold" />
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/txt_clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
             android:orientation="horizontal"
             android:padding="4dp">
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/txt_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                 android:textSize="16sp"
                 app:appFont="Poppins-Light" />
 
-            <com.skyhawker.customview.SkyhawkTextView
+            <com.skyhawk.customview.SkyhawkTextView
                 android:id="@+id/txt_apply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

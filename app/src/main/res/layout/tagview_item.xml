@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
-    <com.skyhawker.customview.SkyhawkTextView
+    <com.skyhawk.customview.SkyhawkTextView
         android:id="@+id/tv_tag_item_contain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:appFont="Poppins-Regular"
         android:text="ssdddddddd" />
 
-    <com.skyhawker.customview.SkyhawkTextView
+    <com.skyhawk.customview.SkyhawkTextView
         android:id="@+id/tv_tag_item_delete"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
